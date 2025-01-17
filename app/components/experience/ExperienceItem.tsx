@@ -45,9 +45,9 @@ export const ExperienceItem = ({
             <Image
               src={logo}
               alt={`${title} logo`}
-              className="w-full h-full object-cover"
-              width={30}
-              height={30}
+              className="w-12 h-12 object-contain"
+              width={100}
+              height={100}
             />
           ) : (
             <FaBriefcase className="text-primary mr-2" />
