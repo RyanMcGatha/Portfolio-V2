@@ -60,10 +60,8 @@ export default function Home() {
             actions={[
               {
                 text: "Contact Me",
-                href: "/contact",
-                target: "_blank",
+                href: "/#contact",
                 prefetch: true,
-                rel: "nofollow",
               },
             ]}
           />
