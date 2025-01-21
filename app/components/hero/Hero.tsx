@@ -39,7 +39,7 @@ export function HeroSection({ badge, title, description, actions }: HeroProps) {
     <section
       className={cn(
         " text-foreground",
-        "overflow-hidden flex items-center justify-center"
+        "overflow-hidden flex items-center justify-center relative"
       )}
     >
       <div className="mx-auto flex max-w-container flex-col gap-12 pt-16 sm:gap-24">

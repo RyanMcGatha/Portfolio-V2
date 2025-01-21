@@ -67,11 +67,13 @@ export default function Home() {
               },
             ]}
           />
+
           <About />
           <Projects />
           <Experience />
           <Contact />
         </div>
+        <BackgroundAnimation />
       </main>
     </div>
   );

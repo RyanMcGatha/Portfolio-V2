@@ -44,7 +44,7 @@ export default function BackgroundAnimation() {
   }
 
   return (
-    <div className="fixed inset-0 -z-10 overflow-hidden pointer-events-none">
+    <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
       {/* Fade the entire container in over 2 seconds to 0.1 opacity */}
       <motion.div
         className="absolute inset-0"
@@ -59,7 +59,7 @@ export default function BackgroundAnimation() {
             style={{
               width: `${circle.size}px`,
               height: `${circle.size}px`,
-              backgroundColor: `hsl(var(--muted-foreground))`,
+              backgroundColor: `hsl(var(--primary)/80%)`,
             }}
             initial={{
               x: circle.initialX,

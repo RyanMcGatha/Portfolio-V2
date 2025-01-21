@@ -5,7 +5,6 @@ import { SectionHeader } from "../util/SectionHeader";
 import Reveal from "../util/Reveal";
 import { MyLinks } from "../nav/Header";
 import { Stats } from "./Stats";
-import { motion } from "framer-motion";
 
 export const About = () => {
   return (
