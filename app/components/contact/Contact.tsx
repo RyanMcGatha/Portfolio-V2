@@ -5,14 +5,14 @@ import Reveal from "../util/Reveal";
 export const Contact = () => {
   return (
     <section className="section-wrapper" id="contact">
-      <div className="max-w-xl mx-auto bg-card px-8 py-12 rounded-[--radius] border">
+      <div className="max-w-xl mx-auto bg-card px-8 py-12 rounded-[--radius] border-primary border-2">
         <Reveal width="w-full">
           <h4 className="text-4xl md:text-5xl text-center font-heading text-foreground">
             Contact<span className="text-accent">.</span>
           </h4>
         </Reveal>
         <Reveal width="w-full">
-          <p className="text-center my-8 text-muted-foreground leading-relaxed font-body">
+          <p className="text-center my-8 text-muted-foreground leading-relaxed subheading">
             Shoot me an email if you want to connect! You can also find me on{" "}
             <Link
               prefetch={true}

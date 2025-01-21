@@ -15,7 +15,7 @@ export const Chip = ({ children, className }: ChipProps) => {
       whileHover={{ scale: 1.05 }}
       whileTap={{ scale: 0.95 }}
       className={twMerge(
-        `relative z-0 flex items-center gap-2 overflow-hidden rounded-[--radius] border-[1px] 
+        `relative z-0 flex items-center gap-2 overflow-hidden rounded-[--radius] border-[2px] 
         border-primary px-4 py-2 font-body text-sm
         text-primary transition-all duration-300
         bg-background

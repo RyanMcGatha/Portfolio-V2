@@ -8,7 +8,7 @@ import { OutlineButton } from "../buttons/OutlineButton";
 
 export const Header = () => {
   return (
-    <header className="h-16 px-4 md:px-6 flex items-center justify-between sticky top-0 bg-background/80 backdrop-blur-md border-b border-border shadow-sm font-body z-20">
+    <header className="h-16 px-4 md:px-6 flex items-center justify-between sticky top-0 bg-background/80 backdrop-blur-md border-b border-border shadow-sm font-heading z-20">
       <MyLinks />
       <div className="flex items-center gap-4">
         <ModeToggle />
@@ -29,7 +29,7 @@ export const Header = () => {
 };
 
 export const MyLinks = () => (
-  <div className="flex items-center text-lg gap-4 font-code">
+  <div className="flex items-center text-lg gap-4 font-heading">
     <SocialLink
       href="https://www.linkedin.com/in/ryanmcgatha"
       icon={<SiLinkedin />}

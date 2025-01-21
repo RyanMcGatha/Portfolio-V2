@@ -41,7 +41,7 @@ export const ProjectModal = ({
 
   const content = (
     <div
-      className="fixed inset-0 z-50 px-4 py-12 bg-background/80 backdrop-blur overflow-y-scroll flex justify-center cursor-pointer font-body"
+      className="fixed inset-0 z-50 px-4 py-12 bg-background/80 backdrop-blur overflow-y-scroll flex justify-center cursor-pointer subheading"
       onClick={() => setIsOpen(false)}
     >
       <button className="absolute top-4 md:top-6 text-xl right-4 hover:text-primary transition-colors">

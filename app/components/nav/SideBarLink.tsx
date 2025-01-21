@@ -8,10 +8,9 @@ interface Props {
   href: string;
   children: string;
   value: string;
-  icon: React.ReactNode;
 }
 
-const MotionLink = motion(Link);
+const MotionLink = motion.create(Link);
 
 export const SideBarLink = ({
   setSelected,
@@ -19,7 +18,6 @@ export const SideBarLink = ({
   children,
   href,
   value,
-  icon,
 }: Props) => {
   return (
     <MotionLink
@@ -30,14 +28,13 @@ export const SideBarLink = ({
       onClick={() => {
         setSelected(value);
       }}
-      className={`group flex flex-col items-center justify-center h-20 w-full transition-all font-heading ${
+      className={`group flex flex-col items-center justify-center h-24 w-full transition-all font-heading ${
         selected === value
           ? "bg-primary/10 border-r-2 border-primary text-primary"
           : "border-transparent hover:bg-accent/50 text-muted-foreground hover:text-foreground"
       }`}
     >
-      <span className="text-xl mb-1">{icon}</span>
-      <span className="text-xs">{children}</span>
+      <span className="text-sm font-heading writing-vertical">{children}</span>
       {selected === value && (
         <motion.div
           className="absolute left-0 w-1 h-8 bg-primary rounded-[--radius]"

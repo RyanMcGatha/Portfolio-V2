@@ -57,7 +57,7 @@ export const Project = ({
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
           onClick={() => setIsOpen(true)}
-          className="w-full aspect-video bg-muted cursor-pointer relative rounded-[var(--radius)] overflow-hidden font-body"
+          className="w-full aspect-video bg-muted cursor-pointer relative rounded-[var(--radius)] overflow-hidden subheading"
         >
           <Image
             src={imgSrc}
@@ -74,7 +74,7 @@ export const Project = ({
         <div className="mt-6">
           <Reveal width="w-full">
             <div className="flex items-center gap-2 w-full">
-              <h4 className="font-bold text-lg shrink-0 max-w-[calc(100%_-_150px)] text-foreground font-heading">
+              <h4 className="text-lg shrink-0 max-w-[calc(100%_-_150px)] text-foreground font-heading">
                 {title}
               </h4>
               <div className="w-full h-[1px] bg-border" />

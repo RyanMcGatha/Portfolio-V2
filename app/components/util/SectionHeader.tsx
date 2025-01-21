@@ -11,10 +11,10 @@ export const SectionHeader = ({ title, dir = "r" }: Props) => {
       className="flex items-center gap-8 mb-12"
       style={{ flexDirection: dir === "r" ? "row" : "row-reverse" }}
     >
-      <div className="w-full h-[1px] bg-border" />
+      <div className="w-full h-[2px] bg-primary" />
       <h2 className="font-body">
         <Reveal>
-          <span className="text-3xl md:text-4xl font-heading text-foreground">
+          <span className="text-4xl md:text-5xl font-heading text-foreground">
             {title}
             <span className="text-primary font-heading">.</span>
           </span>

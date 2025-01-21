@@ -1,13 +1,7 @@
-/* =========================================
-   Tailwind Base Imports
-   ========================================= */
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* =========================================
-            Global Styles
-            ========================================= */
 html {
   scroll-behavior: smooth;
 }
@@ -16,8 +10,12 @@ body {
   font-family: var(--font-body);
 }
 
+.subheading {
+  font-family: var(--font-subheading);
+  font-weight: 800;
+}
+
 .no-scrollbar {
-  /* Hide scrollbar in IE, Edge, and Firefox */
   -ms-overflow-style: none;
   scrollbar-width: none;
 }
@@ -26,58 +24,34 @@ body {
   writing-mode: vertical-lr;
 }
 
-/* =========================================
-            Theme Variable Layers
-            ========================================= */
 @layer base {
-  /* ---------- Root (Light Theme) ---------- */
   :root {
-    /* Font families */
     --font-heading: var(--font-heading), Impact, sans-serif;
-    --font-body: var(--font-body), -apple-system, BlinkMacSystemFont, "Segoe UI",
-      Roboto, Oxygen, Ubuntu, Cantarell, "Open Sans", "Helvetica Neue",
+    --font-subheading: var(--font-subheading), Impact, sans-serif;
+    --font-body: var(--font-body), "Arial Black", "Helvetica Black",
+      "Franklin Gothic Medium", "Futura", -apple-system, BlinkMacSystemFont,
       sans-serif;
-    --font-code: var(--font-code), "Courier New", Courier, monospace;
+    --font-code: var(--font-code), "Consolas", "Monaco", "Lucida Console",
+      monospace;
 
-    /* Light Theme: HSL-based variables */
-    --background: 0 0% 100%;
-    --foreground: 240 10% 3.9%;
+    --background: 40 20% 95%;
+    --foreground: 0 0% 9%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 240 10% 3.9%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 240 10% 3.9%;
-
-    --primary: 240 5.9% 10%;
+    --primary: 0 0% 9%;
     --primary-foreground: 0 0% 98%;
-    --secondary: 240 4.8% 95.9%;
-    --secondary-foreground: 240 5.9% 10%;
-    --muted: 240 4.8% 95.9%;
-    --muted-foreground: 240 3.8% 46.1%;
-    --accent: 240 4.8% 95.9%;
-    --accent-foreground: 240 5.9% 10%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 0 0% 98%;
 
-    --border: 240 5.9% 90%;
-    --input: 240 5.9% 90%;
-    --ring: 240 10% 3.9%;
+    --secondary: 0 0% 96%;
+    --secondary-foreground: 0 0% 9%;
 
-    /* Example chart colors */
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
+    --border: 0 0% 89%;
+    --input: 0 0% 89%;
+    --ring: 0 0% 89%;
 
-    /* Border radius */
     --radius: 0.5rem;
 
-    /* Themed Cursor */
     --cursor-url: auto;
   }
 
-  /* ---------- Dark Theme ---------- */
   .dark {
     --background: 240 10% 3.9%;
     --foreground: 0 0% 98%;
@@ -88,7 +62,7 @@ body {
     --popover-foreground: 0 0% 98%;
 
     --primary: 0 0% 98%;
-    --primary-foreground: 240 5.9% 10%;
+    --primary-foreground: 0 0% 98%;
     --secondary: 240 3.7% 15.9%;
     --secondary-foreground: 0 0% 98%;
     --muted: 240 3.7% 15.9%;
@@ -102,7 +76,6 @@ body {
     --input: 240 3.7% 15.9%;
     --ring: 240 4.9% 83.9%;
 
-    /* Example chart colors */
     --chart-1: 220 70% 50%;
     --chart-2: 160 60% 45%;
     --chart-3: 30 80% 55%;
@@ -110,9 +83,10 @@ body {
     --chart-5: 340 75% 55%;
 
     --cursor-url: auto;
+
+    --brand: 31 97% 72%;
   }
 
-  /* ---------- Sepia Theme ---------- */
   .sepia {
     --background: 35 25% 95%;
     --foreground: 35 35% 15%;
@@ -137,7 +111,6 @@ body {
     --input: 35 20% 80%;
     --ring: 35 35% 15%;
 
-    /* Example chart colors */
     --chart-1: 25 80% 50%;
     --chart-2: 35 70% 45%;
     --chart-3: 15 60% 55%;
@@ -147,7 +120,6 @@ body {
     --cursor-url: auto;
   }
 
-  /* ---------- Neon Theme ---------- */
   .neon {
     --background: 260 10% 10%;
     --foreground: 160 100% 70%;
@@ -172,7 +144,6 @@ body {
     --input: 260 20% 30%;
     --ring: 320 100% 60%;
 
-    /* Example chart colors */
     --chart-1: 320 100% 60%;
     --chart-2: 200 100% 60%;
     --chart-3: 280 100% 60%;
@@ -182,7 +153,6 @@ body {
     --cursor-url: auto;
   }
 
-  /* ---------- Forest Theme ---------- */
   .forest {
     --background: 120 20% 95%;
     --foreground: 120 30% 20%;
@@ -207,7 +177,6 @@ body {
     --input: 120 15% 80%;
     --ring: 150 50% 30%;
 
-    /* Example chart colors */
     --chart-1: 150 50% 40%;
     --chart-2: 90 50% 45%;
     --chart-3: 30 60% 50%;
@@ -217,7 +186,6 @@ body {
     --cursor-url: auto;
   }
 
-  /* ---------- Ocean Theme ---------- */
   .ocean {
     --background: 200 50% 95%;
     --foreground: 200 50% 10%;
@@ -242,7 +210,6 @@ body {
     --input: 200 45% 80%;
     --ring: 200 70% 40%;
 
-    /* Example chart colors */
     --chart-1: 200 70% 50%;
     --chart-2: 180 60% 45%;
     --chart-3: 220 70% 55%;
@@ -252,7 +219,6 @@ body {
     --cursor-url: auto;
   }
 
-  /* ---------- Sunset Theme ---------- */
   .sunset {
     --background: 40 30% 95%;
     --foreground: 20 50% 20%;
@@ -277,7 +243,6 @@ body {
     --input: 20 45% 80%;
     --ring: 20 80% 50%;
 
-    /* Example chart colors */
     --chart-1: 20 80% 60%;
     --chart-2: 40 70% 55%;
     --chart-3: 340 70% 65%;
@@ -287,7 +252,6 @@ body {
     --cursor-url: auto;
   }
 
-  /* ---------- Monochrome Theme ---------- */
   .monochrome {
     --background: 0 0% 98%;
     --foreground: 0 0% 10%;
@@ -312,19 +276,15 @@ body {
     --input: 0 0% 85%;
     --ring: 0 0% 20%;
 
-    /* Example chart colors */
     --chart-1: 0 0% 20%;
     --chart-2: 0 0% 40%;
     --chart-3: 0 0% 60%;
     --chart-4: 0 0% 80%;
-    --chart-5: 0 0% 100%;
+    --chart-5: 0 0% 98%;
 
     --cursor-url: auto;
   }
 
-  /* =========================================
-        Themed Scrollbar
-        ========================================= */
   ::-webkit-scrollbar {
     width: 0.5rem;
     height: 0.5rem;
@@ -346,44 +306,31 @@ body {
     outline: 1px solid hsl(var(--border));
   }
 
-  /* Firefox scrollbar styling */
   * {
     scrollbar-color: hsl(var(--foreground)) hsl(var(--border));
     scrollbar-width: thin;
   }
 
-  /* =========================================
-        Themed Caret and Selection
-        ========================================= */
-  /* Change the caret (text cursor) color to match the theme's foreground */
   input,
   textarea {
     caret-color: hsl(var(--foreground));
   }
 
-  /* Themed text selection (highlight background = foreground color,
-        highlight text = background color) */
   ::selection {
     background: hsl(var(--foreground));
     color: hsl(var(--background));
   }
 
-  /* Apply the cursor variable to the body */
   body {
     cursor: var(--cursor-url);
   }
 }
 
-/* =========================================
-            Base Element Styles
-            ========================================= */
 @layer base {
-  /* All elements inherit border color from the current theme */
   * {
     @apply border-border;
   }
 
-  /* Body gets the background and text from current theme */
   body {
     @apply bg-background text-foreground;
   }

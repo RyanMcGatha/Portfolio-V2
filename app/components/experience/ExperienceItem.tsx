@@ -77,7 +77,7 @@ export const ExperienceItem = ({
           <span className="text-primary font-heading text-lg">{position}</span>
         </motion.div>
         <motion.div
-          className="flex items-center text-muted-foreground font-body"
+          className="flex items-center text-muted-foreground subheading"
           initial={{ x: 20, opacity: 0 }}
           animate={{ x: 0, opacity: 1 }}
           transition={{ delay: 0.2 * index + 0.3 }}
@@ -87,7 +87,7 @@ export const ExperienceItem = ({
         </motion.div>
       </div>
       <motion.p
-        className="mb-6 text-muted-foreground leading-relaxed font-body"
+        className="mb-6 text-muted-foreground leading-relaxed subheading"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.2 * index + 0.4 }}
@@ -101,7 +101,7 @@ export const ExperienceItem = ({
         transition={{ delay: 0.2 * index + 0.5 }}
       >
         {tech.map((item) => (
-          <Chip key={item} className="font-code">
+          <Chip key={item} className="subheading">
             {item}
           </Chip>
         ))}

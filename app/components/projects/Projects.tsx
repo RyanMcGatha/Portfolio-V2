@@ -4,7 +4,7 @@ import { Project } from "./Project";
 
 export const Projects = () => {
   return (
-    <section className="section-wrapper py-16 font-body" id="projects">
+    <section className="section-wrapper py-16 subheading" id="projects">
       <SectionHeader title="Projects" dir="r" />
       <div className="grid gap-8 md:gap-12 grid-cols-1 md:grid-cols-2 mt-8">
         {projects.map((project) => (

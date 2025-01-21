@@ -7,7 +7,7 @@ import { motion } from "framer-motion";
 export const Experience = () => {
   return (
     <section
-      className="section-wrapper text-foreground border-border font-body py-16"
+      className="section-wrapper text-foreground border-border subheading py-16"
       id="experience"
     >
       <SectionHeader title="Experience" dir="l" />
