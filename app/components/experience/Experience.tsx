@@ -35,6 +35,25 @@ export const Experience = () => {
 
 const experience = [
   {
+    title: "Drum Creative",
+    logo: "/drum.jpeg",
+    position: "Web Developer",
+    time: "Feb 2025 - Present",
+    location: "Greenville, SC",
+    description:
+      "Web Developer focused on creating modern, responsive websites and web applications for clients across various industries.",
+    tech: [
+      "WordPress",
+      "Elementor",
+      "PHP",
+      "JavaScript",
+      "HTML",
+      "CSS",
+      "Git",
+      "SQL",
+    ],
+  },
+  {
     title: "Chipp AI",
     logo: "/chipp.png",
     position: "Software Engineering Intern",

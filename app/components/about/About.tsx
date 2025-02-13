@@ -16,7 +16,7 @@ export const About = () => {
             <div className="relative">
               <p className="text-lg leading-relaxed text-muted-foreground">
                 <span className="float-left mr-2 mt-2">
-                  <span className="bg-primary text-primary-foreground w-16 h-16 rounded-[--radius] flex items-center justify-center text-4xl font-heading">
+                  <span className="bg-primary text-secondary w-16 h-16 rounded-[--radius] flex items-center justify-center text-4xl font-heading">
                     H
                   </span>
                 </span>

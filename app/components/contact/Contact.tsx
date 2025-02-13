@@ -18,7 +18,7 @@ export const Contact = () => {
               prefetch={true}
               href="https://www.linkedin.com/in/ryanmcgatha"
               target="_blank"
-              className="text-foreground hover:text-accent hover:underline font-heading"
+              className="text-foreground hover:text-accent underline font-heading"
             >
               Linkedin
             </Link>{" "}
@@ -27,7 +27,7 @@ export const Contact = () => {
               prefetch={true}
               href="https://github.com/RyanMcGatha"
               target="_blank"
-              className="text-foreground hover:text-accent hover:underline font-heading"
+              className="text-foreground hover:text-accent underline font-heading"
             >
               GitHub
             </Link>{" "}
