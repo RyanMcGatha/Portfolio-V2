@@ -70,6 +70,20 @@ export default function Home() {
           <Projects />
           <Experience />
           <Contact />
+          <script>
+            window.CHIPP_APP_URL = "https://ryaninfo-10423.chipp.ai";
+            window.CHIPP_APP_ID = 10423;
+          </script>
+
+          <link
+            rel="stylesheet"
+            href="https://storage.googleapis.com/chipp-chat-widget-assets/build/bundle.css"
+          />
+
+          <script
+            defer
+            src="https://storage.googleapis.com/chipp-chat-widget-assets/build/bundle.js"
+          ></script>
         </div>
         <BackgroundAnimation />
       </main>
