@@ -71,7 +71,7 @@ export default function Home() {
           <Experience />
           <Contact />
           <script>
-            window.CHIPP_APP_URL = "https://ryaninfo-10423.chipp.ai";
+            window.CHIPP_APP_URL = &quot;https://ryaninfo-10423.chipp.ai&quot;;
             window.CHIPP_APP_ID = 10423;
           </script>
 
