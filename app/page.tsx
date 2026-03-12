@@ -1,9 +1,7 @@
 "use client";
 
-import React from "react";
 import { SideBar } from "./components/nav/SideBar";
 import { Header } from "./components/nav/Header";
-
 import { About } from "./components/about/About";
 import { Experience } from "./components/experience/Experience";
 import { Contact } from "./components/contact/Contact";
@@ -16,10 +14,10 @@ export default function Home() {
   return (
     <div className="grid grid-cols-[54px_1fr]">
       <SideBar />
-      <main>
+      <main id="main-content">
         <Header />
 
-        <div className="mx-auto px-4 md:px-8 space-y-32 pb-24 max-w-7xl ">
+        <div className="mx-auto px-4 md:px-8 space-y-32 pb-24 max-w-7xl">
           <HeroSection
             badge={{
               text: "Check out my resume",
@@ -38,25 +36,16 @@ export default function Home() {
                 <TypewriterEffect
                   texts={[
                     "Full Stack Developer",
-                    "JavaScript Junkie",
-                    "Code Craftsman",
-                    "Bug Bounty Hunter",
-                    "Python Professional",
-                    "React Wrangler",
-                    "CSS Sorcerer",
-                    "Git Wizard",
-                    "API Alchemist",
-                    "Node Ninja",
+                    "AI Developer",
+                    "React Specialist",
+                    "Node.js Engineer",
+                    "Python Developer",
+                    "Greenville, SC",
                   ]}
                 />
               </>
             }
-            description={{
-              line1:
-                "I specialize in building dynamic and responsive web applications",
-              line2: "using technologies like Node.js, SQL, Python, and more!",
-              line3: "Explore my projects and get to know more about my work.",
-            }}
+            description="Web developer and AI developer based in Greenville, SC. I build dynamic, responsive web applications using React, Node.js, Python, and modern AI technologies for businesses across the Upstate."
             actions={[
               {
                 text: "Contact Me",
@@ -70,20 +59,6 @@ export default function Home() {
           <Projects />
           <Experience />
           <Contact />
-          <script>
-            window.CHIPP_APP_URL = &quot;https://ryaninfo-10423.chipp.ai&quot;;
-            window.CHIPP_APP_ID = 10423;
-          </script>
-
-          <link
-            rel="stylesheet"
-            href="https://storage.googleapis.com/chipp-chat-widget-assets/build/bundle.css"
-          />
-
-          <script
-            defer
-            src="https://storage.googleapis.com/chipp-chat-widget-assets/build/bundle.js"
-          ></script>
         </div>
         <BackgroundAnimation />
       </main>

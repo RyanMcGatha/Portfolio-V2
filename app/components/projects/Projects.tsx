@@ -1,4 +1,3 @@
-import React from "react";
 import { SectionHeader } from "../util/SectionHeader";
 import { Project } from "./Project";
 
@@ -23,13 +22,13 @@ const projects = [
     projectLink: "https://push-it.netlify.app",
     tech: ["React.js", "PostgreSQL", "Node.js", "Express.js", "JWT"],
     description:
-      "Created 'Push It!', a real-time messaging application offering secure user registration and dynamic messaging capabilities.",
+      "A real-time messaging application offering secure user registration and dynamic messaging capabilities.",
     modalContent: (
       <>
         <p>
-          {`"Push It! is a real-time messaging application developed with
-          React.js, PostgreSQL, Node.js, Express.js, and JWT. It offers secure
-          user registration and dynamic messaging features.`}
+          Push It! is a real-time messaging application developed with React.js,
+          PostgreSQL, Node.js, Express.js, and JWT. It offers secure user
+          registration and dynamic messaging features.
         </p>
         <p>
           This project showcases my ability to quickly learn and apply new
@@ -45,7 +44,7 @@ const projects = [
     projectLink: "https://steamyfiles.com/",
     tech: ["React.js", "PostgreSQL", "Tailwind CSS", "Supabase"],
     description:
-      "Developed a comprehensive document management system to enhance operational efficiency and support franchise expansion.",
+      "A comprehensive document management system to enhance operational efficiency and support franchise expansion.",
     modalContent: (
       <>
         <p>
@@ -53,11 +52,10 @@ const projects = [
           streamline operations and support franchise expansion.
         </p>
         <p>
-          {`
           Utilizing React.js for the frontend, PostgreSQL for database
           management, Tailwind CSS for styling, and Supabase for backend
           services, this project significantly improved the company&apos;s
-          operational efficiency.`}
+          operational efficiency.
         </p>
       </>
     ),
@@ -69,7 +67,7 @@ const projects = [
     projectLink: "https://fastapi-tutorial.netlify.app/",
     tech: ["Python", "FastAPI", "PostgreSQL"],
     description:
-      "Developed a tutorial project demonstrating the use of FastAPI with PostgreSQL, including a preset API route with customizable request parameters.",
+      "A tutorial project demonstrating the use of FastAPI with PostgreSQL, including a preset API route with customizable request parameters.",
     modalContent: (
       <>
         <p>

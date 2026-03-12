@@ -1,10 +1,11 @@
+"use client";
+
 import { useState, useEffect, useMemo } from "react";
 import { motion } from "framer-motion";
 
 export default function BackgroundAnimation() {
   const [windowSize, setWindowSize] = useState({ width: 0, height: 0 });
 
-  // Update window dimensions on mount and whenever resized
   useEffect(() => {
     const handleResize = () => {
       setWindowSize({
@@ -13,18 +14,16 @@ export default function BackgroundAnimation() {
       });
     };
     window.addEventListener("resize", handleResize);
-    // Initialize on mount
     handleResize();
 
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  // Memoize an array of circle configs so they don't re-randomize on each render
   const circles = useMemo(() => {
     if (windowSize.width === 0 || windowSize.height === 0) return [];
 
-    return Array.from({ length: 50 }).map((_, i) => {
-      const size = Math.random() * 20 + 10;
+    return Array.from({ length: 20 }).map((_, i) => {
+      const size = Math.random() * 30 + 10;
       return {
         key: i,
         initialX: Math.random() * windowSize.width,
@@ -33,33 +32,34 @@ export default function BackgroundAnimation() {
         finalY: Math.random() * windowSize.height,
         scale: Math.random() * 0.5 + 0.5,
         size,
-        duration: Math.random() * 10 + 20,
+        duration: Math.random() * 15 + 25,
       };
     });
   }, [windowSize]);
 
-  // If dimensions are not set yet, don't render anything
   if (windowSize.width === 0 || windowSize.height === 0) {
     return null;
   }
 
   return (
-    <div className="absolute inset-0 -z-10 overflow-hidden pointer-events-none">
-      {/* Fade the entire container in over 2 seconds to 0.1 opacity */}
+    <div
+      className="fixed inset-0 -z-10 overflow-hidden pointer-events-none"
+      aria-hidden="true"
+    >
       <motion.div
         className="absolute inset-0"
         initial={{ opacity: 0 }}
-        animate={{ opacity: 0.1 }}
+        animate={{ opacity: 0.08 }}
         transition={{ duration: 2 }}
       >
         {circles.map((circle) => (
           <motion.div
             key={circle.key}
-            className="absolute rounded-full"
+            className="absolute rounded-full will-change-transform"
             style={{
               width: `${circle.size}px`,
               height: `${circle.size}px`,
-              backgroundColor: `hsl(var(--primary)/80%)`,
+              backgroundColor: `hsl(var(--primary) / 60%)`,
             }}
             initial={{
               x: circle.initialX,

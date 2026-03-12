@@ -6,39 +6,50 @@ import { AiFillCode } from "react-icons/ai";
 import Image from "next/image";
 import { motion } from "framer-motion";
 
-const technologies = {
+interface Tech {
+  name: string;
+  logo?: string;
+}
+
+const technologies: Record<string, Tech[]> = {
   frontend: [
-    { name: "React", logo: "/logos/react.svg" },
+    { name: "React" },
     { name: "Next.js", logo: "/logos/nextjs.svg" },
     { name: "TypeScript", logo: "/logos/typescript.svg" },
-    { name: "JavaScript", logo: "/logos/javascript.svg" },
+    { name: "JavaScript" },
     { name: "Tailwind CSS", logo: "/logos/tailwind.svg" },
+    { name: "HTML/CSS" },
+    { name: "Framer Motion", logo: "/logos/framer-motion.svg" },
     { name: "React Query", logo: "/logos/react-query.svg" },
-    { name: "React Hook Form", logo: "/logos/react.svg" },
-    { name: "Anime.js", logo: "/logos/animejs.svg" },
-    { name: "PostCSS", logo: "/logos/postcss.svg" },
   ],
   backend: [
-    { name: "Node.js", logo: "/logos/nodejs.svg" },
+    { name: "Node.js" },
     { name: "Express.js", logo: "/logos/express.svg" },
+    { name: "Python" },
     { name: "FastAPI", logo: "/logos/fastapi.svg" },
-    { name: "Python", logo: "/logos/python.svg" },
+    { name: "RESTful APIs", logo: "/logos/api.svg" },
+    { name: "PHP" },
+  ],
+  "cms & builders": [
+    { name: "WordPress" },
+    { name: "Elementor" },
+    { name: "Beaver Builder" },
   ],
   database: [
-    { name: "PostgreSQL", logo: "/logos/postgresql.svg" },
-    { name: "MySQL", logo: "/logos/mysql.svg" },
+    { name: "PostgreSQL" },
+    { name: "MySQL" },
+    { name: "Supabase" },
     { name: "Prisma", logo: "/logos/prisma.svg" },
+    { name: "SQLAlchemy", logo: "/logos/sqlalchemy.svg" },
   ],
-  devops: [
-    { name: "Docker", logo: "/logos/docker.svg" },
-    { name: "NGINX", logo: "/logos/nginx.svg" },
-    { name: "Linux", logo: "/logos/linux.svg" },
-    { name: "Git/GitHub", logo: "/logos/github.svg" },
-  ],
-  tools: [
-    { name: "ESLint", logo: "/logos/eslint.svg" },
-    { name: "Zod", logo: "/logos/zod.svg" },
+  "devops & tools": [
+    { name: "Git/GitHub" },
+    { name: "Docker" },
+    { name: "NGINX" },
+    { name: "Linux" },
     { name: "JWT", logo: "/logos/jwt.svg" },
+    { name: "ESLint" },
+    { name: "Automation" },
   ],
 };
 
@@ -48,7 +59,7 @@ export const Stats = () => {
       <Reveal>
         <div>
           <h4 className="flex items-center mb-8 text-2xl font-heading">
-            <AiFillCode className="text-primary text-3xl mr-2" />
+            <AiFillCode className="text-foreground text-3xl mr-2" />
             <span className="text-foreground">Skills & Technologies</span>
           </h4>
           <div className="space-y-8">
@@ -57,13 +68,14 @@ export const Stats = () => {
                 key={category}
                 className="relative"
                 initial="hidden"
-                animate="show"
+                whileInView="show"
+                viewport={{ once: true, margin: "-50px" }}
               >
                 <div className="mb-4">
-                  <h5 className="text-xl font-heading capitalize text-primary/90">
+                  <h5 className="text-xl font-heading capitalize text-foreground/80">
                     {category}
                   </h5>
-                  <div className="h-1 w-20 bg-primary rounded mt-1" />
+                  <div className="h-1 w-20 rounded mt-1 bg-foreground/20" />
                 </div>
                 <motion.div
                   className="flex flex-wrap gap-2"
@@ -72,7 +84,7 @@ export const Stats = () => {
                     show: {
                       opacity: 1,
                       transition: {
-                        staggerChildren: 0.1,
+                        staggerChildren: 0.05,
                       },
                     },
                   }}
@@ -85,16 +97,18 @@ export const Stats = () => {
                         show: { opacity: 1, y: 0 },
                       }}
                     >
-                      <Chip className="flex items-center gap-2 subheading hover:bg-primary/10 transition-colors">
-                        <div className="relative w-5 h-5">
-                          <Image
-                            src={tech.logo || "/placeholder.svg"}
-                            alt={`${tech.name} logo`}
-                            fill
-                            className="object-contain"
-                            sizes="20px"
-                          />
-                        </div>
+                      <Chip className="flex items-center gap-2 subheading hover:bg-foreground/5 transition-colors">
+                        {tech.logo && (
+                          <div className="relative w-5 h-5">
+                            <Image
+                              src={tech.logo}
+                              alt={`${tech.name} logo`}
+                              fill
+                              className="object-contain"
+                              sizes="20px"
+                            />
+                          </div>
+                        )}
                         {tech.name}
                       </Chip>
                     </motion.div>

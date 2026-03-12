@@ -5,29 +5,29 @@ import Reveal from "../util/Reveal";
 export const Contact = () => {
   return (
     <section className="section-wrapper" id="contact">
-      <div className="max-w-xl mx-auto bg-card px-8 py-12 rounded-[--radius] border-primary border-2">
+      <div className="max-w-xl mx-auto bg-card/50 backdrop-blur-sm px-8 py-12 rounded-[--radius] border border-border hover:border-foreground/20 transition-colors duration-300">
         <Reveal width="w-full">
           <h4 className="text-4xl md:text-5xl text-center font-heading text-foreground">
-            Contact<span className="text-accent">.</span>
+            Contact<span className="text-foreground font-heading">.</span>
           </h4>
         </Reveal>
         <Reveal width="w-full">
           <p className="text-center my-8 text-muted-foreground leading-relaxed subheading">
-            Shoot me an email if you want to connect! You can also find me on{" "}
+            Looking for a web developer or AI developer in Greenville, SC? Shoot
+            me an email and let&apos;s talk about your project. You can also
+            find me on{" "}
             <Link
-              prefetch={true}
               href="https://www.linkedin.com/in/ryanmcgatha"
               target="_blank"
-              className="text-foreground hover:text-accent underline font-heading"
+              className="text-foreground hover:text-muted-foreground underline underline-offset-2 font-heading transition-colors"
             >
-              Linkedin
+              LinkedIn
             </Link>{" "}
             or{" "}
             <Link
-              prefetch={true}
               href="https://github.com/RyanMcGatha"
               target="_blank"
-              className="text-foreground hover:text-accent underline font-heading"
+              className="text-foreground hover:text-muted-foreground underline underline-offset-2 font-heading transition-colors"
             >
               GitHub
             </Link>{" "}
@@ -35,16 +35,18 @@ export const Contact = () => {
           </p>
         </Reveal>
         <Reveal width="w-full">
-          <Link
-            prefetch={true}
-            href="mailto:ryanmcgatha@gmail.com"
-            target="_blank"
-          >
-            <div className="flex items-center justify-center gap-2 w-fit text-lg md:text-2xl whitespace-normal mx-auto text-muted-foreground hover:text-accent transition-colors font-code">
-              <AiFillMail />
-              <span>ryanmcgatha@gmail.com</span>
-            </div>
-          </Link>
+          <address className="not-italic">
+            <Link href="mailto:ryanmcgatha@gmail.com">
+              <div className="flex items-center justify-center gap-2 w-fit text-lg md:text-2xl whitespace-normal mx-auto text-foreground hover:text-muted-foreground transition-colors font-code">
+                <AiFillMail />
+                <span>ryanmcgatha@gmail.com</span>
+              </div>
+            </Link>
+            <p className="text-center text-sm text-muted-foreground mt-4 subheading">
+              Based in Greenville, South Carolina &mdash; available for local
+              and remote projects
+            </p>
+          </address>
         </Reveal>
       </div>
     </section>

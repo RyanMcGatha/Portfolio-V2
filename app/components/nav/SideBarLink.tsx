@@ -1,3 +1,5 @@
+"use client";
+
 import { Dispatch, SetStateAction } from "react";
 import { motion } from "framer-motion";
 import Link from "next/link";
@@ -19,6 +21,8 @@ export const SideBarLink = ({
   href,
   value,
 }: Props) => {
+  const isActive = selected === value;
+
   return (
     <MotionLink
       initial={{ x: -70 }}
@@ -28,16 +32,17 @@ export const SideBarLink = ({
       onClick={() => {
         setSelected(value);
       }}
-      className={`group flex flex-col items-center justify-center h-24 w-full transition-all font-heading ${
-        selected === value
-          ? "bg-primary/10 border-r-2 border-primary text-primary"
-          : "border-transparent hover:bg-accent/50 text-muted-foreground hover:text-foreground"
+      aria-current={isActive ? "true" : undefined}
+      className={`group relative flex flex-col items-center justify-center h-24 w-full transition-all font-heading focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-inset outline-none ${
+        isActive
+          ? "bg-foreground/5 text-foreground"
+          : "border-transparent hover:bg-muted text-muted-foreground hover:text-foreground"
       }`}
     >
       <span className="text-sm font-heading writing-vertical">{children}</span>
-      {selected === value && (
+      {isActive && (
         <motion.div
-          className="absolute left-0 w-1 h-8 bg-primary rounded-[--radius]"
+          className="absolute left-0 w-1 h-8 rounded-r bg-foreground"
           layoutId="activeSection"
           transition={{
             type: "spring",

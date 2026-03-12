@@ -7,6 +7,7 @@ import { useEffect, useRef, useState } from "react";
 import { AiFillGithub, AiOutlineExport } from "react-icons/ai";
 import { ProjectModal } from "./ProjectModal";
 import Reveal from "../util/Reveal";
+import { Chip } from "../util/Chip";
 
 interface Props {
   modalContent: React.ReactNode;
@@ -57,11 +58,20 @@ export const Project = ({
           onMouseEnter={() => setHovered(true)}
           onMouseLeave={() => setHovered(false)}
           onClick={() => setIsOpen(true)}
-          className="w-full aspect-video bg-muted cursor-pointer relative rounded-[var(--radius)] overflow-hidden subheading"
+          onKeyDown={(e) => {
+            if (e.key === "Enter" || e.key === " ") {
+              e.preventDefault();
+              setIsOpen(true);
+            }
+          }}
+          tabIndex={0}
+          role="button"
+          aria-label={`View details for ${title}`}
+          className="w-full aspect-video bg-muted cursor-pointer relative rounded-[var(--radius)] overflow-hidden group focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background outline-none"
         >
           <Image
             src={imgSrc}
-            alt={`An image of the ${title} project.`}
+            alt={`Screenshot of the ${title} project`}
             style={{
               width: hovered ? "90%" : "85%",
               rotate: hovered ? "2deg" : "0deg",
@@ -70,6 +80,7 @@ export const Project = ({
             height={450}
             className="w-[85%] absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/4 transition-all duration-300 rounded-[var(--radius)]"
           />
+          <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
         </div>
         <div className="mt-6">
           <Reveal width="w-full">
@@ -79,28 +90,50 @@ export const Project = ({
               </h4>
               <div className="w-full h-[1px] bg-border" />
 
-              <Link href={code} target="_blank" rel="nofollow">
-                <AiFillGithub className="text-xl text-muted-foreground hover:text-primary transition-colors duration-300" />
+              <Link
+                href={code}
+                target="_blank"
+                rel="nofollow"
+                aria-label={`${title} source code on GitHub`}
+              >
+                <AiFillGithub className="text-xl text-muted-foreground hover:text-foreground transition-colors duration-300" />
               </Link>
 
-              <Link href={projectLink} target="_blank" rel="nofollow">
-                <AiOutlineExport className="text-xl text-muted-foreground hover:text-primary transition-colors duration-300" />
+              <Link
+                href={projectLink}
+                target="_blank"
+                rel="nofollow"
+                aria-label={`${title} live project`}
+              >
+                <AiOutlineExport className="text-xl text-muted-foreground hover:text-foreground transition-colors duration-300" />
               </Link>
             </div>
           </Reveal>
           <Reveal>
-            <div className="flex flex-wrap gap-4 text-sm text-primary my-2">
-              {tech.join(" - ")}
+            <div className="flex flex-wrap gap-2 my-3">
+              {tech.map((item) => (
+                <Chip key={item} className="text-xs px-2.5 py-1 subheading">
+                  {item}
+                </Chip>
+              ))}
             </div>
           </Reveal>
           <Reveal>
-            <p className="text-muted-foreground leading-relaxed">
+            <p className="text-muted-foreground leading-relaxed subheading">
               {description}{" "}
               <span
-                className="inline-block text-sm text-primary cursor-pointer hover:text-primary/90 transition-colors duration-300"
+                className="inline-block text-sm text-foreground cursor-pointer hover:text-muted-foreground transition-colors duration-300 underline underline-offset-2"
                 onClick={() => setIsOpen(true)}
+                onKeyDown={(e) => {
+                  if (e.key === "Enter" || e.key === " ") {
+                    e.preventDefault();
+                    setIsOpen(true);
+                  }
+                }}
+                tabIndex={0}
+                role="button"
               >
-                Learn more {">"}
+                Learn more
               </span>
             </p>
           </Reveal>
