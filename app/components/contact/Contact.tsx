@@ -4,12 +4,12 @@ import Reveal from "../util/Reveal";
 
 export const Contact = () => {
   return (
-    <section className="section-wrapper" id="contact">
+    <footer id="contact" className="section-wrapper" role="contentinfo">
       <div className="max-w-xl mx-auto bg-card/50 backdrop-blur-sm px-8 py-12 rounded-[--radius] border border-border hover:border-foreground/20 transition-colors duration-300">
         <Reveal width="w-full">
-          <h4 className="text-4xl md:text-5xl text-center font-heading text-foreground">
+          <h2 className="text-4xl md:text-5xl text-center font-heading text-foreground">
             Contact<span className="text-foreground font-heading">.</span>
-          </h4>
+          </h2>
         </Reveal>
         <Reveal width="w-full">
           <p className="text-center my-8 text-muted-foreground leading-relaxed subheading">
@@ -49,6 +49,6 @@ export const Contact = () => {
           </address>
         </Reveal>
       </div>
-    </section>
+    </footer>
   );
 };

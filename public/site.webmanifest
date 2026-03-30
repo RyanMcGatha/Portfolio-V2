@@ -1,0 +1,16 @@
+{
+  "name": "Ryan McGatha | Web Developer & AI Developer",
+  "short_name": "Ryan McGatha",
+  "description": "Full-stack web developer and AI developer based in Greenville, SC.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0f1117",
+  "theme_color": "#0f1117",
+  "icons": [
+    {
+      "src": "/icon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml"
+    }
+  ]
+}

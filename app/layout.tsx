@@ -1,4 +1,4 @@
-import type { Metadata } from "next";
+import type { Metadata, Viewport } from "next";
 import { Inter, Archivo_Black, Roboto_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
@@ -8,6 +8,7 @@ import {
   WebSiteJsonLd,
   ProfessionalServiceJsonLd,
   BreadcrumbJsonLd,
+  FAQPageJsonLd,
 } from "./structured-data";
 
 const inter = Inter({
@@ -27,6 +28,15 @@ const robotoMono = Roboto_Mono({
 });
 
 const siteUrl = "https://ryanmcgatha.com";
+
+export const viewport: Viewport = {
+  themeColor: [
+    { media: "(prefers-color-scheme: light)", color: "#f0ece4" },
+    { media: "(prefers-color-scheme: dark)", color: "#0f1117" },
+  ],
+  width: "device-width",
+  initialScale: 1,
+};
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
@@ -62,6 +72,14 @@ export const metadata: Metadata = {
   publisher: "Ryan McGatha",
   category: "technology",
   classification: "Web Development, AI Development, Software Engineering",
+  icons: {
+    icon: [
+      { url: "/favicon.ico", sizes: "any" },
+      { url: "/icon.svg", type: "image/svg+xml" },
+    ],
+    apple: "/apple-touch-icon.png",
+  },
+  manifest: "/site.webmanifest",
   alternates: {
     canonical: siteUrl,
   },
@@ -73,21 +91,13 @@ export const metadata: Metadata = {
     description:
       "Full-stack web developer and AI developer based in Greenville, SC. Building modern web applications with React, Node.js, Python, and AI technologies.",
     siteName: "Ryan McGatha - Web Developer Greenville SC",
-    images: [
-      {
-        url: `${siteUrl}/og-image.png`,
-        width: 1200,
-        height: 630,
-        alt: "Ryan McGatha - Web Developer and AI Developer in Greenville, SC",
-      },
-    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Ryan McGatha | Web Developer & AI Developer in Greenville, SC",
     description:
       "Full-stack web developer and AI developer based in Greenville, SC. React, Node.js, Python, and AI-powered applications.",
-    images: [`${siteUrl}/og-image.png`],
+    creator: "@ryanmcgatha",
   },
   robots: {
     index: true,
@@ -117,15 +127,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <head>
-        <link rel="canonical" href={siteUrl} />
-        <meta name="geo.region" content="US-SC" />
-        <meta name="geo.placename" content="Greenville, South Carolina" />
-        <meta name="geo.position" content="34.8526;-82.3940" />
-        <meta name="ICBM" content="34.8526, -82.3940" />
         <PersonJsonLd />
         <WebSiteJsonLd />
         <ProfessionalServiceJsonLd />
         <BreadcrumbJsonLd />
+        <FAQPageJsonLd />
       </head>
       <body
         className={`${inter.variable} ${archivoBlack.variable} ${robotoMono.variable}`}

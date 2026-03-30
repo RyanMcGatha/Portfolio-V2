@@ -44,7 +44,7 @@ export const Project = ({
 
   return (
     <>
-      <motion.div
+      <motion.article
         ref={ref}
         variants={{
           hidden: { opacity: 0, y: 100 },
@@ -85,9 +85,9 @@ export const Project = ({
         <div className="mt-6">
           <Reveal width="w-full">
             <div className="flex items-center gap-2 w-full">
-              <h4 className="text-lg shrink-0 max-w-[calc(100%_-_150px)] text-foreground font-heading">
+              <h3 className="text-lg shrink-0 max-w-[calc(100%_-_150px)] text-foreground font-heading">
                 {title}
-              </h4>
+              </h3>
               <div className="w-full h-[1px] bg-border" />
 
               <Link
@@ -138,7 +138,7 @@ export const Project = ({
             </p>
           </Reveal>
         </div>
-      </motion.div>
+      </motion.article>
       <ProjectModal
         modalContent={modalContent}
         projectLink={projectLink}

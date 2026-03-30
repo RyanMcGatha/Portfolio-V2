@@ -50,9 +50,9 @@ export const ExperienceItem = ({
             ) : (
               <FaBriefcase className="text-foreground text-xl" />
             )}
-            <span className="font-heading text-xl text-foreground">
+            <h3 className="font-heading text-xl text-foreground">
               {title}
-            </span>
+            </h3>
           </div>
           <div className="flex items-center text-sm text-muted-foreground font-code">
             <FaClock className="mr-2 text-muted-foreground" />

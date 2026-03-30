@@ -215,3 +215,51 @@ export function BreadcrumbJsonLd() {
     />
   );
 }
+
+export function FAQPageJsonLd() {
+  const data = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    mainEntity: [
+      {
+        "@type": "Question",
+        name: "What services does Ryan McGatha offer?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Ryan McGatha offers full-stack web development, AI development, custom web application development, and software consulting services. He specializes in React, Next.js, Node.js, Python, and AI-powered solutions for businesses in Greenville, SC and beyond.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "Where is Ryan McGatha based?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Ryan McGatha is based in Greenville, South Carolina. He is available for both local and remote projects across the Upstate South Carolina area and nationwide.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "What technologies does Ryan McGatha specialize in?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "Ryan specializes in React, Next.js, TypeScript, Node.js, Express.js, Python, FastAPI, PostgreSQL, Tailwind CSS, and AI/machine learning technologies. He also has experience with WordPress, Docker, and cloud deployment.",
+        },
+      },
+      {
+        "@type": "Question",
+        name: "How can I hire Ryan McGatha for a web development project?",
+        acceptedAnswer: {
+          "@type": "Answer",
+          text: "You can contact Ryan by emailing ryanmcgatha@gmail.com or connecting with him on LinkedIn at linkedin.com/in/ryanmcgatha. He is available for freelance projects, contract work, and full-time opportunities.",
+        },
+      },
+    ],
+  };
+
+  return (
+    <script
+      type="application/ld+json"
+      dangerouslySetInnerHTML={{ __html: JSON.stringify(data) }}
+    />
+  );
+}

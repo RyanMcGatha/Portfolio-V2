@@ -92,9 +92,9 @@ export const ProjectModal = ({
               />
             </div>
             <div className="p-8">
-              <h4 className="text-3xl font-bold mb-2 text-card-foreground font-heading">
+              <h3 className="text-3xl font-bold mb-2 text-card-foreground font-heading">
                 {title}
-              </h4>
+              </h3>
               <div className="flex flex-wrap gap-2 text-sm text-muted-foreground">
                 {tech.join(" - ")}
               </div>

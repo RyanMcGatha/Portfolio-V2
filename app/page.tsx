@@ -1,14 +1,25 @@
 "use client";
 
+import dynamic from "next/dynamic";
 import { SideBar } from "./components/nav/SideBar";
 import { Header } from "./components/nav/Header";
-import { About } from "./components/about/About";
-import { Experience } from "./components/experience/Experience";
-import { Contact } from "./components/contact/Contact";
-import { Projects } from "./components/projects/Projects";
 import { HeroSection } from "./components/hero/Hero";
 import BackgroundAnimation from "./components/util/BackgroundAnimation";
 import { TypewriterEffect } from "./components/hero/TypewriterEffect";
+
+const About = dynamic(
+  () => import("./components/about/About").then((mod) => mod.About),
+);
+const Projects = dynamic(
+  () => import("./components/projects/Projects").then((mod) => mod.Projects),
+);
+const Experience = dynamic(
+  () =>
+    import("./components/experience/Experience").then((mod) => mod.Experience),
+);
+const Contact = dynamic(
+  () => import("./components/contact/Contact").then((mod) => mod.Contact),
+);
 
 export default function Home() {
   return (

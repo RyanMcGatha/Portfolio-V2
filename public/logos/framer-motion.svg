@@ -1,8 +1,1 @@
-<?xml version="1.0" encoding="utf-8"?><html>
-<head><title>404 Not Found</title></head>
-<body bgcolor="white">
-<center><h1>404 Not Found</h1></center>
-<hr><center>nginx/1.14.0 (Ubuntu)</center>
-</body>
-</html>
-</svg>
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 128 128"><path fill="#59529d" d="M22 0h84v42.67H64L22 42.67z"/><path fill="#5b54a0" d="M22 42.67h42l42 42.66H64L22 85.33z"/><path fill="#59529d" d="M22 85.33V128l42-42.67z"/></svg>
