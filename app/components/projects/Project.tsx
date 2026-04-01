@@ -93,7 +93,7 @@ export const Project = ({
               <Link
                 href={code}
                 target="_blank"
-                rel="nofollow"
+                rel="noopener noreferrer"
                 aria-label={`${title} source code on GitHub`}
               >
                 <AiFillGithub className="text-xl text-muted-foreground hover:text-foreground transition-colors duration-300" />
@@ -102,7 +102,7 @@ export const Project = ({
               <Link
                 href={projectLink}
                 target="_blank"
-                rel="nofollow"
+                rel="noopener noreferrer"
                 aria-label={`${title} live project`}
               >
                 <AiOutlineExport className="text-xl text-muted-foreground hover:text-foreground transition-colors duration-300" />

@@ -61,7 +61,7 @@ const SocialLink: React.FC<SocialLinkProps> = ({ href, icon, label }) => (
     className="text-muted-foreground hover:text-foreground transition-colors duration-200 rounded-[--radius] focus-visible:ring-2 focus-visible:ring-foreground focus-visible:ring-offset-2 focus-visible:ring-offset-background outline-none"
     href={href}
     target="_blank"
-    rel="nofollow"
+    rel="noopener noreferrer"
     aria-label={label}
     role="listitem"
   >

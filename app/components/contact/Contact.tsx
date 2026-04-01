@@ -19,6 +19,7 @@ export const Contact = () => {
             <Link
               href="https://www.linkedin.com/in/ryanmcgatha"
               target="_blank"
+              rel="noopener noreferrer"
               className="text-foreground hover:text-muted-foreground underline underline-offset-2 font-heading transition-colors"
             >
               LinkedIn
@@ -27,6 +28,7 @@ export const Contact = () => {
             <Link
               href="https://github.com/RyanMcGatha"
               target="_blank"
+              rel="noopener noreferrer"
               className="text-foreground hover:text-muted-foreground underline underline-offset-2 font-heading transition-colors"
             >
               GitHub
