@@ -3,7 +3,7 @@ export function PersonJsonLd() {
     "@context": "https://schema.org",
     "@type": "Person",
     name: "Ryan McGatha",
-    url: "https://ryanmcgatha.com",
+    url: "https://ryanm.info",
     email: "mailto:ryanmcgatha@gmail.com",
     telephone: "+1-864-434-6547",
     jobTitle: "Full-Stack Web Developer & AI Developer",
@@ -89,7 +89,7 @@ export function WebSiteJsonLd() {
     "@context": "https://schema.org",
     "@type": "WebSite",
     name: "Ryan McGatha - Web Developer & AI Developer in Greenville, SC",
-    url: "https://ryanmcgatha.com",
+    url: "https://ryanm.info",
     description:
       "Portfolio of Ryan McGatha, a full-stack web developer and AI developer based in Greenville, South Carolina.",
     author: {
@@ -111,7 +111,7 @@ export function ProfessionalServiceJsonLd() {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
     name: "Ryan McGatha - Web Development & AI Development",
-    url: "https://ryanmcgatha.com",
+    url: "https://ryanm.info",
     telephone: "+1-864-434-6547",
     email: "ryanmcgatha@gmail.com",
     description:
@@ -179,31 +179,31 @@ export function BreadcrumbJsonLd() {
         "@type": "ListItem",
         position: 1,
         name: "Home",
-        item: "https://ryanmcgatha.com",
+        item: "https://ryanm.info",
       },
       {
         "@type": "ListItem",
         position: 2,
         name: "About",
-        item: "https://ryanmcgatha.com/#about",
+        item: "https://ryanm.info/#about",
       },
       {
         "@type": "ListItem",
         position: 3,
         name: "Projects",
-        item: "https://ryanmcgatha.com/#projects",
+        item: "https://ryanm.info/#projects",
       },
       {
         "@type": "ListItem",
         position: 4,
         name: "Experience",
-        item: "https://ryanmcgatha.com/#experience",
+        item: "https://ryanm.info/#experience",
       },
       {
         "@type": "ListItem",
         position: 5,
         name: "Contact",
-        item: "https://ryanmcgatha.com/#contact",
+        item: "https://ryanm.info/#contact",
       },
     ],
   };

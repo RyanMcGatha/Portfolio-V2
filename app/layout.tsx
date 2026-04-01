@@ -28,7 +28,7 @@ const robotoMono = Roboto_Mono({
   variable: "--font-code",
 });
 
-const siteUrl = "https://ryanmcgatha.com";
+const siteUrl = "https://ryanm.info";
 
 export const viewport: Viewport = {
   themeColor: [

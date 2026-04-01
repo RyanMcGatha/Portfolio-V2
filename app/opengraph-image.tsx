@@ -87,7 +87,7 @@ export default async function Image() {
         >
           <span>Greenville, SC</span>
           <span style={{ margin: "0 8px" }}>•</span>
-          <span>ryanmcgatha.com</span>
+          <span>ryanm.info</span>
         </div>
 
         <div
