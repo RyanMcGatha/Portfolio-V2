@@ -78,6 +78,8 @@ export const Project = ({
             }}
             width={800}
             height={450}
+            sizes="(max-width: 768px) 90vw, (max-width: 1280px) 45vw, 600px"
+            loading="lazy"
             className="w-[85%] absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-1/4 transition-all duration-300 rounded-[var(--radius)]"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-background/60 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300" />

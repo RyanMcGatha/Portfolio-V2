@@ -46,6 +46,8 @@ export const ExperienceItem = ({
                 className="w-10 h-10 object-contain rounded-md"
                 width={40}
                 height={40}
+                sizes="40px"
+                loading="lazy"
               />
             ) : (
               <FaBriefcase className="text-foreground text-xl" />

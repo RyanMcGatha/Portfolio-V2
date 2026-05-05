@@ -33,6 +33,19 @@ yarn-error.log*
 # env files (can opt-in for committing if needed)
 .env*
 
+# secrets / service account keys + OAuth tokens
+*-key.json
+.gsc-key.json
+.ga4-key.json
+.oauth-client.json
+.oauth-token.json
+*.gserviceaccount.json
+service-account*.json
+client_secret*.json
+
+# generated reports
+.reports/
+
 # vercel
 .vercel
 

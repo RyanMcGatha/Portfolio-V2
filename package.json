@@ -6,7 +6,10 @@
     "dev": "next dev --turbopack",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "auth": "tsx scripts/auth.ts",
+    "seo:report": "tsx scripts/seo-report.ts",
+    "seo:reindex": "tsx scripts/seo-reindex.ts"
   },
   "dependencies": {
     "@radix-ui/react-avatar": "^1.1.2",
@@ -35,14 +38,17 @@
   },
   "devDependencies": {
     "@eslint/eslintrc": "^3",
+    "@google-analytics/data": "^5.2.2",
     "@types/animejs": "^3.1.12",
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
     "eslint": "^9",
     "eslint-config-next": "15.1.4",
+    "googleapis": "^171.4.0",
     "postcss": "^8",
     "tailwindcss": "^3.4.1",
+    "tsx": "^4.21.0",
     "typescript": "^5"
   }
 }

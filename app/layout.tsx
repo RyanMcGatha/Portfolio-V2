@@ -15,17 +15,34 @@ import {
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-body",
+  display: "swap",
+  preload: false,
+  fallback: [
+    "-apple-system",
+    "BlinkMacSystemFont",
+    "Segoe UI",
+    "Roboto",
+    "Helvetica",
+    "Arial",
+    "sans-serif",
+  ],
 });
 
 const archivoBlack = Archivo_Black({
   weight: "400",
   subsets: ["latin"],
   variable: "--font-heading",
+  display: "swap",
+  preload: true,
+  fallback: ["Impact", "Haettenschweiler", "Arial Black", "sans-serif"],
 });
 
 const robotoMono = Roboto_Mono({
   subsets: ["latin"],
   variable: "--font-code",
+  display: "swap",
+  preload: false,
+  fallback: ["Consolas", "Monaco", "Courier New", "monospace"],
 });
 
 const siteUrl = "https://ryanm.info";
@@ -47,39 +64,7 @@ export const metadata: Metadata = {
     template: "%s | Ryan McGatha",
   },
   description:
-    "Ryan McGatha is an AI developer and full-stack web developer in Greenville, SC. Building custom AI agents, chatbots, LLM integrations, and AI-powered web applications for businesses in Greenville, South Carolina. Specializing in React, Node.js, Python, and artificial intelligence.",
-  keywords: [
-    "AI Greenville SC",
-    "AI developer Greenville SC",
-    "AI developer Greenville",
-    "artificial intelligence Greenville SC",
-    "AI services Greenville SC",
-    "AI agent developer Greenville SC",
-    "AI chatbot developer Greenville",
-    "AI automation Greenville SC",
-    "machine learning Greenville SC",
-    "LLM developer Greenville SC",
-    "AI consultant Greenville SC",
-    "AI solutions Greenville South Carolina",
-    "AI development Greenville",
-    "artificial intelligence developer South Carolina",
-    "Ryan McGatha",
-    "Ryan McGatha AI",
-    "web developer Greenville SC",
-    "full-stack developer Greenville SC",
-    "React developer Greenville SC",
-    "Python developer Greenville SC",
-    "Node.js developer Greenville",
-    "freelance AI developer Greenville",
-    "software engineer Greenville SC",
-    "Greenville SC AI company",
-    "hire AI developer Greenville SC",
-    "custom AI development Greenville",
-    "AI powered web apps Greenville SC",
-    "chatbot developer Greenville SC",
-    "RAG pipeline developer Greenville",
-    "AI for business Greenville SC",
-  ],
+    "AI developer and full-stack web developer in Greenville, SC. I build custom AI agents, chatbots, LLM integrations, and AI-powered web apps with React, Node.js, and Python.",
   authors: [{ name: "Ryan McGatha", url: siteUrl }],
   creator: "Ryan McGatha",
   publisher: "Ryan McGatha",

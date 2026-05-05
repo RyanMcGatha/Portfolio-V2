@@ -1,5 +1,6 @@
 "use client";
 
+import Image from "next/image";
 import { Chip } from "../util/Chip";
 import Reveal from "../util/Reveal";
 import { AiFillCode } from "react-icons/ai";
@@ -111,9 +112,15 @@ export const Stats = () => {
                     >
                       <Chip className="flex items-center gap-2 subheading hover:bg-foreground/5 transition-colors">
                         {tech.logo && (
-                          <img
+                          <Image
                             src={tech.logo}
-                            alt={`${tech.name} logo`}
+                            alt=""
+                            aria-hidden="true"
+                            width={20}
+                            height={20}
+                            sizes="20px"
+                            loading="lazy"
+                            unoptimized
                             className={`w-5 h-5 object-contain ${tech.darkInvert ? "dark:invert" : ""}`}
                           />
                         )}

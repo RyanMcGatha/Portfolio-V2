@@ -88,7 +88,8 @@ export const ProjectModal = ({
                 alt={`An image of the ${title} project.`}
                 width={800}
                 height={450}
-                priority
+                sizes="(max-width: 768px) 90vw, 672px"
+                loading="lazy"
               />
             </div>
             <div className="p-8">

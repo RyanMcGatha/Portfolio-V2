@@ -17,14 +17,14 @@ export const Header = () => {
         </Link>
         <ModeToggle />
         <OutlineButton aria-label="Download my resume">
-          <Link
+          <a
             href="/resume.pdf"
             target="_blank"
-            rel="nofollow"
+            rel="nofollow noopener"
             aria-label="Download my resume (PDF)"
           >
             My Resume
-          </Link>
+          </a>
         </OutlineButton>
       </div>
     </header>

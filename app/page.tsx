@@ -1,25 +1,12 @@
-"use client";
-
-import dynamic from "next/dynamic";
 import { SideBar } from "./components/nav/SideBar";
 import { Header } from "./components/nav/Header";
 import { HeroSection } from "./components/hero/Hero";
-import BackgroundAnimation from "./components/util/BackgroundAnimation";
 import { TypewriterEffect } from "./components/hero/TypewriterEffect";
-
-const About = dynamic(
-  () => import("./components/about/About").then((mod) => mod.About),
-);
-const Projects = dynamic(
-  () => import("./components/projects/Projects").then((mod) => mod.Projects),
-);
-const Experience = dynamic(
-  () =>
-    import("./components/experience/Experience").then((mod) => mod.Experience),
-);
-const Contact = dynamic(
-  () => import("./components/contact/Contact").then((mod) => mod.Contact),
-);
+import { About } from "./components/about/About";
+import { Projects } from "./components/projects/Projects";
+import { Experience } from "./components/experience/Experience";
+import { Contact } from "./components/contact/Contact";
+import { BackgroundAnimationLazy } from "./components/util/BackgroundAnimationLazy";
 
 export default function Home() {
   return (
@@ -36,8 +23,8 @@ export default function Home() {
                 text: "View here",
                 href: "/resume.pdf",
                 target: "_blank",
-                prefetch: true,
-                rel: "nofollow",
+                prefetch: false,
+                rel: "nofollow noopener",
               },
             }}
             title={
@@ -66,7 +53,7 @@ export default function Home() {
               {
                 text: "Contact Me",
                 href: "/#contact",
-                prefetch: true,
+                prefetch: false,
               },
             ]}
           />
@@ -76,7 +63,7 @@ export default function Home() {
           <Experience />
           <Contact />
         </div>
-        <BackgroundAnimation />
+        <BackgroundAnimationLazy />
       </main>
     </div>
   );

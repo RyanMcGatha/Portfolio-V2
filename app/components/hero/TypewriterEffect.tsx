@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
 
 interface TypewriterEffectProps {
   texts: string[];
@@ -15,11 +15,25 @@ export function TypewriterEffect({
   deletingSpeed = 75,
   pauseDuration = 3500,
 }: TypewriterEffectProps) {
+  const initial = texts[0] ?? "";
   const [currentTextIndex, setCurrentTextIndex] = useState(0);
-  const [currentText, setCurrentText] = useState("");
+  const [currentText, setCurrentText] = useState(initial);
   const [isDeleting, setIsDeleting] = useState(false);
+  const [hasStarted, setHasStarted] = useState(false);
 
   useEffect(() => {
+    if (typeof window !== "undefined") {
+      if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+        return;
+      }
+    }
+    const start = setTimeout(() => setHasStarted(true), pauseDuration);
+    return () => clearTimeout(start);
+  }, [pauseDuration]);
+
+  useEffect(() => {
+    if (!hasStarted) return;
+
     const currentWord = texts[currentTextIndex];
     const speed = isDeleting ? deletingSpeed : typingSpeed;
 
@@ -52,12 +66,15 @@ export function TypewriterEffect({
     typingSpeed,
     deletingSpeed,
     pauseDuration,
+    hasStarted,
   ]);
 
   return (
     <span className="text-foreground">
       {currentText}
-      <span className="animate-blink ml-0.5">|</span>
+      <span className="animate-blink ml-0.5" aria-hidden="true">
+        |
+      </span>
     </span>
   );
 }

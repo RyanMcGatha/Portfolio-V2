@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useEffect, useRef } from "react";
-import { useAnimation, useInView, motion, Variant } from "framer-motion";
+import { useAnimation, useInView, useReducedMotion, motion, Variant } from "framer-motion";
 
 interface RevealProps {
   children: React.ReactNode;
@@ -26,33 +26,53 @@ const directionVariants = {
 export const Reveal: React.FC<RevealProps> = ({
   children,
   width = "w-fit",
-  delay = 0.25,
-  duration = 0.5,
+  delay = 0.15,
+  duration = 0.45,
   direction = "up",
-  distance = 75,
+  distance = 50,
   once = true,
   className = "",
-  slide = true,
+  slide = false,
   slideColor = "hsl(var(--primary))",
 }) => {
   const ref = useRef<HTMLDivElement>(null);
-  const isInView = useInView(ref, { once });
+  const isInView = useInView(ref, { once, margin: "-50px" });
+  const prefersReducedMotion = useReducedMotion();
 
   const mainControls = useAnimation();
   const slideControls = useAnimation();
 
   useEffect(() => {
+    if (prefersReducedMotion) {
+      mainControls.set("visible");
+      slideControls.set("visible");
+      return;
+    }
     if (isInView) {
       mainControls.start("visible");
-      slideControls.start("visible");
+      if (slide) slideControls.start("visible");
     } else if (!once) {
       mainControls.start("hidden");
-      slideControls.start("hidden");
+      if (slide) slideControls.start("hidden");
     }
-  }, [isInView, mainControls, once, slideControls]);
+  }, [isInView, mainControls, once, slideControls, slide, prefersReducedMotion]);
+
+  if (prefersReducedMotion) {
+    return (
+      <div
+        ref={ref}
+        className={`relative ${slide ? "overflow-hidden" : ""} ${width} ${className}`}
+      >
+        {children}
+      </div>
+    );
+  }
 
   return (
-    <div ref={ref} className={`relative overflow-hidden ${width} ${className}`}>
+    <div
+      ref={ref}
+      className={`relative ${slide ? "overflow-hidden" : ""} ${width} ${className}`}
+    >
       <motion.div
         variants={{
           hidden: { opacity: 0, ...directionVariants[direction](distance) },
@@ -64,6 +84,7 @@ export const Reveal: React.FC<RevealProps> = ({
         initial="hidden"
         animate={mainControls}
         transition={{ duration, delay }}
+        style={{ willChange: "transform, opacity" }}
       >
         {children}
       </motion.div>
@@ -78,6 +99,7 @@ export const Reveal: React.FC<RevealProps> = ({
           transition={{ duration: duration * 1.25, ease: "easeInOut" }}
           style={{ backgroundColor: slideColor }}
           className="absolute inset-0 z-20"
+          aria-hidden="true"
         />
       )}
     </div>

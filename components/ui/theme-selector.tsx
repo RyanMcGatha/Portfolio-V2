@@ -1,22 +1,37 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { OutlineButton } from "@/app/components/buttons/OutlineButton";
 
 export function ModeToggle() {
-  const { setTheme, theme } = useTheme();
+  const { setTheme, resolvedTheme } = useTheme();
+  const [mounted, setMounted] = useState(false);
+
+  useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  // Render a stable placeholder on the server and during the first client
+  // render to avoid hydration mismatches (React error #418). The real icon
+  // is swapped in on the client once the theme is known.
+  if (!mounted) {
+    return (
+      <OutlineButton aria-label="Toggle color theme">
+        <Sun className="size-5 opacity-0" aria-hidden="true" />
+      </OutlineButton>
+    );
+  }
+
+  const isLight = resolvedTheme === "light";
 
   return (
     <OutlineButton
-      onClick={() => setTheme(theme === "light" ? "dark" : "light")}
-      aria-label={`Switch to ${theme === "light" ? "dark" : "light"} mode`}
+      onClick={() => setTheme(isLight ? "dark" : "light")}
+      aria-label={`Switch to ${isLight ? "dark" : "light"} mode`}
     >
-      {theme === "light" ? (
-        <Moon className="size-5" />
-      ) : (
-        <Sun className="size-5" />
-      )}
+      {isLight ? <Moon className="size-5" /> : <Sun className="size-5" />}
     </OutlineButton>
   );
 }

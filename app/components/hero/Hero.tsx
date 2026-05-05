@@ -63,13 +63,6 @@ export function HeroSection({ badge, title, description, actions }: HeroProps) {
           <Reveal>
             <h1 className="relative z-10 inline-block font-heading text-5xl font-bold leading-[1.15] text-foreground drop-shadow sm:text-6xl sm:leading-[1.15] md:text-8xl md:leading-[1.15]">
               {title}
-              <span className="sr-only">
-                {" "}
-                — AI Developer, AI Agent Builder, Full Stack Web Developer,
-                React Specialist, Python & AI Engineer in Greenville, SC.
-                Custom AI agents, chatbots, LLM integrations, and AI-powered
-                web applications for Greenville, South Carolina businesses.
-              </span>
             </h1>
           </Reveal>
 

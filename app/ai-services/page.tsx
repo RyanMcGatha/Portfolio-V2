@@ -3,39 +3,19 @@ import Link from "next/link";
 import { ArrowRightIcon, BrainCircuit, Bot, Workflow, Database, MessageSquare, Zap, Code2, Globe } from "lucide-react";
 
 export const metadata: Metadata = {
-  title: "AI Development Services in Greenville, SC | Ryan McGatha",
+  title: "AI Development Services in Greenville, SC",
   description:
     "Custom AI development services in Greenville, SC. Ryan McGatha builds AI agents, chatbots, LLM integrations, RAG pipelines, and intelligent automation for businesses in the Greenville, South Carolina area.",
-  keywords: [
-    "AI Greenville SC",
-    "AI developer Greenville SC",
-    "artificial intelligence Greenville SC",
-    "AI services Greenville South Carolina",
-    "AI agent development Greenville",
-    "chatbot developer Greenville SC",
-    "LLM integration Greenville",
-    "AI automation Greenville SC",
-    "machine learning Greenville SC",
-    "AI consultant Greenville",
-    "AI solutions Greenville SC",
-    "custom AI development South Carolina",
-    "AI chatbot Greenville",
-    "RAG pipeline developer",
-    "AI powered web apps Greenville",
-    "artificial intelligence developer South Carolina",
-    "hire AI developer Greenville SC",
-    "AI for business Greenville SC",
-    "Greenville SC AI company",
-    "AI integration services Greenville",
-  ],
   openGraph: {
     title: "AI Development Services in Greenville, SC | Ryan McGatha",
     description:
       "Custom AI agents, chatbots, LLM integrations, and intelligent automation for Greenville, SC businesses. Built by Ryan McGatha.",
     url: "https://ryanm.info/ai-services",
     type: "website",
+    siteName: "Ryan McGatha - AI Developer Greenville SC",
   },
   twitter: {
+    card: "summary_large_image",
     title: "AI Development Services in Greenville, SC | Ryan McGatha",
     description:
       "Custom AI agents, chatbots, LLM integrations, and intelligent automation for Greenville, SC businesses.",
