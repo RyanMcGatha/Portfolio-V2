@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 export const alt =
-  "Ryan McGatha - AI Developer & Web Developer in Greenville, SC";
+  "AI Development Services in Greenville, SC - Ryan McGatha";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -30,77 +30,59 @@ export default async function Image() {
             right: 0,
             bottom: 0,
             background:
-              "radial-gradient(circle at 20% 50%, rgba(59,130,246,0.08) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(168,85,247,0.08) 0%, transparent 50%)",
+              "radial-gradient(circle at 20% 50%, rgba(59,130,246,0.12) 0%, transparent 50%), radial-gradient(circle at 80% 50%, rgba(168,85,247,0.12) 0%, transparent 50%)",
             display: "flex",
           }}
         />
 
         <div
           style={{
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            width: 100,
-            height: 100,
-            borderRadius: 16,
-            background: "#e9eaed",
-            marginBottom: 32,
-            fontSize: 56,
-            fontWeight: 900,
-            color: "#0f1117",
+            fontSize: 22,
+            fontWeight: 600,
+            color: "#6b7084",
+            letterSpacing: "0.1em",
+            textTransform: "uppercase" as const,
+            marginBottom: 16,
           }}
         >
-          R
+          Greenville, SC
         </div>
 
         <div
           style={{
-            fontSize: 52,
+            fontSize: 56,
             fontWeight: 900,
             color: "#e9eaed",
             letterSpacing: "-0.02em",
             marginBottom: 12,
+            textAlign: "center" as const,
+            lineHeight: 1.1,
           }}
         >
-          Ryan McGatha
+          AI Development Services
         </div>
 
         <div
           style={{
-            fontSize: 26,
+            fontSize: 24,
             color: "#8b8fa3",
             fontWeight: 600,
-            marginBottom: 24,
+            marginBottom: 32,
           }}
         >
-          AI Developer & Web Developer
-        </div>
-
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: 8,
-            fontSize: 18,
-            color: "#6b7084",
-          }}
-        >
-          <span>Greenville, SC</span>
-          <span style={{ margin: "0 8px" }}>•</span>
-          <span>ryanm.info</span>
+          Ryan McGatha — AI Developer
         </div>
 
         <div
           style={{
             display: "flex",
             gap: 12,
-            marginTop: 36,
             flexWrap: "wrap",
             justifyContent: "center",
-            maxWidth: 700,
+            maxWidth: 800,
           }}
         >
-          {["AI Agents", "LLMs", "ChatBots", "React", "Python", "Next.js"].map(
+          {["AI Agents", "Chatbots", "LLM Integration", "RAG Pipelines", "AI Automation", "ML"].map(
             (tech) => (
               <div
                 key={tech}
@@ -117,6 +99,19 @@ export default async function Image() {
               </div>
             )
           )}
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: 8,
+            fontSize: 16,
+            color: "#6b7084",
+            marginTop: 32,
+          }}
+        >
+          <span>ryanm.info/ai-services</span>
         </div>
       </div>
     ),

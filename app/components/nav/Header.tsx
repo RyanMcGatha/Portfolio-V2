@@ -9,6 +9,12 @@ export const Header = () => {
     <header className="h-16 px-4 md:px-6 flex items-center justify-between sticky top-0 bg-background/80 backdrop-blur-md border-b border-border shadow-sm font-heading z-20">
       <MyLinks />
       <div className="flex items-center gap-4">
+        <Link
+          href="/ai-services"
+          className="text-sm font-heading text-muted-foreground hover:text-foreground transition-colors hidden sm:block"
+        >
+          AI Services
+        </Link>
         <ModeToggle />
         <OutlineButton aria-label="Download my resume">
           <Link

@@ -46,18 +46,23 @@ export default function Home() {
                 <br />
                 <TypewriterEffect
                   texts={[
-                    "Full Stack Developer",
                     "AI Developer",
+                    "AI Agent Builder",
+                    "Full Stack Developer",
                     "React Specialist",
-                    "Node.js Engineer",
-                    "Python Developer",
+                    "Python & AI Engineer",
                     "Greenville, SC",
                   ]}
                 />
               </>
             }
-            description="Web developer and AI developer based in Greenville, SC. I build dynamic, responsive web applications using React, Node.js, Python, and modern AI technologies for businesses across the Upstate."
+            description="AI developer and full-stack web developer based in Greenville, SC. I build custom AI agents, chatbots, LLM integrations, and AI-powered web applications using React, Node.js, and Python for businesses across the Upstate."
             actions={[
+              {
+                text: "AI Services",
+                href: "/ai-services",
+                prefetch: true,
+              },
               {
                 text: "Contact Me",
                 href: "/#contact",

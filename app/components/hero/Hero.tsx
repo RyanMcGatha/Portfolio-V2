@@ -65,8 +65,10 @@ export function HeroSection({ badge, title, description, actions }: HeroProps) {
               {title}
               <span className="sr-only">
                 {" "}
-                — Full Stack Web Developer, AI Developer, React Specialist,
-                Node.js Engineer, Python Developer in Greenville, SC
+                — AI Developer, AI Agent Builder, Full Stack Web Developer,
+                React Specialist, Python & AI Engineer in Greenville, SC.
+                Custom AI agents, chatbots, LLM integrations, and AI-powered
+                web applications for Greenville, South Carolina businesses.
               </span>
             </h1>
           </Reveal>

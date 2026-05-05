@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 export const alt =
-  "Ryan McGatha - Web Developer and AI Developer in Greenville, SC";
+  "Ryan McGatha - AI Developer & Web Developer in Greenville, SC";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -73,7 +73,7 @@ export default async function Image() {
             marginBottom: 24,
           }}
         >
-          Web Developer & AI Developer
+          AI Developer & Web Developer
         </div>
 
         <div
@@ -100,7 +100,7 @@ export default async function Image() {
             maxWidth: 700,
           }}
         >
-          {["React", "Next.js", "Node.js", "Python", "TypeScript", "AI"].map(
+          {["AI Agents", "LLMs", "ChatBots", "React", "Python", "Next.js"].map(
             (tech) => (
               <div
                 key={tech}

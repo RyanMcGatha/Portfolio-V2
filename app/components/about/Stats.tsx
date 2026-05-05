@@ -12,6 +12,18 @@ interface Tech {
 }
 
 const technologies: Record<string, Tech[]> = {
+  "ai & machine learning": [
+    { name: "OpenAI / GPT-4" },
+    { name: "Anthropic Claude" },
+    { name: "LangChain" },
+    { name: "LlamaIndex" },
+    { name: "RAG Pipelines" },
+    { name: "AI Agents" },
+    { name: "Vector Databases" },
+    { name: "Hugging Face" },
+    { name: "Prompt Engineering" },
+    { name: "Vercel AI SDK" },
+  ],
   frontend: [
     { name: "React" },
     { name: "Next.js", logo: "/logos/nextjs.svg", darkInvert: true },
