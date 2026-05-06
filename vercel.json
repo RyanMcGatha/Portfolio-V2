@@ -50,6 +50,24 @@
       ]
     },
     {
+      "source": "/",
+      "headers": [
+        {
+          "key": "Link",
+          "value": "<https://ryanm.info/>; rel=\"canonical\""
+        }
+      ]
+    },
+    {
+      "source": "/ai-services",
+      "headers": [
+        {
+          "key": "Link",
+          "value": "<https://ryanm.info/ai-services>; rel=\"canonical\""
+        }
+      ]
+    },
+    {
       "source": "/(.*)",
       "headers": [
         { "key": "X-Content-Type-Options", "value": "nosniff" },
