@@ -114,7 +114,13 @@ async function inspectUrls() {
       console.log(`  last crawl:        ${lastCrawl}`);
       console.log(`  declared canon:    ${userCanonical}`);
       console.log(`  google's canon:    ${googleCanonical}`);
-      if (userCanonical !== "?" && googleCanonical !== "?" && userCanonical !== googleCanonical) {
+      const norm = (s: string) =>
+        s.replace(/\/+$/, "").replace(/^http:/, "https:").toLowerCase();
+      if (
+        userCanonical !== "?" &&
+        googleCanonical !== "?" &&
+        norm(userCanonical) !== norm(googleCanonical)
+      ) {
         console.log(
           `  ⚠ canonical mismatch — Google is using a different canonical than you declared.`
         );
