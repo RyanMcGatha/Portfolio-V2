@@ -88,6 +88,15 @@
       ]
     },
     {
+      "source": "/projects",
+      "headers": [
+        {
+          "key": "Link",
+          "value": "<https://ryanm.info/projects>; rel=\"canonical\""
+        }
+      ]
+    },
+    {
       "source": "/(.*)",
       "headers": [
         { "key": "X-Content-Type-Options", "value": "nosniff" },

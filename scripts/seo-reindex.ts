@@ -42,9 +42,13 @@ if (!SITE_URL) {
 const PUBLIC_URL = "https://ryanm.info";
 const SITEMAP_URL = `${PUBLIC_URL}/sitemap.xml`;
 const URLS_TO_INSPECT = [
-  PUBLIC_URL,
   `${PUBLIC_URL}/`,
   `${PUBLIC_URL}/ai-services`,
+  `${PUBLIC_URL}/projects`,
+  `${PUBLIC_URL}/projects/cca-email-suite`,
+  `${PUBLIC_URL}/projects/push-it-messaging`,
+  `${PUBLIC_URL}/projects/sullys-franchise-management`,
+  `${PUBLIC_URL}/projects/fastapi-tutorial`,
 ];
 
 const auth = resolveAuth();
