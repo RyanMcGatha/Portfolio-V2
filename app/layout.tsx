@@ -8,8 +8,6 @@ import {
   PersonJsonLd,
   WebSiteJsonLd,
   ProfessionalServiceJsonLd,
-  BreadcrumbJsonLd,
-  FAQPageJsonLd,
 } from "./structured-data";
 
 const inter = Inter({
@@ -60,16 +58,16 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: {
     default:
-      "Ryan McGatha | AI Developer & Full-Stack Web Developer in Greenville, SC",
+      "Ryan McGatha | Full-Stack Developer & Designer in Greenville, SC",
     template: "%s | Ryan McGatha",
   },
   description:
-    "AI developer and full-stack web developer in Greenville, SC. I build custom AI agents, chatbots, LLM integrations, and AI-powered web apps with React, Node.js, and Python.",
+    "Full-stack web developer and designer in Greenville, SC. I design and build modern websites, polished interfaces, and custom web apps in React, Node.js, and Python — including AI agents and LLM integrations when projects call for it.",
   authors: [{ name: "Ryan McGatha", url: siteUrl }],
   creator: "Ryan McGatha",
   publisher: "Ryan McGatha",
   category: "technology",
-  classification: "AI Development, Artificial Intelligence, Web Development, Software Engineering",
+  classification: "Web Development, Web Design, UI/UX Design, Full-Stack Development, AI Development, Software Engineering",
   icons: {
     icon: [
       { url: "/favicon.ico", sizes: "any" },
@@ -85,16 +83,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    title: "Ryan McGatha | AI Developer & Web Developer in Greenville, SC",
+    title: "Ryan McGatha | Full-Stack Developer & Designer in Greenville, SC",
     description:
-      "AI developer and full-stack web developer in Greenville, SC. Building custom AI agents, chatbots, LLM integrations, and AI-powered web applications with React, Node.js, and Python.",
-    siteName: "Ryan McGatha - AI Developer Greenville SC",
+      "Full-stack web developer and designer in Greenville, SC. Designing and building modern websites, polished interfaces, and custom web apps with React, Node.js, and Python — plus AI agents and LLM integrations.",
+    siteName: "Ryan McGatha - Full-Stack Developer & Designer in Greenville, SC",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ryan McGatha | AI Developer & Web Developer in Greenville, SC",
+    title: "Ryan McGatha | Full-Stack Developer & Designer in Greenville, SC",
     description:
-      "AI developer and full-stack web developer in Greenville, SC. Custom AI agents, chatbots, LLM integrations, and AI-powered applications.",
+      "Full-stack web developer and designer in Greenville, SC. Modern websites, custom web apps, and AI integrations built with React, Node.js, and Python.",
     creator: "@ryanmcgatha",
   },
   robots: {
@@ -140,8 +138,6 @@ export default function RootLayout({
         <PersonJsonLd />
         <WebSiteJsonLd />
         <ProfessionalServiceJsonLd />
-        <BreadcrumbJsonLd />
-        <FAQPageJsonLd />
       </head>
       <body
         className={`${inter.variable} ${archivoBlack.variable} ${robotoMono.variable}`}

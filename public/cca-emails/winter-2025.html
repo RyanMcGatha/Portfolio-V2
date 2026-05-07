@@ -1,0 +1,2926 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="x-apple-disable-message-reformatting" />
+    <!-- Declare LIGHT-ONLY so clients that honor color-scheme (Apple Mail, modern Outlook) don't auto-darken. -->
+    <meta name="color-scheme" content="light only" />
+    <meta name="supported-color-schemes" content="light" />
+    <title>Paw Prints — Winter 2025</title>
+    <style type="text/css">
+      /* ═══════════════════════════════════════════════════════════════
+         GMAIL-SAFE CSS RULES ONLY
+         Per Gmail's official docs (developers.google.com/workspace/gmail/design/css),
+         the Gmail iOS app strips the ENTIRE style block if it contains
+         any unsupported selector. Only class/element/id selectors and
+         standard width/orientation/resolution media queries are guaranteed
+         to survive. So this block intentionally avoids:
+           - :root, :last-child, and all other pseudo-classes
+           - Attribute selectors like [data-ogsc] or a[x-apple-...]
+           - @media (prefers-color-scheme: dark)
+         All visual styling that has to render correctly is duplicated
+         INLINE so the email still looks right even if Gmail strips this
+         block entirely on a future render.
+
+         CRITICAL FOR MAILCHIMP: never write angle-bracketed HTML tag
+         names inside any CSS comment in this file. Mailchimp's CSS
+         processor parses comment text as if it were HTML and "balances"
+         any tag-shaped strings by injecting close tags directly into
+         the source — that splits the style block in half and Gmail
+         iOS then strips the broken second half (which is exactly how
+         every responsive override silently breaks). Refer to elements
+         in prose only ("the parent cell", "the style block", etc.).
+         ═══════════════════════════════════════════════════════════════ */
+      body {
+        height: 100% !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        width: 100% !important;
+        background-color: #f5f2ed !important;
+      }
+      table {
+        border-collapse: collapse !important;
+      }
+      img {
+        border: 0;
+        height: auto;
+        line-height: 100%;
+        outline: none;
+        text-decoration: none;
+      }
+      h1,
+      h2,
+      h3,
+      h4,
+      p {
+        margin: 0 !important;
+        padding: 0 !important;
+      }
+
+      /*
+      GMAIL IOS COLOR REFERENCE — all opacity replaced with solid hex blends:
+      #1A1A1A on #F5F2ED background:
+        opacity 0.08 → #E3E0DC  (divider lines)
+        opacity 0.12 → #DAD8D3  (masthead borders)
+        opacity 0.20 → #C9C6C2  (bullet separators)
+        opacity 0.35 → #9f9d9a  (image caption, donate btn border light)
+        opacity 0.40 → #94928f  (muted labels, legal text)
+        opacity 0.45 → #898785  (eyebrow labels)
+        opacity 0.50 → #7e7d7a  (social links, tagline)
+        opacity 0.55 → #73726f  (subhead body copy)
+        opacity 0.82 → #41403F  (main body paragraphs)
+
+      #F5F2ED on #1A1A1A background (dark cards):
+        opacity 0.45 → #73726f  (eyebrow on dark)
+        opacity 0.50 → #7e7d7a  (body copy on dark)
+        opacity 0.55 → #898785  (slightly lighter body on dark)
+        border rgba(245,242,237,0.35) → #666563
+    */
+
+      /* ═══════════════════════════════════════════════════════════════
+         DARK MODE HANDLING — force the original brand palette in every
+         client. The email is designed light-themed (cream background +
+         dark CTA cards), and we want it to look identical regardless of
+         the user's system theme.
+
+         Strategy: pin every cream surface and every dark CTA surface
+         using class selectors (the only selector type Gmail mobile is
+         guaranteed to honor). The class names .cream-bg and .dark-card
+         have been added directly to every table and cell that previously
+         only declared bgcolor.
+         ═══════════════════════════════════════════════════════════════ */
+
+      /* Brand background pins. These re-assert the inline bgcolor so
+         clients that try to recolor surfaces in dark mode lose the
+         fight. (We declare color-scheme: light only via the meta tag
+         in the head as well, so most clients never enter dark mode for
+         this email in the first place.) */
+      .cream-bg {
+        background-color: #f5f2ed !important;
+      }
+      .dark-card {
+        background-color: #1a1a1a !important;
+      }
+
+      /* Desktop max-widths for the hybrid masthead. Defined here (not
+         inline) so the mobile @media query can override cleanly without
+         fighting inline max-width values.
+
+         Total = 520px (= 600px wrapper minus 40px padding × 2). The left
+         column needs ~270px to comfortably fit "Prints" at the 100px
+         masthead size with -4px letter-spacing; the right column gets
+         the remaining ~250px so the tagline doesn't end on an orphan
+         word. */
+      .mast-col-left {
+        max-width: 240px;
+      }
+      .mast-col-right {
+        max-width: 280px;
+      }
+
+      @media screen and (max-width: 600px) {
+        .email-wrap {
+          width: 100% !important;
+        }
+        .section-td {
+          padding-left: 20px !important;
+          padding-right: 20px !important;
+        }
+        .hero-img-cell {
+          padding-left: 20px !important;
+          padding-right: 20px !important;
+        }
+        .hero-img {
+          height: 200px !important;
+          object-fit: cover !important;
+          object-position: center top !important;
+        }
+        .mast-col,
+        .mast-col-left,
+        .mast-col-right {
+          display: block !important;
+          width: 100% !important;
+          max-width: 100% !important;
+          padding-left: 0 !important;
+          padding-right: 0 !important;
+          padding-bottom: 0 !important;
+          text-align: left !important;
+        }
+        .mast-col-right {
+          padding-top: 12px !important;
+        }
+        /* Force the right column's eyebrow and tagline to left-align on
+           mobile (when it stacks below the masthead title). Use only
+           single-class selectors (no descendents) so Gmail iOS keeps
+           the rules. */
+        .mast-eyebrow,
+        .mast-tagline-cell,
+        .mast-tagline,
+        .mast-eyebrow-text {
+          text-align: left !important;
+        }
+        .mast-eyebrow {
+          padding-bottom: 6px !important;
+        }
+        .mast-eyebrow-text {
+          line-height: 1.4 !important;
+        }
+        .mast-tagline {
+          font-size: 15px !important;
+          line-height: 1.45 !important;
+          max-width: 260px !important;
+        }
+        .masthead-h1 {
+          font-size: 56px !important;
+          line-height: 0.86 !important;
+          letter-spacing: -2px !important;
+        }
+        /* Trim the newsletter CTA button on mobile so "Read the Full
+           Newsletter →" fits comfortably on a single line on the
+           narrowest common iPhone (320px viewport). Shrunken padding +
+           letter-spacing keeps the button under ~220px wide so the
+           total section never overflows the viewport. */
+        .newsletter-btn-td {
+          padding-left: 14px !important;
+          padding-right: 14px !important;
+          box-sizing: border-box !important;
+        }
+        .newsletter-btn-link {
+          letter-spacing: 1px !important;
+          font-size: 10px !important;
+        }
+        /* Hide the desktop-only line break inside the newsletter card
+           body copy so the text flows naturally on a narrow viewport
+           instead of breaking awkwardly at the em-dash. */
+        .newsletter-break {
+          display: none !important;
+        }
+        .lead-h2 {
+          font-size: 26px !important;
+          line-height: 1.15 !important;
+        }
+        .lead-body {
+          font-size: 17px !important;
+          line-height: 1.65 !important;
+        }
+        .section-h3 {
+          font-size: 22px !important;
+        }
+        .cta-h3 {
+          font-size: 22px !important;
+        }
+        .newsletter-h3 {
+          font-size: 22px !important;
+        }
+        .wish-name {
+          font-size: 17px !important;
+        }
+        .newsletter-inner {
+          padding-top: 32px !important;
+          padding-bottom: 32px !important;
+          padding-left: 20px !important;
+          padding-right: 20px !important;
+        }
+        .donate-inner {
+          padding-top: 32px !important;
+          padding-bottom: 32px !important;
+          padding-left: 20px !important;
+          padding-right: 20px !important;
+        }
+        .donate-copy {
+          padding-bottom: 18px !important;
+        }
+        /* Center the entire donate card content stack on mobile —
+           heading, body copy, and (already-stacked) buttons. Use
+           single-class selectors (rather than descendent selectors) so
+           Mailchimp's CSS processing doesn't break the rules. */
+        .cta-h3,
+        .donate-copy,
+        .donate-body-p,
+        .donate-btn-wrap-td {
+          text-align: center !important;
+        }
+        /* Constrain + center the donate body copy in a narrower column
+           inside the dark card. The parent cell has align="center" so
+           the inline-block paragraph centers via text-align even if
+           margin:auto is stripped by an email client. */
+        .donate-body-p {
+          max-width: 280px !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+          display: inline-block !important;
+        }
+        /* Impact stat grid — stack vertically and full-width on mobile.
+           Each stacked cell gets a top border (instead of left/right
+           column dividers); the parent table's border-top covers the
+           first cell's edge so the doubled-up line is cosmetically fine. */
+        .stat-cell {
+          display: block !important;
+          width: 100% !important;
+          border-left: 0 !important;
+          border-right: 0 !important;
+          border-top: 1px solid #dad8d3 !important;
+          padding-top: 24px !important;
+          padding-bottom: 24px !important;
+          padding-left: 4px !important;
+          padding-right: 4px !important;
+        }
+        .stat-num {
+          font-size: 44px !important;
+        }
+        .stat-label {
+          font-size: 11px !important;
+          letter-spacing: 1.5px !important;
+          padding-top: 10px !important;
+        }
+        /* Donate buttons stack on mobile and become full-width inside
+           the donate card. .donate-btn-col is a div (not a td) so
+           Gmail iOS reliably honors display:block here. The
+           margin-bottom on every button creates a 12px gap between
+           them; the trailing space below the last button is absorbed
+           by the donate card's bottom padding. */
+        .donate-btn-col {
+          display: block !important;
+          width: 100% !important;
+          max-width: 240px !important;
+          margin-left: auto !important;
+          margin-right: auto !important;
+          margin-top: 0 !important;
+          margin-bottom: 12px !important;
+          box-sizing: border-box !important;
+        }
+        .donate-btn-table {
+          width: 100% !important;
+          box-sizing: border-box !important;
+        }
+        .donate-btn-inner {
+          width: 100% !important;
+          text-align: center !important;
+          box-sizing: border-box !important;
+        }
+        .sp-52 {
+          padding-top: 28px !important;
+        }
+        .sp-32 {
+          padding-top: 16px !important;
+        }
+        .social-td {
+          padding-left: 6px !important;
+          padding-right: 6px !important;
+        }
+      }
+    </style>
+  </head>
+
+  <body
+    class="cream-bg"
+    style="
+      margin: 0 !important;
+      padding: 0 !important;
+      width: 100% !important;
+      min-width: 100% !important;
+      background-color: #f5f2ed !important;
+    "
+  >
+    <!-- ══════════════════════════════════════════════════
+         PREHEADER (hidden inbox-preview text)
+         Appears in inbox preview right after the subject line.
+         Edit the wording inside the <span> to change it.
+         ══════════════════════════════════════════════════ -->
+    <div
+      style="
+        display: none;
+        visibility: hidden;
+        opacity: 0;
+        color: transparent;
+        height: 0;
+        width: 0;
+        font-size: 1px;
+        line-height: 1px;
+        max-height: 0;
+        max-width: 0;
+        overflow: hidden;
+        mso-hide: all;
+      "
+    >
+      <span>
+        A note we owe you — the Winter 2025 issue we missed. Inside: a tribute
+        to Bill Burton, Allie's story, Monk's road to healing, and two
+        adoptables hoping for home.
+      </span>
+    </div>
+
+    <center>
+      <!-- Outermost wrapper: bg-color on BOTH table and td for Gmail iOS -->
+      <table
+        class="cream-bg"
+        border="0"
+        cellpadding="0"
+        cellspacing="0"
+        height="auto"
+        width="100%"
+        bgcolor="#F5F2ED"
+        style="
+          background-color: #f5f2ed !important;
+          width: 100% !important;
+          min-width: 100% !important;
+        "
+      >
+        <tr>
+          <td
+            class="cream-bg"
+            align="center"
+            bgcolor="#F5F2ED"
+            style="
+              background-color: #f5f2ed !important;
+              padding-top: 24px;
+              padding-bottom: 64px;
+            "
+          >
+            <!-- ══════════════════════════════════════ -->
+            <!-- BRAND HEADER  (CCA logo + browser link) -->
+            <!-- ══════════════════════════════════════ -->
+            <table
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              height="auto"
+              width="600"
+              class="email-wrap cream-bg"
+              bgcolor="#F5F2ED"
+              style="background-color: #f5f2ed !important"
+            >
+              <tr>
+                <!-- LEFT: CCA logo -->
+                <td
+                  class="section-td header-logo cream-bg"
+                  align="left"
+                  valign="middle"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 20px;
+                    padding-bottom: 20px;
+                  "
+                >
+                  <a
+                    href="https://ccaweb.org/"
+                    target="_blank"
+                    style="
+                      display: inline-block;
+                      text-decoration: none;
+                      border: 0;
+                    "
+                  >
+                    <img
+                      src="https://sawa-dev-2-storage-bucket.storage.googleapis.com/profiles/9ain4mss9hqjnemr-315c6.png"
+                      alt="Concerned Citizens for Animals"
+                      width="140"
+                      style="
+                        display: block;
+                        width: 140px;
+                        max-width: 100%;
+                        height: auto;
+                        border: 0;
+                        outline: none;
+                        text-decoration: none;
+                      "
+                    />
+                  </a>
+                </td>
+                <!-- RIGHT: View in Browser -->
+                <td
+                  class="section-td header-archive cream-bg"
+                  align="right"
+                  valign="middle"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 20px;
+                    padding-right: 40px;
+                    padding-bottom: 20px;
+                  "
+                >
+                  <a
+                    target="_blank"
+                    href="*|ARCHIVE|*"
+                    style="
+                      font-family:
+                        &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;
+                      font-size: 10px;
+                      text-transform: uppercase;
+                      letter-spacing: 2.5px;
+                      color: #94928f;
+                      text-decoration: none;
+                    "
+                  >
+                    View in Browser
+                  </a>
+                </td>
+              </tr>
+            </table>
+
+            <!-- ══════════════════════════════════════ -->
+            <!-- MASTHEAD                               -->
+            <!-- ══════════════════════════════════════ -->
+            <table
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              height="auto"
+              width="600"
+              class="email-wrap cream-bg"
+              bgcolor="#F5F2ED"
+              style="
+                background-color: #f5f2ed !important;
+                border-top: 1px solid #dad8d3;
+                border-bottom: 1px solid #dad8d3;
+              "
+            >
+              <!-- Top spacer -->
+              <tr>
+                <td
+                  colspan="2"
+                  class="sp-52 cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-top: 48px;
+                    font-size: 0;
+                    line-height: 0;
+                    mso-line-height-rule: exactly;
+                  "
+                >
+                  &nbsp;
+                </td>
+              </tr>
+
+              <tr>
+                <!-- HYBRID-RESPONSIVE MASTHEAD
+                     One <td> containing two inline-block <div>s. The divs sit
+                     side-by-side on desktop (320 + 200 = 520, fits inside the
+                     520px content area of the 600px wrapper), and stack on
+                     mobile via the .mast-col @media rules. Outlook desktop
+                     reads the conditional ghost table instead. -->
+                <td
+                  colspan="2"
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    font-size: 0;
+                    line-height: 0;
+                  "
+                >
+                  <!--[if mso | IE]>
+                  <table role="presentation" border="0" cellpadding="0" cellspacing="0" width="100%"><tr>
+                  <td valign="bottom" width="240" style="padding:0;">
+                  <![endif]-->
+                  <div
+                    class="mast-col mast-col-left"
+                    style="
+                      display: inline-block;
+                      vertical-align: bottom;
+                      width: 240px;
+                      max-width: 100%;
+                      box-sizing: border-box;
+                      font-size: 0;
+                      line-height: 0;
+                    "
+                  >
+                    <table
+                      class="cream-bg"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      height="auto"
+                      width="100%"
+                      bgcolor="#F5F2ED"
+                      style="background-color: #f5f2ed !important"
+                    >
+                      <tr>
+                        <td style="padding-bottom: 18px; white-space: nowrap">
+                          <span
+                            style="
+                              font-family:
+                                &quot;Helvetica Neue&quot;, Helvetica, Arial,
+                                sans-serif;
+                              font-size: 10px;
+                              text-transform: uppercase;
+                              letter-spacing: 2.5px;
+                              color: #898785;
+                              line-height: 1.4;
+                              white-space: nowrap;
+                            "
+                          >
+                            Winter 2025 &nbsp;&mdash;&nbsp; Holiday Edition
+                          </span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td>
+                          <h1
+                            class="masthead-h1"
+                            style="
+                              font-family:
+                                Georgia, &quot;Times New Roman&quot;, serif;
+                              font-size: 100px;
+                              line-height: 0.84;
+                              letter-spacing: -4px;
+                              font-weight: normal;
+                              color: #1a1a1a;
+                            "
+                          >
+                            Paw Prints
+                          </h1>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <!--[if mso | IE]>
+                  </td><td valign="bottom" width="280" align="right" style="padding:0 0 6px 20px;">
+                  <![endif]-->
+                  <div
+                    class="mast-col mast-col-right"
+                    style="
+                      display: inline-block;
+                      vertical-align: bottom;
+                      width: 280px;
+                      max-width: 100%;
+                      box-sizing: border-box;
+                      padding-left: 20px;
+                      padding-bottom: 6px;
+                      text-align: right;
+                      font-size: 0;
+                      line-height: 0;
+                    "
+                  >
+                    <table
+                      class="cream-bg"
+                      border="0"
+                      cellpadding="0"
+                      cellspacing="0"
+                      height="auto"
+                      width="100%"
+                      bgcolor="#F5F2ED"
+                      style="background-color: #f5f2ed !important"
+                    >
+                      <tr>
+                        <td
+                          class="mast-eyebrow"
+                          style="padding-bottom: 22px; text-align: right"
+                        >
+                          <span
+                            class="mast-eyebrow-text"
+                            style="
+                              font-family:
+                                &quot;Helvetica Neue&quot;, Helvetica, Arial,
+                                sans-serif;
+                              font-size: 9px;
+                              text-transform: uppercase;
+                              letter-spacing: 2.5px;
+                              color: #94928f;
+                              line-height: 1.9;
+                            "
+                          >
+                            Concerned Citizens for Animals
+                          </span>
+                        </td>
+                      </tr>
+                      <tr>
+                        <td class="mast-tagline-cell" style="text-align: right">
+                          <p
+                            class="mast-tagline"
+                            style="
+                              font-family:
+                                Georgia, &quot;Times New Roman&quot;, serif;
+                              font-size: 16px;
+                              line-height: 1.55;
+                              font-style: italic;
+                              color: #7e7d7a;
+                            "
+                          >
+                            Stories of rescue, recovery, and second chances from
+                            the Upstate.
+                          </p>
+                        </td>
+                      </tr>
+                    </table>
+                  </div>
+                  <!--[if mso | IE]>
+                  </td></tr></table>
+                  <![endif]-->
+                </td>
+              </tr>
+
+              <!-- Bottom spacer -->
+              <tr>
+                <td
+                  colspan="2"
+                  class="sp-52 cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-top: 48px;
+                    font-size: 0;
+                    line-height: 0;
+                    mso-line-height-rule: exactly;
+                  "
+                >
+                  &nbsp;
+                </td>
+              </tr>
+            </table>
+
+            <!-- ══════════════════════════════════════ -->
+            <!-- HERO IMAGE                             -->
+            <!-- ══════════════════════════════════════ -->
+            <table
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              height="auto"
+              width="600"
+              class="email-wrap cream-bg"
+              bgcolor="#F5F2ED"
+              style="background-color: #f5f2ed !important"
+            >
+              <tr>
+                <td
+                  class="sp-52 cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-top: 48px;
+                    font-size: 0;
+                    line-height: 0;
+                    mso-line-height-rule: exactly;
+                  "
+                >
+                  &nbsp;
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="cream-bg hero-img-cell"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                  "
+                >
+                  <img
+                    src="https://mcusercontent.com/1dac9dc797c2445282bdc35f1/images/50ab9a9e-ef8b-a1ad-b66c-42b839d40153.jpg"
+                    alt="A small kitten resting peacefully in warm light — every animal deserves a place to feel safe."
+                    width="600"
+                    height="260"
+                    class="hero-img"
+                    style="
+                      width: 100%;
+                      max-width: 600px;
+                      height: 260px;
+                      display: block;
+                      object-fit: cover;
+                      object-position: center top;
+                      border: 0;
+                      outline: none;
+                      text-decoration: none;
+                    "
+                  />
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    padding-top: 12px;
+                  "
+                >
+                  <span
+                    style="
+                      font-family:
+                        &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;
+                      font-size: 10px;
+                      text-transform: uppercase;
+                      letter-spacing: 2px;
+                      color: #9f9d9a;
+                    "
+                  >
+                    Every animal deserves a place to feel safe.
+                  </span>
+                </td>
+              </tr>
+              <tr>
+                <td
+                  class="sp-52 cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-top: 48px;
+                    font-size: 0;
+                    line-height: 0;
+                    mso-line-height-rule: exactly;
+                  "
+                >
+                  &nbsp;
+                </td>
+              </tr>
+            </table>
+
+            <!-- ══════════════════════════════════════ -->
+            <!-- LEAD STORY                             -->
+            <!-- ══════════════════════════════════════ -->
+            <table
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              height="auto"
+              width="600"
+              class="email-wrap cream-bg"
+              bgcolor="#F5F2ED"
+              style="background-color: #f5f2ed !important"
+            >
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    padding-bottom: 12px;
+                  "
+                >
+                  <span
+                    style="
+                      font-family:
+                        &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;
+                      font-size: 10px;
+                      text-transform: uppercase;
+                      letter-spacing: 3px;
+                      color: #94928f;
+                    "
+                  >
+                    A Note We Owe You
+                  </span>
+                </td>
+              </tr>
+
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    padding-bottom: 20px;
+                  "
+                >
+                  <h2
+                    class="lead-h2"
+                    style="
+                      font-family: Georgia, &quot;Times New Roman&quot;, serif;
+                      font-size: 40px;
+                      line-height: 1.1;
+                      font-weight: normal;
+                      color: #1a1a1a;
+                    "
+                  >
+                    A late letter — with a full and grateful heart.
+                  </h2>
+                </td>
+              </tr>
+
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    padding-bottom: 28px;
+                  "
+                >
+                  <p
+                    class="lead-body"
+                    style="
+                      font-family: Georgia, &quot;Times New Roman&quot;, serif;
+                      font-size: 19px;
+                      line-height: 1.65;
+                      color: #41403f;
+                    "
+                  >
+                    First, an apology — our Winter 2025 issue was meant to reach
+                    you over the holidays, and somehow it never made it out the
+                    door. We're sorry for the delay. The stories inside felt too
+                    dear to leave behind, so here it is, a little late, with our
+                    thanks for reading.
+                  </p>
+                </td>
+              </tr>
+
+              <!-- ════════════════════════════════════════════════════
+                   ISSUE HIGHLIGHTS — three columns, framed top/bottom
+                   (Same visual structure as the impact stats grid; the
+                   three numerals here index the headline stories from
+                   the Winter 2025 issue rather than impact totals.)
+                   ════════════════════════════════════════════════════ -->
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    padding-bottom: 36px;
+                  "
+                >
+                  <table
+                    class="cream-bg stat-grid"
+                    role="presentation"
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    width="100%"
+                    bgcolor="#F5F2ED"
+                    style="
+                      background-color: #f5f2ed !important;
+                      border-top: 1px solid #dad8d3;
+                      border-bottom: 1px solid #dad8d3;
+                    "
+                  >
+                    <tr>
+                      <td
+                        class="stat-cell"
+                        align="center"
+                        valign="top"
+                        width="33%"
+                        style="
+                          padding-top: 28px;
+                          padding-bottom: 28px;
+                          padding-left: 8px;
+                          padding-right: 8px;
+                        "
+                      >
+                        <p
+                          class="stat-num"
+                          style="
+                            font-family:
+                              Georgia, &quot;Times New Roman&quot;, serif;
+                            font-size: 44px;
+                            line-height: 1;
+                            font-weight: normal;
+                            color: #1a1a1a;
+                            letter-spacing: -1px;
+                            margin: 0 !important;
+                            padding: 0 !important;
+                          "
+                        >
+                          45
+                        </p>
+                        <p
+                          class="stat-label"
+                          style="
+                            font-family:
+                              &quot;Helvetica Neue&quot;, Helvetica, Arial,
+                              sans-serif;
+                            font-size: 9px;
+                            line-height: 1.5;
+                            text-transform: uppercase;
+                            letter-spacing: 2px;
+                            color: #898785;
+                            margin: 0 !important;
+                            padding: 10px 0 0 0 !important;
+                          "
+                        >
+                          Years caring<br />for the Upstate
+                        </p>
+                      </td>
+                      <td
+                        class="stat-cell"
+                        align="center"
+                        valign="top"
+                        width="33%"
+                        style="
+                          padding-top: 28px;
+                          padding-bottom: 28px;
+                          padding-left: 8px;
+                          padding-right: 8px;
+                          border-left: 1px solid #dad8d3;
+                          border-right: 1px solid #dad8d3;
+                        "
+                      >
+                        <p
+                          class="stat-num"
+                          style="
+                            font-family:
+                              Georgia, &quot;Times New Roman&quot;, serif;
+                            font-size: 44px;
+                            line-height: 1;
+                            font-weight: normal;
+                            color: #1a1a1a;
+                            letter-spacing: -1px;
+                            margin: 0 !important;
+                            padding: 0 !important;
+                          "
+                        >
+                          8
+                        </p>
+                        <p
+                          class="stat-label"
+                          style="
+                            font-family:
+                              &quot;Helvetica Neue&quot;, Helvetica, Arial,
+                              sans-serif;
+                            font-size: 9px;
+                            line-height: 1.5;
+                            text-transform: uppercase;
+                            letter-spacing: 2px;
+                            color: #898785;
+                            margin: 0 !important;
+                            padding: 10px 0 0 0 !important;
+                          "
+                        >
+                          Pages of stories<br />in this issue
+                        </p>
+                      </td>
+                      <td
+                        class="stat-cell"
+                        align="center"
+                        valign="top"
+                        width="34%"
+                        style="
+                          padding-top: 28px;
+                          padding-bottom: 28px;
+                          padding-left: 8px;
+                          padding-right: 8px;
+                        "
+                      >
+                        <p
+                          class="stat-num"
+                          style="
+                            font-family:
+                              Georgia, &quot;Times New Roman&quot;, serif;
+                            font-size: 44px;
+                            line-height: 1;
+                            font-weight: normal;
+                            color: #1a1a1a;
+                            letter-spacing: -1px;
+                            margin: 0 !important;
+                            padding: 0 !important;
+                          "
+                        >
+                          1
+                        </p>
+                        <p
+                          class="stat-label"
+                          style="
+                            font-family:
+                              &quot;Helvetica Neue&quot;, Helvetica, Arial,
+                              sans-serif;
+                            font-size: 9px;
+                            line-height: 1.5;
+                            text-transform: uppercase;
+                            letter-spacing: 2px;
+                            color: #898785;
+                            margin: 0 !important;
+                            padding: 10px 0 0 0 !important;
+                          "
+                        >
+                          Beloved friend<br />honored within
+                        </p>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    padding-bottom: 20px;
+                  "
+                >
+                  <p
+                    class="lead-body"
+                    style="
+                      font-family: Georgia, &quot;Times New Roman&quot;, serif;
+                      font-size: 19px;
+                      line-height: 1.65;
+                      color: #41403f;
+                    "
+                  >
+                    Inside this edition: a tribute to our dear friend William
+                    &ldquo;Bill&rdquo; Burton, the heart of our community and
+                    feral cat programs for many years; Allie's gentle adoption
+                    story; an update on Monk's brave road to healing; and two
+                    sweet adoptables — Indy and Sprinkle — hoping to find
+                    home. 🐾
+                  </p>
+                </td>
+              </tr>
+
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    padding-bottom: 20px;
+                  "
+                >
+                  <p
+                    class="lead-body"
+                    style="
+                      font-family: Georgia, &quot;Times New Roman&quot;, serif;
+                      font-size: 19px;
+                      line-height: 1.65;
+                      color: #41403f;
+                    "
+                  >
+                    A quick note: Paw Prints now arrives from
+                    newsletter@ccaweb.org. Please add us to your address book so
+                    you never miss an issue — and thank you for choosing the
+                    digital edition, which saves us postage, printing, and a few
+                    precious trees.
+                  </p>
+                </td>
+              </tr>
+
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    padding-bottom: 32px;
+                  "
+                >
+                  <p
+                    class="lead-body"
+                    style="
+                      font-family: Georgia, &quot;Times New Roman&quot;, serif;
+                      font-size: 19px;
+                      line-height: 1.65;
+                      color: #41403f;
+                      font-style: italic;
+                    "
+                  >
+                    From all of us at CCA, thank you for the warmth and
+                    generosity that carried us through 2025. Every life we save,
+                    we save together. — The CCA Board and Staff
+                  </p>
+                </td>
+              </tr>
+
+              <!-- ══════════════════════════════════════════════════ -->
+              <!-- NEWSLETTER CTA CARD                               -->
+              <!-- ══════════════════════════════════════════════════ -->
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    padding-bottom: 48px;
+                  "
+                >
+                  <table
+                    class="dark-card"
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    height="auto"
+                    width="100%"
+                    bgcolor="#1A1A1A"
+                    style="
+                      background-color: #1a1a1a !important;
+                      border-radius: 4px;
+                    "
+                  >
+                    <tr>
+                      <td
+                        class="newsletter-inner dark-card"
+                        align="center"
+                        bgcolor="#1A1A1A"
+                        style="
+                          background-color: #1a1a1a !important;
+                          padding-top: 48px;
+                          padding-bottom: 48px;
+                          padding-left: 44px;
+                          padding-right: 44px;
+                        "
+                      >
+                        <table
+                          class="dark-card"
+                          border="0"
+                          cellpadding="0"
+                          cellspacing="0"
+                          height="auto"
+                          width="100%"
+                          bgcolor="#1A1A1A"
+                          style="background-color: #1a1a1a !important"
+                        >
+                          <tr>
+                            <td align="center" style="padding-bottom: 12px">
+                              <span
+                                style="
+                                  font-family:
+                                    &quot;Helvetica Neue&quot;, Helvetica,
+                                    Arial, sans-serif;
+                                  font-size: 9px;
+                                  text-transform: uppercase;
+                                  letter-spacing: 4px;
+                                  color: #73726f;
+                                "
+                              >
+                                Winter 2025 &nbsp;&mdash;&nbsp; Catching Up
+                              </span>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td align="center" style="padding-bottom: 20px">
+                              <h3
+                                class="newsletter-h3"
+                                style="
+                                  font-family:
+                                    Georgia, &quot;Times New Roman&quot;, serif;
+                                  font-size: 28px;
+                                  font-weight: normal;
+                                  color: #f5f2ed;
+                                  letter-spacing: -0.5px;
+                                  line-height: 1.2;
+                                "
+                              >
+                                Paw Prints — Winter 2025
+                              </h3>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td align="center" style="padding-bottom: 32px">
+                              <p
+                                style="
+                                  font-family:
+                                    &quot;Helvetica Neue&quot;, Helvetica,
+                                    Arial, sans-serif;
+                                  font-size: 13px;
+                                  line-height: 1.7;
+                                  color: #7e7d7a;
+                                "
+                              >
+                                Eight pages of love, loss, and lasting
+                                legacies<span class="newsletter-break"
+                                  ><br /></span>— the stories we couldn't
+                                let go untold.
+                              </p>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td align="center">
+                              <table
+                                class="cream-bg"
+                                border="0"
+                                cellpadding="0"
+                                cellspacing="0"
+                                height="auto"
+                                bgcolor="#F5F2ED"
+                                style="
+                                  background-color: #f5f2ed !important;
+                                  border-radius: 3px;
+                                "
+                              >
+                                <tr>
+                                  <td
+                                    class="cream-bg newsletter-btn-td"
+                                    bgcolor="#F5F2ED"
+                                    style="
+                                      background-color: #f5f2ed !important;
+                                      border-radius: 3px;
+                                      padding-top: 18px;
+                                      padding-bottom: 18px;
+                                      padding-left: 40px;
+                                      padding-right: 40px;
+                                      white-space: nowrap;
+                                    "
+                                  >
+                                    <a
+                                      target="_blank"
+                                      class="newsletter-btn-link"
+                                      href="https://mcusercontent.com/1dac9dc797c2445282bdc35f1/files/REPLACE_WITH_MAILCHIMP_FILE_ID/Paw_Prints_Fall_Winter_2025.pdf"
+                                      style="
+                                        font-family:
+                                          &quot;Helvetica Neue&quot;, Helvetica,
+                                          Arial, sans-serif;
+                                        font-size: 11px;
+                                        font-weight: bold;
+                                        text-transform: uppercase;
+                                        letter-spacing: 3px;
+                                        color: #1a1a1a;
+                                        text-decoration: none;
+                                        white-space: nowrap;
+                                      "
+                                    >
+                                      Read the Full Newsletter &rarr;
+                                    </a>
+                                  </td>
+                                </tr>
+                              </table>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+
+            <!-- ── Divider ── -->
+            <table
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              height="auto"
+              width="600"
+              class="email-wrap cream-bg"
+              bgcolor="#F5F2ED"
+              style="background-color: #f5f2ed !important"
+            >
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    border-top: 1px solid #dfdcd7;
+                    font-size: 0;
+                    line-height: 0;
+                    mso-line-height-rule: exactly;
+                  "
+                >
+                  &nbsp;
+                </td>
+              </tr>
+            </table>
+
+            <!-- ══════════════════════════════════════ -->
+            <!-- WISH LIST                              -->
+            <!-- ══════════════════════════════════════ -->
+            <table
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              height="auto"
+              width="600"
+              class="email-wrap cream-bg"
+              bgcolor="#F5F2ED"
+              style="background-color: #f5f2ed !important"
+            >
+              <tr>
+                <td
+                  class="sp-52 cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-top: 48px;
+                    font-size: 0;
+                    line-height: 0;
+                    mso-line-height-rule: exactly;
+                  "
+                >
+                  &nbsp;
+                </td>
+              </tr>
+
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    padding-bottom: 12px;
+                  "
+                >
+                  <span
+                    style="
+                      font-family:
+                        &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;
+                      font-size: 10px;
+                      text-transform: uppercase;
+                      letter-spacing: 3px;
+                      color: #94928f;
+                    "
+                    >01 / Essentials</span
+                  >
+                </td>
+              </tr>
+
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    padding-bottom: 20px;
+                  "
+                >
+                  <h3
+                    class="section-h3"
+                    style="
+                      font-family: Georgia, &quot;Times New Roman&quot;, serif;
+                      font-size: 28px;
+                      font-weight: normal;
+                      color: #1a1a1a;
+                    "
+                  >
+                    The Winter Wish List
+                  </h3>
+                </td>
+              </tr>
+
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    padding-bottom: 32px;
+                  "
+                >
+                  <p
+                    style="
+                      font-family:
+                        &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;
+                      font-size: 13px;
+                      line-height: 1.6;
+                      color: #73726f;
+                    "
+                  >
+                    Send warmth, comfort, and daily essentials directly to the
+                    animals in our shelter this season.
+                  </p>
+                </td>
+              </tr>
+
+              <!-- Kuranda -->
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    padding-bottom: 18px;
+                    border-bottom: 1px solid #e3e0dc;
+                  "
+                >
+                  <table
+                    class="cream-bg"
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    height="auto"
+                    width="100%"
+                    bgcolor="#F5F2ED"
+                    style="background-color: #f5f2ed !important"
+                  >
+                    <tr>
+                      <td style="padding-bottom: 4px">
+                        <p
+                          class="wish-name"
+                          style="
+                            font-family:
+                              Georgia, &quot;Times New Roman&quot;, serif;
+                            font-size: 18px;
+                            color: #1a1a1a;
+                          "
+                        >
+                          Kuranda Shelter Beds
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding-bottom: 10px">
+                        <span
+                          style="
+                            font-family:
+                              &quot;Helvetica Neue&quot;, Helvetica, Arial,
+                              sans-serif;
+                            font-size: 9px;
+                            text-transform: uppercase;
+                            letter-spacing: 1.5px;
+                            color: #9f9d9a;
+                          "
+                          >Comfortable beds, sent directly to the animals in our
+                          care.</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a
+                          target="_blank"
+                          href="https://shelterbeds.org/donate/208897"
+                          style="
+                            font-family:
+                              &quot;Helvetica Neue&quot;, Helvetica, Arial,
+                              sans-serif;
+                            font-size: 10px;
+                            text-transform: uppercase;
+                            letter-spacing: 2px;
+                            color: #1a1a1a;
+                            text-decoration: none;
+                            border-bottom: 1px solid #9f9d9a;
+                            padding-bottom: 2px;
+                          "
+                        >
+                          Donate &rarr;
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td
+                  class="sp-32 cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-top: 18px;
+                    font-size: 0;
+                    line-height: 0;
+                    mso-line-height-rule: exactly;
+                  "
+                >
+                  &nbsp;
+                </td>
+              </tr>
+
+              <!-- Amazon -->
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    padding-bottom: 18px;
+                    border-bottom: 1px solid #e3e0dc;
+                  "
+                >
+                  <table
+                    class="cream-bg"
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    height="auto"
+                    width="100%"
+                    bgcolor="#F5F2ED"
+                    style="background-color: #f5f2ed !important"
+                  >
+                    <tr>
+                      <td style="padding-bottom: 4px">
+                        <p
+                          class="wish-name"
+                          style="
+                            font-family:
+                              Georgia, &quot;Times New Roman&quot;, serif;
+                            font-size: 18px;
+                            color: #1a1a1a;
+                          "
+                        >
+                          Amazon Wish List
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding-bottom: 10px">
+                        <span
+                          style="
+                            font-family:
+                              &quot;Helvetica Neue&quot;, Helvetica, Arial,
+                              sans-serif;
+                            font-size: 9px;
+                            text-transform: uppercase;
+                            letter-spacing: 1.5px;
+                            color: #9f9d9a;
+                          "
+                          >Toys, supplies, and daily essentials — shipped
+                          straight to the shelter.</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a
+                          target="_blank"
+                          href="https://www.amazon.com/hz/wishlist/ls/1GCCI8TZ3GO54?ref_=wl_share"
+                          style="
+                            font-family:
+                              &quot;Helvetica Neue&quot;, Helvetica, Arial,
+                              sans-serif;
+                            font-size: 10px;
+                            text-transform: uppercase;
+                            letter-spacing: 2px;
+                            color: #1a1a1a;
+                            text-decoration: none;
+                            border-bottom: 1px solid #9f9d9a;
+                            padding-bottom: 2px;
+                          "
+                        >
+                          Shop &rarr;
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td
+                  class="sp-32 cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-top: 18px;
+                    font-size: 0;
+                    line-height: 0;
+                    mso-line-height-rule: exactly;
+                  "
+                >
+                  &nbsp;
+                </td>
+              </tr>
+
+              <!-- Chewy -->
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    padding-bottom: 0;
+                  "
+                >
+                  <table
+                    class="cream-bg"
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    height="auto"
+                    width="100%"
+                    bgcolor="#F5F2ED"
+                    style="background-color: #f5f2ed !important"
+                  >
+                    <tr>
+                      <td style="padding-bottom: 4px">
+                        <p
+                          class="wish-name"
+                          style="
+                            font-family:
+                              Georgia, &quot;Times New Roman&quot;, serif;
+                            font-size: 18px;
+                            color: #1a1a1a;
+                          "
+                        >
+                          Chewy Donations
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding-bottom: 10px">
+                        <span
+                          style="
+                            font-family:
+                              &quot;Helvetica Neue&quot;, Helvetica, Arial,
+                              sans-serif;
+                            font-size: 9px;
+                            text-transform: uppercase;
+                            letter-spacing: 1.5px;
+                            color: #9f9d9a;
+                          "
+                          >Food and nutrition — set up auto-ship for ongoing
+                          care.</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a
+                          target="_blank"
+                          href="https://www.chewy.com/g/concerned-citizens-for-animals_b77711871"
+                          style="
+                            font-family:
+                              &quot;Helvetica Neue&quot;, Helvetica, Arial,
+                              sans-serif;
+                            font-size: 10px;
+                            text-transform: uppercase;
+                            letter-spacing: 2px;
+                            color: #1a1a1a;
+                            text-decoration: none;
+                            border-bottom: 1px solid #9f9d9a;
+                            padding-bottom: 2px;
+                          "
+                        >
+                          Shop &rarr;
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td
+                  class="sp-52 cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-top: 48px;
+                    font-size: 0;
+                    line-height: 0;
+                    mso-line-height-rule: exactly;
+                  "
+                >
+                  &nbsp;
+                </td>
+              </tr>
+            </table>
+
+            <!-- ── Divider ── -->
+            <table
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              height="auto"
+              width="600"
+              class="email-wrap cream-bg"
+              bgcolor="#F5F2ED"
+              style="background-color: #f5f2ed !important"
+            >
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    border-top: 1px solid #dfdcd7;
+                    font-size: 0;
+                    line-height: 0;
+                    mso-line-height-rule: exactly;
+                  "
+                >
+                  &nbsp;
+                </td>
+              </tr>
+            </table>
+
+            <!-- ══════════════════════════════════════ -->
+            <!-- DONATE                                 -->
+            <!-- ══════════════════════════════════════ -->
+            <table
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              height="auto"
+              width="600"
+              class="email-wrap cream-bg"
+              bgcolor="#F5F2ED"
+              style="background-color: #f5f2ed !important"
+            >
+              <tr>
+                <td
+                  class="sp-52 cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-top: 48px;
+                    font-size: 0;
+                    line-height: 0;
+                    mso-line-height-rule: exactly;
+                  "
+                >
+                  &nbsp;
+                </td>
+              </tr>
+
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    padding-bottom: 12px;
+                  "
+                >
+                  <span
+                    style="
+                      font-family:
+                        &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;
+                      font-size: 10px;
+                      text-transform: uppercase;
+                      letter-spacing: 3px;
+                      color: #94928f;
+                    "
+                    >02 / Support</span
+                  >
+                </td>
+              </tr>
+
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    padding-bottom: 20px;
+                  "
+                >
+                  <h3
+                    class="section-h3"
+                    style="
+                      font-family: Georgia, &quot;Times New Roman&quot;, serif;
+                      font-size: 28px;
+                      font-weight: normal;
+                      color: #1a1a1a;
+                    "
+                  >
+                    Ways to Donate
+                  </h3>
+                </td>
+              </tr>
+
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    padding-bottom: 32px;
+                  "
+                >
+                  <p
+                    style="
+                      font-family:
+                        &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;
+                      font-size: 13px;
+                      line-height: 1.6;
+                      color: #73726f;
+                      max-width: 380px;
+                    "
+                  >
+                    Every gift becomes shelter, medical care, and a path forward
+                    for animals who need it&nbsp;most.
+                  </p>
+                </td>
+              </tr>
+
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                  "
+                >
+                  <table
+                    class="dark-card"
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    height="auto"
+                    width="100%"
+                    bgcolor="#1A1A1A"
+                    style="
+                      background-color: #1a1a1a !important;
+                      border-radius: 4px;
+                    "
+                  >
+                    <tr>
+                      <td
+                        class="donate-inner dark-card"
+                        bgcolor="#1A1A1A"
+                        style="
+                          background-color: #1a1a1a !important;
+                          padding-top: 48px;
+                          padding-bottom: 48px;
+                          padding-left: 44px;
+                          padding-right: 44px;
+                        "
+                      >
+                        <table
+                          class="dark-card"
+                          border="0"
+                          cellpadding="0"
+                          cellspacing="0"
+                          height="auto"
+                          width="100%"
+                          bgcolor="#1A1A1A"
+                          style="background-color: #1a1a1a !important"
+                        >
+                          <tr>
+                            <td style="padding-bottom: 20px">
+                              <h3
+                                class="cta-h3"
+                                style="
+                                  font-family:
+                                    Georgia, &quot;Times New Roman&quot;, serif;
+                                  font-size: 28px;
+                                  color: #f5f2ed;
+                                  font-weight: normal;
+                                  letter-spacing: -0.5px;
+                                  line-height: 1.2;
+                                "
+                              >
+                                Support Our Ongoing Mission
+                              </h3>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td
+                              class="donate-copy"
+                              align="left"
+                              style="padding-bottom: 32px; text-align: left"
+                            >
+                              <p
+                                class="donate-body-p"
+                                style="
+                                  font-family:
+                                    &quot;Helvetica Neue&quot;, Helvetica,
+                                    Arial, sans-serif;
+                                  font-size: 13px;
+                                  line-height: 1.7;
+                                  color: #7e7d7a;
+                                "
+                              >
+                                For 45 years, your gifts have made the Upstate's
+                                oldest no-kill shelter possible. Each
+                                tax-deductible donation directly funds shelter,
+                                medical care, and the path to forever homes.
+                              </p>
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td
+                              class="donate-btn-wrap-td"
+                              align="left"
+                              style="
+                                font-size: 0;
+                                line-height: 0;
+                                text-align: left;
+                              "
+                            >
+                              <!-- HYBRID-RESPONSIVE DONATE BUTTONS
+                                   Two inline-block divs that sit side-by-side
+                                   on desktop (160 + 12 + 160 = 332px, fits the
+                                   donate card content area) and stack on
+                                   mobile via the .donate-btn-col @media rule.
+                                   Outlook desktop reads the conditional ghost
+                                   table instead. -->
+                              <!--[if mso | IE]>
+                              <table role="presentation" border="0" cellpadding="0" cellspacing="0" align="left"><tr>
+                              <td valign="top" width="160" style="padding:0 6px;">
+                              <![endif]-->
+                              <div
+                                class="donate-btn-col"
+                                style="
+                                  display: inline-block;
+                                  vertical-align: top;
+                                  width: 160px;
+                                  max-width: 100%;
+                                  margin: 0 6px;
+                                  font-size: 0;
+                                  line-height: 0;
+                                "
+                              >
+                                <table
+                                  align="center"
+                                  role="presentation"
+                                  border="0"
+                                  cellpadding="0"
+                                  cellspacing="0"
+                                  width="100%"
+                                  class="donate-btn-table dark-card"
+                                  bgcolor="#1A1A1A"
+                                  style="
+                                    background-color: #1a1a1a !important;
+                                    box-sizing: border-box;
+                                  "
+                                >
+                                  <tr>
+                                    <td
+                                      class="donate-btn-inner"
+                                      align="center"
+                                      style="
+                                        border: 1px solid #666563;
+                                        padding: 15px 8px;
+                                        text-align: center;
+                                        box-sizing: border-box;
+                                      "
+                                    >
+                                      <a
+                                        target="_blank"
+                                        href="https://paypal.me/upstatecca?locale.x=en_US"
+                                        class="donate-btn-link"
+                                        style="
+                                          font-family:
+                                            &quot;Helvetica Neue&quot;,
+                                            Helvetica, Arial, sans-serif;
+                                          font-size: 10px;
+                                          text-transform: uppercase;
+                                          letter-spacing: 2.5px;
+                                          color: #f5f2ed;
+                                          text-decoration: none;
+                                          font-weight: bold;
+                                          white-space: nowrap;
+                                        "
+                                      >
+                                        PayPal &rarr;
+                                      </a>
+                                    </td>
+                                  </tr>
+                                </table>
+                              </div>
+                              <!--[if mso | IE]>
+                              </td><td valign="top" width="160" style="padding:0 6px;">
+                              <![endif]-->
+                              <div
+                                class="donate-btn-col"
+                                style="
+                                  display: inline-block;
+                                  vertical-align: top;
+                                  width: 160px;
+                                  max-width: 100%;
+                                  margin: 0 6px;
+                                  font-size: 0;
+                                  line-height: 0;
+                                "
+                              >
+                                <table
+                                  align="center"
+                                  role="presentation"
+                                  border="0"
+                                  cellpadding="0"
+                                  cellspacing="0"
+                                  width="100%"
+                                  class="donate-btn-table dark-card"
+                                  bgcolor="#1A1A1A"
+                                  style="
+                                    background-color: #1a1a1a !important;
+                                    box-sizing: border-box;
+                                  "
+                                >
+                                  <tr>
+                                    <td
+                                      class="donate-btn-inner"
+                                      align="center"
+                                      style="
+                                        border: 1px solid #666563;
+                                        padding: 15px 8px;
+                                        text-align: center;
+                                        box-sizing: border-box;
+                                      "
+                                    >
+                                      <a
+                                        target="_blank"
+                                        href="https://checkout.shelterluv.com/donate/CCA"
+                                        class="donate-btn-link"
+                                        style="
+                                          font-family:
+                                            &quot;Helvetica Neue&quot;,
+                                            Helvetica, Arial, sans-serif;
+                                          font-size: 10px;
+                                          text-transform: uppercase;
+                                          letter-spacing: 2.5px;
+                                          color: #f5f2ed;
+                                          text-decoration: none;
+                                          font-weight: bold;
+                                          white-space: nowrap;
+                                        "
+                                      >
+                                        Shelter Luv &rarr;
+                                      </a>
+                                    </td>
+                                  </tr>
+                                </table>
+                              </div>
+                              <!--[if mso | IE]>
+                              </td></tr></table>
+                              <![endif]-->
+                            </td>
+                          </tr>
+
+                          <tr>
+                            <td
+                              align="center"
+                              style="
+                                padding-top: 24px;
+                                text-align: center;
+                              "
+                            >
+                              <p
+                                style="
+                                  font-family:
+                                    &quot;Helvetica Neue&quot;, Helvetica,
+                                    Arial, sans-serif;
+                                  font-size: 12px;
+                                  line-height: 1.6;
+                                  color: #898785;
+                                  text-align: center;
+                                "
+                              >
+                                Or text
+                                <strong style="color: #f5f2ed; font-weight: bold"
+                                  >&ldquo;CCA&rdquo;</strong
+                                >
+                                to
+                                <strong style="color: #f5f2ed; font-weight: bold"
+                                  >89871</strong
+                                >
+                                to give from your phone.
+                              </p>
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td
+                  class="sp-52 cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-top: 48px;
+                    font-size: 0;
+                    line-height: 0;
+                    mso-line-height-rule: exactly;
+                  "
+                >
+                  &nbsp;
+                </td>
+              </tr>
+            </table>
+
+            <!-- ── Divider ── -->
+            <table
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              height="auto"
+              width="600"
+              class="email-wrap cream-bg"
+              bgcolor="#F5F2ED"
+              style="background-color: #f5f2ed !important"
+            >
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    border-top: 1px solid #dfdcd7;
+                    font-size: 0;
+                    line-height: 0;
+                    mso-line-height-rule: exactly;
+                  "
+                >
+                  &nbsp;
+                </td>
+              </tr>
+            </table>
+
+            <!-- ══════════════════════════════════════ -->
+            <!-- CONNECT                                -->
+            <!-- ══════════════════════════════════════ -->
+            <table
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              height="auto"
+              width="600"
+              class="email-wrap cream-bg"
+              bgcolor="#F5F2ED"
+              style="background-color: #f5f2ed !important"
+            >
+              <tr>
+                <td
+                  class="sp-52 cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-top: 48px;
+                    font-size: 0;
+                    line-height: 0;
+                    mso-line-height-rule: exactly;
+                  "
+                >
+                  &nbsp;
+                </td>
+              </tr>
+
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    padding-bottom: 12px;
+                  "
+                >
+                  <span
+                    style="
+                      font-family:
+                        &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;
+                      font-size: 10px;
+                      text-transform: uppercase;
+                      letter-spacing: 3px;
+                      color: #94928f;
+                    "
+                    >03 / Connect</span
+                  >
+                </td>
+              </tr>
+
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    padding-bottom: 20px;
+                  "
+                >
+                  <h3
+                    class="section-h3"
+                    style="
+                      font-family: Georgia, &quot;Times New Roman&quot;, serif;
+                      font-size: 28px;
+                      font-weight: normal;
+                      color: #1a1a1a;
+                    "
+                  >
+                    Get in Touch
+                  </h3>
+                </td>
+              </tr>
+
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    padding-bottom: 32px;
+                  "
+                >
+                  <p
+                    style="
+                      font-family:
+                        &quot;Helvetica Neue&quot;, Helvetica, Arial, sans-serif;
+                      font-size: 13px;
+                      line-height: 1.6;
+                      color: #73726f;
+                    "
+                  >
+                    Reach the CCA team directly — we love hearing from you.
+                  </p>
+                </td>
+              </tr>
+
+              <!-- General Inquiries -->
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    padding-bottom: 18px;
+                    border-bottom: 1px solid #e3e0dc;
+                  "
+                >
+                  <table
+                    class="cream-bg"
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    height="auto"
+                    width="100%"
+                    bgcolor="#F5F2ED"
+                    style="background-color: #f5f2ed !important"
+                  >
+                    <tr>
+                      <td style="padding-bottom: 4px">
+                        <p
+                          class="wish-name"
+                          style="
+                            font-family:
+                              Georgia, &quot;Times New Roman&quot;, serif;
+                            font-size: 18px;
+                            color: #1a1a1a;
+                          "
+                        >
+                          General Inquiries
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding-bottom: 12px">
+                        <span
+                          style="
+                            font-family:
+                              &quot;Helvetica Neue&quot;, Helvetica, Arial,
+                              sans-serif;
+                            font-size: 9px;
+                            text-transform: uppercase;
+                            letter-spacing: 1.5px;
+                            color: #9f9d9a;
+                          "
+                          >Donations, volunteering, lost &amp; found pets, or
+                          anything else.</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding-bottom: 8px">
+                        <a
+                          target="_blank"
+                          href="mailto:concernedcitizens4animals@gmail.com"
+                          style="
+                            font-family:
+                              &quot;Helvetica Neue&quot;, Helvetica, Arial,
+                              sans-serif;
+                            font-size: 10px;
+                            text-transform: uppercase;
+                            letter-spacing: 2px;
+                            color: #1a1a1a;
+                            text-decoration: none;
+                            border-bottom: 1px solid #9f9d9a;
+                            padding-bottom: 2px;
+                            word-break: break-all;
+                          "
+                        >
+                          concernedcitizens4animals@gmail.com &rarr;
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a
+                          href="tel:+18642434222"
+                          style="
+                            font-family:
+                              &quot;Helvetica Neue&quot;, Helvetica, Arial,
+                              sans-serif;
+                            font-size: 10px;
+                            text-transform: uppercase;
+                            letter-spacing: 2px;
+                            color: #1a1a1a;
+                            text-decoration: none;
+                            border-bottom: 1px solid #9f9d9a;
+                            padding-bottom: 2px;
+                          "
+                        >
+                          864-243-4222 &rarr;
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td
+                  class="sp-32 cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-top: 18px;
+                    font-size: 0;
+                    line-height: 0;
+                    mso-line-height-rule: exactly;
+                  "
+                >
+                  &nbsp;
+                </td>
+              </tr>
+
+              <!-- Shelter & Adoption -->
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    padding-bottom: 18px;
+                    border-bottom: 1px solid #e3e0dc;
+                  "
+                >
+                  <table
+                    class="cream-bg"
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    height="auto"
+                    width="100%"
+                    bgcolor="#F5F2ED"
+                    style="background-color: #f5f2ed !important"
+                  >
+                    <tr>
+                      <td style="padding-bottom: 4px">
+                        <p
+                          class="wish-name"
+                          style="
+                            font-family:
+                              Georgia, &quot;Times New Roman&quot;, serif;
+                            font-size: 18px;
+                            color: #1a1a1a;
+                          "
+                        >
+                          Shelter &amp; Adoption
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding-bottom: 12px">
+                        <span
+                          style="
+                            font-family:
+                              &quot;Helvetica Neue&quot;, Helvetica, Arial,
+                              sans-serif;
+                            font-size: 9px;
+                            text-transform: uppercase;
+                            letter-spacing: 1.5px;
+                            color: #9f9d9a;
+                          "
+                          >Adoption questions, foster inquiries, and
+                          animal-specific questions. Shelter visits are by
+                          appointment only.</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding-bottom: 8px">
+                        <a
+                          target="_blank"
+                          href="mailto:sheltercca1980@gmail.com"
+                          style="
+                            font-family:
+                              &quot;Helvetica Neue&quot;, Helvetica, Arial,
+                              sans-serif;
+                            font-size: 10px;
+                            text-transform: uppercase;
+                            letter-spacing: 2px;
+                            color: #1a1a1a;
+                            text-decoration: none;
+                            border-bottom: 1px solid #9f9d9a;
+                            padding-bottom: 2px;
+                            word-break: break-all;
+                          "
+                        >
+                          sheltercca1980@gmail.com &rarr;
+                        </a>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a
+                          target="_blank"
+                          href="https://ccaweb.org/adopt"
+                          style="
+                            font-family:
+                              &quot;Helvetica Neue&quot;, Helvetica, Arial,
+                              sans-serif;
+                            font-size: 10px;
+                            text-transform: uppercase;
+                            letter-spacing: 2px;
+                            color: #1a1a1a;
+                            text-decoration: none;
+                            border-bottom: 1px solid #9f9d9a;
+                            padding-bottom: 2px;
+                          "
+                        >
+                          Meet our adoptables &rarr;
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td
+                  class="sp-32 cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-top: 18px;
+                    font-size: 0;
+                    line-height: 0;
+                    mso-line-height-rule: exactly;
+                  "
+                >
+                  &nbsp;
+                </td>
+              </tr>
+
+              <!-- Second Chances Thrift Shop -->
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    padding-bottom: 0;
+                  "
+                >
+                  <table
+                    class="cream-bg"
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    height="auto"
+                    width="100%"
+                    bgcolor="#F5F2ED"
+                    style="background-color: #f5f2ed !important"
+                  >
+                    <tr>
+                      <td style="padding-bottom: 4px">
+                        <p
+                          class="wish-name"
+                          style="
+                            font-family:
+                              Georgia, &quot;Times New Roman&quot;, serif;
+                            font-size: 18px;
+                            color: #1a1a1a;
+                          "
+                        >
+                          Second Chances Thrift Shop
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding-bottom: 12px">
+                        <span
+                          style="
+                            font-family:
+                              &quot;Helvetica Neue&quot;, Helvetica, Arial,
+                              sans-serif;
+                            font-size: 9px;
+                            text-transform: uppercase;
+                            letter-spacing: 1.5px;
+                            color: #9f9d9a;
+                          "
+                          >Every purchase and donation directly funds shelter
+                          care. Open Thursday–Saturday, 10am–5:30pm.</span
+                        >
+                      </td>
+                    </tr>
+                    <tr>
+                      <td style="padding-bottom: 12px">
+                        <p
+                          style="
+                            font-family:
+                              Georgia, &quot;Times New Roman&quot;, serif;
+                            font-size: 15px;
+                            line-height: 1.55;
+                            color: #41403f;
+                          "
+                        >
+                          2425 New Easley Hwy<br />
+                          Greenville, SC 29611
+                        </p>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <a
+                          href="tel:+18642883438"
+                          style="
+                            font-family:
+                              &quot;Helvetica Neue&quot;, Helvetica, Arial,
+                              sans-serif;
+                            font-size: 10px;
+                            text-transform: uppercase;
+                            letter-spacing: 2px;
+                            color: #1a1a1a;
+                            text-decoration: none;
+                            border-bottom: 1px solid #9f9d9a;
+                            padding-bottom: 2px;
+                          "
+                        >
+                          864-288-3438 &rarr;
+                        </a>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+
+              <tr>
+                <td
+                  class="sp-52 cream-bg"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-top: 48px;
+                    font-size: 0;
+                    line-height: 0;
+                    mso-line-height-rule: exactly;
+                  "
+                >
+                  &nbsp;
+                </td>
+              </tr>
+            </table>
+
+            <!-- ══════════════════════════════════════ -->
+            <!-- FOOTER                                 -->
+            <!-- ══════════════════════════════════════ -->
+            <table
+              border="0"
+              cellpadding="0"
+              cellspacing="0"
+              height="auto"
+              width="600"
+              class="email-wrap cream-bg"
+              bgcolor="#F5F2ED"
+              style="
+                background-color: #f5f2ed !important;
+                border-top: 1px solid #dfdcd7;
+              "
+            >
+              <tr>
+                <td
+                  class="section-td cream-bg"
+                  align="center"
+                  bgcolor="#F5F2ED"
+                  style="
+                    background-color: #f5f2ed !important;
+                    padding-left: 40px;
+                    padding-right: 40px;
+                    padding-top: 48px;
+                    padding-bottom: 48px;
+                  "
+                >
+                  <table
+                    class="cream-bg"
+                    border="0"
+                    cellpadding="0"
+                    cellspacing="0"
+                    height="auto"
+                    width="100%"
+                    bgcolor="#F5F2ED"
+                    style="background-color: #f5f2ed !important"
+                  >
+                    <tr>
+                      <td align="center" style="padding-bottom: 32px">
+                        <a
+                          target="_blank"
+                          href="https://ccaweb.org/"
+                          style="
+                            display: inline-block;
+                            text-decoration: none;
+                            border: 0;
+                          "
+                        >
+                          <img
+                            src="https://sawa-dev-2-storage-bucket.storage.googleapis.com/profiles/9ain4mss9hqjnemr-315c6.png"
+                            alt="Concerned Citizens for Animals"
+                            width="140"
+                            style="
+                              display: block;
+                              width: 140px;
+                              max-width: 100%;
+                              height: auto;
+                              border: 0;
+                              outline: none;
+                              text-decoration: none;
+                            "
+                          />
+                        </a>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td align="center" style="padding-bottom: 32px">
+                        <table
+                          class="cream-bg"
+                          border="0"
+                          cellpadding="0"
+                          cellspacing="0"
+                          height="auto"
+                          align="center"
+                          bgcolor="#F5F2ED"
+                          style="background-color: #f5f2ed !important"
+                        >
+                          <tr>
+                            <td
+                              class="social-td"
+                              style="padding-left: 10px; padding-right: 10px"
+                            >
+                              <a
+                                target="_blank"
+                                href="https://ccaweb.org"
+                                style="
+                                  font-family:
+                                    &quot;Helvetica Neue&quot;, Helvetica,
+                                    Arial, sans-serif;
+                                  font-size: 9px;
+                                  text-transform: uppercase;
+                                  letter-spacing: 2px;
+                                  color: #7e7d7a;
+                                  text-decoration: none;
+                                "
+                                >Website</a
+                              >
+                            </td>
+                            <td style="color: #c9c6c2; font-size: 10px">
+                              &bull;
+                            </td>
+                            <td
+                              class="social-td"
+                              style="padding-left: 10px; padding-right: 10px"
+                            >
+                              <a
+                                target="_blank"
+                                href="https://www.facebook.com/share/14astFVg4Cn/?mibextid=wwXIfr"
+                                style="
+                                  font-family:
+                                    &quot;Helvetica Neue&quot;, Helvetica,
+                                    Arial, sans-serif;
+                                  font-size: 9px;
+                                  text-transform: uppercase;
+                                  letter-spacing: 2px;
+                                  color: #7e7d7a;
+                                  text-decoration: none;
+                                "
+                                >Facebook</a
+                              >
+                            </td>
+                            <td style="color: #c9c6c2; font-size: 10px">
+                              &bull;
+                            </td>
+                            <td
+                              class="social-td"
+                              style="padding-left: 10px; padding-right: 10px"
+                            >
+                              <a
+                                target="_blank"
+                                href="https://www.instagram.com/upstatecca?igsh=cmRybG83eXl6am00&utm_source=qr"
+                                style="
+                                  font-family:
+                                    &quot;Helvetica Neue&quot;, Helvetica,
+                                    Arial, sans-serif;
+                                  font-size: 9px;
+                                  text-transform: uppercase;
+                                  letter-spacing: 2px;
+                                  color: #7e7d7a;
+                                  text-decoration: none;
+                                "
+                                >Instagram</a
+                              >
+                            </td>
+                            <td style="color: #c9c6c2; font-size: 10px">
+                              &bull;
+                            </td>
+                            <td
+                              class="social-td"
+                              style="padding-left: 10px; padding-right: 10px"
+                            >
+                              <a
+                                target="_blank"
+                                href="https://www.petfinder.com/member/us/sc/greenville/concerned-citizens-for-animals-sc56/"
+                                style="
+                                  font-family:
+                                    &quot;Helvetica Neue&quot;, Helvetica,
+                                    Arial, sans-serif;
+                                  font-size: 9px;
+                                  text-transform: uppercase;
+                                  letter-spacing: 2px;
+                                  color: #7e7d7a;
+                                  text-decoration: none;
+                                "
+                                >Petfinder</a
+                              >
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td align="center" style="padding-bottom: 20px">
+                        <span
+                          style="
+                            font-family:
+                              &quot;Helvetica Neue&quot;, Helvetica, Arial,
+                              sans-serif;
+                            font-size: 10px;
+                            color: #94928f;
+                            text-transform: uppercase;
+                            letter-spacing: 1.5px;
+                            line-height: 2.2;
+                          "
+                        >
+                          Copyright &copy; 2026 Concerned Citizens for Animals.
+                          All rights reserved.<br />
+                          PO Box 1332 &bull; Simpsonville, SC 29681<br />
+                          We are a 501(c)3 tax-deductible nonprofit
+                          organization.
+                        </span>
+                      </td>
+                    </tr>
+
+                    <tr>
+                      <td align="center">
+                        <table
+                          class="cream-bg"
+                          border="0"
+                          cellpadding="0"
+                          cellspacing="0"
+                          height="auto"
+                          align="center"
+                          bgcolor="#F5F2ED"
+                          style="background-color: #f5f2ed !important"
+                        >
+                          <tr>
+                            <td style="padding-left: 10px; padding-right: 10px">
+                              <a
+                                target="_blank"
+                                href="*|UPDATE_PROFILE|*"
+                                style="
+                                  font-family:
+                                    &quot;Helvetica Neue&quot;, Helvetica,
+                                    Arial, sans-serif;
+                                  font-size: 10px;
+                                  text-transform: uppercase;
+                                  letter-spacing: 1.5px;
+                                  color: #94928f;
+                                  text-decoration: underline;
+                                "
+                                >Update Preferences</a
+                              >
+                            </td>
+                            <td
+                              style="
+                                color: #c9c6c2;
+                                padding-left: 2px;
+                                padding-right: 2px;
+                              "
+                            >
+                              &bull;
+                            </td>
+                            <td style="padding-left: 10px; padding-right: 10px">
+                              <a
+                                target="_blank"
+                                href="*|UNSUB|*"
+                                style="
+                                  font-family:
+                                    &quot;Helvetica Neue&quot;, Helvetica,
+                                    Arial, sans-serif;
+                                  font-size: 10px;
+                                  text-transform: uppercase;
+                                  letter-spacing: 1.5px;
+                                  color: #94928f;
+                                  text-decoration: underline;
+                                "
+                                >Unsubscribe</a
+                              >
+                            </td>
+                          </tr>
+                        </table>
+                      </td>
+                    </tr>
+                  </table>
+                </td>
+              </tr>
+            </table>
+          </td>
+        </tr>
+      </table>
+    </center>
+    <script>
+      // Portfolio preview — strip hrefs so nothing is clickable when this
+      // email is viewed at ryanm.info as a case-study artifact. The
+      // production template handed off to Mailchimp ships without this
+      // block; remove it before reusing this file as a real email.
+      (function () {
+        document.querySelectorAll("a").forEach(function (a) {
+          a.removeAttribute("href");
+          a.removeAttribute("target");
+          a.removeAttribute("rel");
+        });
+      })();
+    </script>
+  </body>
+</html>

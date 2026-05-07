@@ -10,6 +10,12 @@ export const Header = () => {
       <MyLinks />
       <div className="flex items-center gap-4">
         <Link
+          href="/projects"
+          className="text-sm font-heading text-muted-foreground hover:text-foreground transition-colors hidden sm:block"
+        >
+          Projects
+        </Link>
+        <Link
           href="/ai-services"
           className="text-sm font-heading text-muted-foreground hover:text-foreground transition-colors hidden sm:block"
         >

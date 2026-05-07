@@ -73,7 +73,7 @@ export function HeroSection({ badge, title, description, actions }: HeroProps) {
           </Reveal>
 
           <Reveal>
-            <div className="relative z-10 flex justify-center gap-4 mt-4">
+            <div className="relative z-10 flex flex-wrap justify-center gap-4 mt-4">
               {actions.map((action, index) => (
                 <OutlineButton
                   key={index}

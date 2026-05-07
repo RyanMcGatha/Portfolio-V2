@@ -13,17 +13,16 @@ interface Tech {
 }
 
 const technologies: Record<string, Tech[]> = {
-  "ai & machine learning": [
-    { name: "OpenAI / GPT-4" },
-    { name: "Anthropic Claude" },
-    { name: "LangChain" },
-    { name: "LlamaIndex" },
-    { name: "RAG Pipelines" },
-    { name: "AI Agents" },
-    { name: "Vector Databases" },
-    { name: "Hugging Face" },
-    { name: "Prompt Engineering" },
-    { name: "Vercel AI SDK" },
+  "design & ui": [
+    { name: "Figma" },
+    { name: "UI Design" },
+    { name: "UX Design" },
+    { name: "Wireframing" },
+    { name: "Prototyping" },
+    { name: "Design Systems" },
+    { name: "Responsive Design" },
+    { name: "Motion Design" },
+    { name: "Web Design" },
   ],
   frontend: [
     { name: "React" },
@@ -54,6 +53,18 @@ const technologies: Record<string, Tech[]> = {
     { name: "Supabase" },
     { name: "Prisma", logo: "/logos/prisma.svg", darkInvert: true },
     { name: "SQLAlchemy", logo: "/logos/sqlalchemy.svg", darkInvert: true },
+  ],
+  "ai & machine learning": [
+    { name: "OpenAI / GPT-4" },
+    { name: "Anthropic Claude" },
+    { name: "LangChain" },
+    { name: "LlamaIndex" },
+    { name: "RAG Pipelines" },
+    { name: "AI Agents" },
+    { name: "Vector Databases" },
+    { name: "Hugging Face" },
+    { name: "Prompt Engineering" },
+    { name: "Vercel AI SDK" },
   ],
   "devops & tools": [
     { name: "Git/GitHub" },

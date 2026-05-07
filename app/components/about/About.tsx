@@ -20,54 +20,57 @@ export const About = () => {
                     H
                   </span>
                 </span>
-                ey! I&apos;m Ryan McGatha, an AI developer and full-stack web
-                developer based in Greenville, SC. I build custom AI agents,
-                chatbots, LLM integrations, and AI-powered web applications for
-                businesses in Greenville, South Carolina and beyond. Currently
-                at Drum Creative, I manage over 200 client websites and build
-                roughly one new site per week, while automating maintenance
-                workflows with intelligent tooling. I specialize in integrating
-                AI and third-party APIs, managing data pipelines, and building
-                production-ready applications that leverage artificial
-                intelligence to solve real business problems for companies
-                across the Greenville, South Carolina area.
+                ey! I&apos;m Ryan McGatha, a full-stack web developer and
+                designer based in Greenville, SC. I design and build modern
+                websites, polished user interfaces, and custom web apps for
+                businesses across the Upstate — and I bring AI into the
+                picture when it actually moves the needle. Currently at Drum
+                Creative, I manage over 200 client websites and build roughly
+                one new site per week, handling everything from design and
+                layout to development, integrations, and ongoing maintenance.
               </p>
             </div>
           </Reveal>
           <Reveal>
             <p className="text-lg leading-relaxed text-muted-foreground">
-              My AI development experience runs deep. At Chipp AI, I built the
-              core infrastructure for an AI SaaS platform — developing dynamic
-              URL crawlers, implementing AI agent tooling that enabled real-time
-              RESTful API calls with autonomous data capture and submission, and
-              integrating third-party APIs (Fireflies, Notion, Calendly) into
-              AI-driven workflows. I shipped production AI features used by real
-              customers, giving me hands-on expertise in building AI agents,
-              LLM integrations, and intelligent automation systems that go
-              beyond proof-of-concept.
+              My day-to-day is design and full-stack development. I work in
+              Figma to wireframe and design sites and apps, then build them out
+              with React, Next.js, TypeScript, and Tailwind on the front end,
+              and Node.js, Express, FastAPI, and PostgreSQL on the back end. I
+              care a lot about typography, motion, and the small interaction
+              details that make a product feel finished — not just functional.
             </p>
           </Reveal>
           <Reveal>
             <p className="text-lg leading-relaxed text-muted-foreground">
-              I also worked as a Contract Software Developer for Sully&apos;s
-              Steamers in Greenville, SC, creating a comprehensive Franchise
+              I also have deep experience shipping AI into real products. At
+              Chipp AI, I built core infrastructure for an AI SaaS platform —
+              dynamic URL crawlers, AI agent tooling that performed real-time
+              RESTful API calls with autonomous data capture, and third-party
+              integrations with Fireflies, Notion, and Calendly. So when a
+              project benefits from a custom AI agent, chatbot, or LLM
+              integration, that&apos;s a tool in the box too — not the only one.
+            </p>
+          </Reveal>
+          <Reveal>
+            <p className="text-lg leading-relaxed text-muted-foreground">
+              Earlier, I worked as a Contract Software Developer for
+              Sully&apos;s Steamers in Greenville, SC, building a Franchise
               Document Management System that streamlined their operations. My
-              background in full-stack web development, combined with my training
-              at Carolina Code School in Greenville, provides me with a strong
-              foundation in modern web technologies and best practices.
+              foundation in modern full-stack web development comes from
+              Carolina Code School in Greenville, and I&apos;ve been building
+              and shipping ever since.
             </p>
           </Reveal>
           <Reveal>
             <p className="text-lg leading-relaxed text-muted-foreground">
-              Outside of coding, I enjoy fishing and staying on the cutting edge
-              of artificial intelligence and machine learning. I continuously
-              experiment with new AI models, frameworks like LangChain and
-              LlamaIndex, and emerging patterns like RAG pipelines and
-              multi-agent systems. Whether it&apos;s building custom AI agents,
-              deploying chatbots, developing AI-powered web applications, or
-              tackling complex automation challenges for Greenville businesses,
-              I&apos;m driven to deliver AI solutions that make a measurable
-              impact.
+              Outside of work I enjoy fishing, designing side projects, and
+              keeping up with what&apos;s new in both web and AI — from
+              framework releases to LangChain, RAG pipelines, and multi-agent
+              systems. Whether it&apos;s a brand-new marketing site, a
+              redesigned web app, a WordPress build, or a custom AI integration,
+              I&apos;m focused on shipping work that looks great, performs
+              well, and actually solves the problem.
             </p>
           </Reveal>
           <Reveal>

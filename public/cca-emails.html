@@ -1,0 +1,290 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>CCA Email Suite — Concerned Citizens for Animals</title>
+    <meta
+      name="description"
+      content="A three-email suite designed and developed for Concerned Citizens for Animals: an auto-reply, the Spring 2026 newsletter, and the Winter 2025 newsletter."
+    />
+    <style>
+      :root {
+        color-scheme: light;
+        --cream: #f5f2ed;
+        --ink: #1a1a1a;
+        --muted: #7e7d7a;
+        --eyebrow: #94928f;
+        --rule: #dad8d3;
+      }
+
+      * {
+        box-sizing: border-box;
+      }
+
+      html,
+      body {
+        margin: 0;
+        padding: 0;
+        background: var(--cream);
+        color: var(--ink);
+        font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+        -webkit-font-smoothing: antialiased;
+      }
+
+      .page {
+        max-width: 1280px;
+        margin: 0 auto;
+        padding: 56px 32px 96px;
+      }
+
+      .header {
+        text-align: center;
+        max-width: 720px;
+        margin: 0 auto 56px;
+      }
+
+      .eyebrow {
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 3px;
+        color: var(--eyebrow);
+      }
+
+      h1 {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 56px;
+        line-height: 1;
+        letter-spacing: -2px;
+        font-weight: normal;
+        margin: 18px 0 18px;
+      }
+
+      .lede {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 18px;
+        line-height: 1.6;
+        color: #41403f;
+        margin: 0;
+      }
+
+      .grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 24px;
+      }
+
+      @media (max-width: 1080px) {
+        .grid {
+          grid-template-columns: 1fr;
+        }
+      }
+
+      .card {
+        background: var(--cream);
+        border: 1px solid var(--rule);
+        border-radius: 6px;
+        overflow: hidden;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .card-frame {
+        position: relative;
+        width: 100%;
+        aspect-ratio: 3 / 4;
+        overflow: hidden;
+        background: var(--cream);
+        border-bottom: 1px solid var(--rule);
+      }
+
+      .card-frame iframe {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 1500px;
+        height: 2000px;
+        border: 0;
+        transform: scale(0.27);
+        transform-origin: top left;
+        pointer-events: none;
+      }
+
+      @media (max-width: 1080px) {
+        .card-frame {
+          aspect-ratio: 4 / 3;
+        }
+        .card-frame iframe {
+          width: 1875px;
+          height: 1406px;
+          transform: scale(0.4);
+        }
+      }
+
+      .card-body {
+        padding: 24px 24px 28px;
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+      }
+
+      .card-title {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 22px;
+        line-height: 1.2;
+        margin: 0;
+        font-weight: normal;
+      }
+
+      .card-meta {
+        font-size: 10px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--eyebrow);
+      }
+
+      .card-desc {
+        font-family: Georgia, "Times New Roman", serif;
+        font-size: 15px;
+        line-height: 1.55;
+        color: #41403f;
+        margin: 4px 0 12px;
+      }
+
+      .card-link {
+        align-self: flex-start;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--ink);
+        text-decoration: none;
+        border-bottom: 1px solid var(--ink);
+        padding-bottom: 3px;
+      }
+
+      .card-link:hover {
+        opacity: 0.7;
+      }
+
+      .footer {
+        text-align: center;
+        margin-top: 80px;
+        font-size: 11px;
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: var(--eyebrow);
+      }
+
+      .footer a {
+        color: var(--ink);
+        text-decoration: none;
+        border-bottom: 1px solid var(--ink);
+      }
+    </style>
+  </head>
+  <body>
+    <main class="page">
+      <header class="header">
+        <span class="eyebrow">Email Design &amp; Development</span>
+        <h1>CCA Email Suite</h1>
+        <p class="lede">
+          A three-piece email system designed and built for Concerned Citizens
+          for Animals — a Greenville-area no-kill shelter — including a
+          send-only auto-reply and the Winter 2025 and Spring 2026 issues of
+          their <em>Paw Prints</em> newsletter.
+        </p>
+      </header>
+
+      <section class="grid">
+        <article class="card">
+          <div class="card-frame">
+            <iframe
+              src="/cca-emails/spring-2026.html"
+              title="Paw Prints — Spring 2026 newsletter preview"
+              loading="lazy"
+              scrolling="no"
+            ></iframe>
+          </div>
+          <div class="card-body">
+            <span class="card-meta">Newsletter — Spring 2026</span>
+            <h2 class="card-title">Paw Prints — Spring 2026</h2>
+            <p class="card-desc">
+              Issue No. 01 of the rebranded newsletter, with a hero image, a
+              three-column impact stats grid, a featured-issue CTA, a wish
+              list, donation card, and full contact directory.
+            </p>
+            <a
+              class="card-link"
+              href="/cca-emails/spring-2026.html"
+              target="_blank"
+              rel="noopener"
+              >View Spring 2026 →</a
+            >
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-frame">
+            <iframe
+              src="/cca-emails/winter-2025.html"
+              title="Paw Prints — Winter 2025 newsletter preview"
+              loading="lazy"
+              scrolling="no"
+            ></iframe>
+          </div>
+          <div class="card-body">
+            <span class="card-meta">Newsletter — Winter 2025</span>
+            <h2 class="card-title">Paw Prints — Winter 2025</h2>
+            <p class="card-desc">
+              The holiday-edition catch-up issue: a tribute to Bill Burton,
+              Allie's adoption, Monk's recovery, and two adoptables looking
+              for home — same suite, retuned for tone and content.
+            </p>
+            <a
+              class="card-link"
+              href="/cca-emails/winter-2025.html"
+              target="_blank"
+              rel="noopener"
+              >View Winter 2025 →</a
+            >
+          </div>
+        </article>
+
+        <article class="card">
+          <div class="card-frame">
+            <iframe
+              src="/cca-emails/auto-reply.html"
+              title="CCA send-only auto-reply preview"
+              loading="lazy"
+              scrolling="no"
+            ></iframe>
+          </div>
+          <div class="card-body">
+            <span class="card-meta">Auto-Reply — newsletter@ccaweb.org</span>
+            <h2 class="card-title">Send-Only Auto-Reply</h2>
+            <p class="card-desc">
+              The unmonitored-inbox auto-response that redirects accidental
+              replies to the right contact channels — a quieter sibling to the
+              newsletter, sharing the same masthead, type, and dark-card
+              system.
+            </p>
+            <a
+              class="card-link"
+              href="/cca-emails/auto-reply.html"
+              target="_blank"
+              rel="noopener"
+              >View Auto-Reply →</a
+            >
+          </div>
+        </article>
+      </section>
+
+      <footer class="footer">
+        Designed &amp; developed by
+        <a href="https://ryanm.info" target="_blank" rel="noopener"
+          >Ryan McGatha</a
+        >
+      </footer>
+    </main>
+  </body>
+</html>
