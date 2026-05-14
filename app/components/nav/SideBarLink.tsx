@@ -25,7 +25,7 @@ export const SideBarLink = ({
 
   return (
     <MotionLink
-      initial={false}
+      initial={{ x: -70 }}
       animate={{ x: 0 }}
       transition={{ duration: 0.5, delay: 0.1 }}
       href={href}

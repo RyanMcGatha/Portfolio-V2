@@ -15,17 +15,22 @@ export function BackgroundAnimationLazy() {
 
     if (window.matchMedia("(prefers-reduced-motion: reduce)").matches) return;
 
-    const mq = window.matchMedia("(min-width: 768px)");
-    if (!mq.matches) return;
-
     const idleCb =
-      (window as unknown as { requestIdleCallback?: (cb: () => void, opts?: { timeout: number }) => number })
-        .requestIdleCallback ?? ((cb: () => void) => setTimeout(cb, 1500));
+      (
+        window as unknown as {
+          requestIdleCallback?: (
+            cb: () => void,
+            opts?: { timeout: number },
+          ) => number;
+        }
+      ).requestIdleCallback ?? ((cb: () => void) => setTimeout(cb, 1500));
 
     const handle = idleCb(() => setShouldLoad(true), { timeout: 3000 });
 
     return () => {
-      const cancel = (window as unknown as { cancelIdleCallback?: (handle: number) => void }).cancelIdleCallback;
+      const cancel = (
+        window as unknown as { cancelIdleCallback?: (handle: number) => void }
+      ).cancelIdleCallback;
       if (cancel && typeof handle === "number") cancel(handle);
     };
   }, []);

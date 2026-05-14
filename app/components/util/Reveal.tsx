@@ -26,13 +26,13 @@ const directionVariants = {
 export const Reveal: React.FC<RevealProps> = ({
   children,
   width = "w-fit",
-  delay = 0.15,
-  duration = 0.45,
+  delay = 0.25,
+  duration = 0.5,
   direction = "up",
-  distance = 50,
+  distance = 75,
   once = true,
   className = "",
-  slide = false,
+  slide = true,
   slideColor = "hsl(var(--primary))",
 }) => {
   const ref = useRef<HTMLDivElement>(null);

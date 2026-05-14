@@ -6,8 +6,6 @@ import { About } from "./components/about/About";
 import { Projects } from "./components/projects/Projects";
 import { Experience } from "./components/experience/Experience";
 import { Contact } from "./components/contact/Contact";
-import { BackgroundAnimationLazy } from "./components/util/BackgroundAnimationLazy";
-
 export default function Home() {
   return (
     <div className="grid grid-cols-1 md:grid-cols-[54px_1fr]">
@@ -70,7 +68,6 @@ export default function Home() {
           <Experience />
           <Contact />
         </div>
-        <BackgroundAnimationLazy />
       </main>
     </div>
   );

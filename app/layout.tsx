@@ -9,7 +9,7 @@ import {
   WebSiteJsonLd,
   ProfessionalServiceJsonLd,
 } from "./structured-data";
-
+import { BackgroundAnimationLazy } from "./components/util/BackgroundAnimationLazy";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-body",
@@ -140,7 +140,7 @@ export default function RootLayout({
         <ProfessionalServiceJsonLd />
       </head>
       <body
-        className={`${inter.variable} ${archivoBlack.variable} ${robotoMono.variable}`}
+        className={`${inter.variable} ${archivoBlack.variable} ${robotoMono.variable} bg-background text-foreground`}
       >
         <a
           href="#main-content"
@@ -155,6 +155,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           {children}
+          <BackgroundAnimationLazy />
           <Analytics />
         </ThemeProvider>
       </body>

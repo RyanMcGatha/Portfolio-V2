@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import { ArrowRightIcon, BrainCircuit, Bot, Workflow, Database, MessageSquare, Zap, Code2, Globe } from "lucide-react";
+import { Header } from "../components/nav/Header";
+import Reveal from "../components/util/Reveal";
 
 export const metadata: Metadata = {
   title: "AI Development Services in Greenville, SC",
@@ -269,137 +271,137 @@ export default function AIServicesPage() {
       <AIFAQJsonLd />
       <AIBreadcrumbJsonLd />
 
-      <div className="min-h-screen bg-background text-foreground">
-        <nav className="sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-          <div className="max-w-5xl mx-auto px-4 md:px-8 h-16 flex items-center justify-between">
-            <Link
-              href="/"
-              className="text-xl font-black text-foreground hover:text-muted-foreground transition-colors"
-            >
-              R<span className="text-foreground">.</span>
-            </Link>
-            <div className="flex items-center gap-6 font-heading text-sm">
-              <Link href="/#about" className="text-muted-foreground hover:text-foreground transition-colors">
-                About
-              </Link>
-              <Link href="/#projects" className="text-muted-foreground hover:text-foreground transition-colors">
-                Projects
-              </Link>
-              <Link href="/#experience" className="text-muted-foreground hover:text-foreground transition-colors">
-                Experience
-              </Link>
-              <Link href="/#contact" className="text-foreground border border-foreground/20 px-4 py-2 rounded-[--radius] hover:bg-foreground hover:text-background transition-colors">
-                Contact
-              </Link>
-            </div>
-          </div>
-        </nav>
+      <div className="min-h-screen">
+        <Header />
 
         <main className="max-w-5xl mx-auto px-4 md:px-8 pb-24">
           <section className="pt-16 pb-12 sm:pt-24 sm:pb-16">
-            <p className="text-sm font-heading tracking-widest uppercase text-muted-foreground mb-4">
-              AI Development &bull; Greenville, SC
-            </p>
-            <h1 className="text-4xl sm:text-5xl md:text-7xl font-heading font-bold leading-[1.1] text-foreground mb-6">
-              AI Development Services
-              <br />
-              <span className="text-muted-foreground">in Greenville, SC</span>
-            </h1>
-            <p className="text-lg sm:text-xl leading-relaxed text-muted-foreground max-w-2xl mb-8">
-              I build custom AI agents, chatbots, LLM integrations, and
-              intelligent automation for businesses in Greenville, South
-              Carolina and across the Upstate. From concept to deployment,
-              I turn AI from a buzzword into a competitive advantage for your
-              business.
-            </p>
-            <div className="flex flex-wrap gap-4">
-              <Link
-                href="/#contact"
-                className="inline-flex items-center gap-2 bg-foreground text-background px-6 py-3 rounded-[--radius] font-heading text-sm hover:opacity-90 transition-opacity"
-              >
-                Get a Free AI Consultation
-                <ArrowRightIcon className="h-4 w-4" />
-              </Link>
-              <Link
-                href="/#projects"
-                className="inline-flex items-center gap-2 border border-foreground/20 px-6 py-3 rounded-[--radius] font-heading text-sm text-foreground hover:bg-foreground/5 transition-colors"
-              >
-                View My Work
-              </Link>
-            </div>
+            <Reveal>
+              <p className="text-sm font-heading tracking-widest uppercase text-muted-foreground mb-4">
+                AI Development &bull; Greenville, SC
+              </p>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <h1 className="text-4xl sm:text-5xl md:text-7xl font-heading font-bold leading-[1.1] text-foreground mb-6">
+                AI Development Services
+                <br />
+                <span className="text-muted-foreground">in Greenville, SC</span>
+              </h1>
+            </Reveal>
+            <Reveal delay={0.2}>
+              <p className="text-lg sm:text-xl leading-relaxed text-muted-foreground max-w-2xl mb-8">
+                I build custom AI agents, chatbots, LLM integrations, and
+                intelligent automation for businesses in Greenville, South
+                Carolina and across the Upstate. From concept to deployment,
+                I turn AI from a buzzword into a competitive advantage for your
+                business.
+              </p>
+            </Reveal>
+            <Reveal delay={0.3}>
+              <div className="flex flex-wrap gap-4">
+                <Link
+                  href="/#contact"
+                  className="inline-flex items-center gap-2 bg-foreground text-background px-6 py-3 rounded-[--radius] font-heading text-sm hover:opacity-90 transition-opacity"
+                >
+                  Get a Free AI Consultation
+                  <ArrowRightIcon className="h-4 w-4" />
+                </Link>
+                <Link
+                  href="/#projects"
+                  className="inline-flex items-center gap-2 border border-foreground/20 px-6 py-3 rounded-[--radius] font-heading text-sm text-foreground hover:bg-foreground/5 transition-colors"
+                >
+                  View My Work
+                </Link>
+              </div>
+            </Reveal>
           </section>
 
           <section className="py-16 border-t border-border">
-            <h2 className="text-3xl sm:text-4xl font-heading text-foreground mb-4">
-              AI Services for Greenville Businesses
-            </h2>
-            <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
-              Whether you need a customer-facing chatbot, an internal automation
-              system, or a full AI-powered application, I deliver production-ready
-              AI solutions tailored to your business.
-            </p>
+            <Reveal>
+              <h2 className="text-3xl sm:text-4xl font-heading text-foreground mb-4">
+                AI Services for Greenville Businesses
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="text-lg text-muted-foreground mb-12 max-w-2xl">
+                Whether you need a customer-facing chatbot, an internal automation
+                system, or a full AI-powered application, I deliver production-ready
+                AI solutions tailored to your business.
+              </p>
+            </Reveal>
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              {services.map((service) => (
-                <div
-                  key={service.title}
-                  className="group p-6 rounded-[--radius] border border-border hover:border-foreground/20 bg-card/50 transition-colors duration-300"
-                >
-                  <service.icon className="h-8 w-8 text-foreground mb-4 group-hover:scale-110 transition-transform" />
-                  <h3 className="text-xl font-heading text-foreground mb-2">
-                    {service.title}
-                  </h3>
-                  <p className="text-muted-foreground leading-relaxed">
-                    {service.description}
-                  </p>
-                </div>
+              {services.map((service, index) => (
+                <Reveal key={service.title} delay={0.1 + (index % 2) * 0.1} width="w-full">
+                  <div className="group p-6 rounded-[--radius] border border-border hover:border-foreground/20 bg-card/50 transition-colors duration-300 h-full">
+                    <service.icon className="h-8 w-8 text-foreground mb-4 group-hover:scale-110 transition-transform" />
+                    <h3 className="text-xl font-heading text-foreground mb-2">
+                      {service.title}
+                    </h3>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {service.description}
+                    </p>
+                  </div>
+                </Reveal>
               ))}
             </div>
           </section>
 
           <section className="py-16 border-t border-border">
-            <h2 className="text-3xl sm:text-4xl font-heading text-foreground mb-4">
-              Why Choose a Local AI Developer in Greenville, SC?
-            </h2>
+            <Reveal>
+              <h2 className="text-3xl sm:text-4xl font-heading text-foreground mb-4">
+                Why Choose a Local AI Developer in Greenville, SC?
+              </h2>
+            </Reveal>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-8 mt-8">
-              <div>
-                <h3 className="text-lg font-heading text-foreground mb-2">Real AI Experience</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  I built AI agents and API integrations at Chipp AI, a SaaS
-                  platform where I implemented tools enabling AI to perform
-                  real-time RESTful API calls, dynamic URL crawling, and
-                  automated data capture. This isn&apos;t theoretical — I ship
-                  AI products.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-lg font-heading text-foreground mb-2">Full-Stack + AI</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  AI doesn&apos;t exist in a vacuum. I build the complete
-                  solution — from the React frontend and Node.js backend to the
-                  AI models and data pipelines. One developer, no handoffs, no
-                  communication gaps.
-                </p>
-              </div>
-              <div>
-                <h3 className="text-lg font-heading text-foreground mb-2">Greenville-Based</h3>
-                <p className="text-muted-foreground leading-relaxed">
-                  Based right here in Greenville, South Carolina. I understand
-                  the local business landscape, I&apos;m available for in-person
-                  meetings, and I&apos;m invested in the success of Upstate SC
-                  businesses.
-                </p>
-              </div>
+              <Reveal delay={0.1} width="w-full">
+                <div>
+                  <h3 className="text-lg font-heading text-foreground mb-2">Real AI Experience</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    I built AI agents and API integrations at Chipp AI, a SaaS
+                    platform where I implemented tools enabling AI to perform
+                    real-time RESTful API calls, dynamic URL crawling, and
+                    automated data capture. This isn&apos;t theoretical — I ship
+                    AI products.
+                  </p>
+                </div>
+              </Reveal>
+              <Reveal delay={0.2} width="w-full">
+                <div>
+                  <h3 className="text-lg font-heading text-foreground mb-2">Full-Stack + AI</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    AI doesn&apos;t exist in a vacuum. I build the complete
+                    solution — from the React frontend and Node.js backend to the
+                    AI models and data pipelines. One developer, no handoffs, no
+                    communication gaps.
+                  </p>
+                </div>
+              </Reveal>
+              <Reveal delay={0.3} width="w-full">
+                <div>
+                  <h3 className="text-lg font-heading text-foreground mb-2">Greenville-Based</h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    Based right here in Greenville, South Carolina. I understand
+                    the local business landscape, I&apos;m available for in-person
+                    meetings, and I&apos;m invested in the success of Upstate SC
+                    businesses.
+                  </p>
+                </div>
+              </Reveal>
             </div>
           </section>
 
           <section className="py-16 border-t border-border">
-            <h2 className="text-3xl sm:text-4xl font-heading text-foreground mb-4">
-              AI Technologies I Work With
-            </h2>
-            <p className="text-lg text-muted-foreground mb-8 max-w-2xl">
-              I stay current with the rapidly evolving AI landscape to deliver
-              the best solutions for Greenville businesses.
-            </p>
+            <Reveal>
+              <h2 className="text-3xl sm:text-4xl font-heading text-foreground mb-4">
+                AI Technologies I Work With
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="text-lg text-muted-foreground mb-8 max-w-2xl">
+                I stay current with the rapidly evolving AI landscape to deliver
+                the best solutions for Greenville businesses.
+              </p>
+            </Reveal>
             <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-6">
               {[
                 { category: "LLMs & AI Models", items: ["OpenAI GPT-4 / GPT-4o", "Anthropic Claude", "Open-Source LLMs (Llama, Mistral)", "Hugging Face Transformers"] },
@@ -408,74 +410,79 @@ export default function AIServicesPage() {
                 { category: "Backend & APIs", items: ["Python / FastAPI", "Node.js / Express", "RESTful APIs", "WebSocket Real-Time"] },
                 { category: "Frontend", items: ["React / Next.js", "TypeScript", "Tailwind CSS", "Vercel AI SDK"] },
                 { category: "Infrastructure", items: ["Docker", "PostgreSQL", "Supabase", "Cloud Deployment (Vercel, AWS)"] },
-              ].map((group) => (
-                <div key={group.category}>
-                  <h3 className="font-heading text-foreground mb-3">{group.category}</h3>
-                  <ul className="space-y-1.5">
-                    {group.items.map((item) => (
-                      <li key={item} className="text-muted-foreground text-sm flex items-center gap-2">
-                        <span className="h-1.5 w-1.5 rounded-full bg-foreground/30 shrink-0" />
-                        {item}
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-              ))}
-            </div>
-          </section>
-
-          <section className="py-16 border-t border-border">
-            <h2 className="text-3xl sm:text-4xl font-heading text-foreground mb-8">
-              Frequently Asked Questions About AI Development in Greenville, SC
-            </h2>
-            <div className="space-y-6">
-              {faqs.map((faq) => (
-                <details
-                  key={faq.q}
-                  className="group border border-border rounded-[--radius] overflow-hidden"
-                >
-                  <summary className="flex items-center justify-between p-6 cursor-pointer font-heading text-foreground hover:bg-card/50 transition-colors">
-                    <span className="pr-4">{faq.q}</span>
-                    <ArrowRightIcon className="h-4 w-4 shrink-0 text-muted-foreground group-open:rotate-90 transition-transform" />
-                  </summary>
-                  <div className="px-6 pb-6 text-muted-foreground leading-relaxed">
-                    {faq.a}
+              ].map((group, index) => (
+                <Reveal key={group.category} delay={0.1 + (index % 3) * 0.1} width="w-full">
+                  <div>
+                    <h3 className="font-heading text-foreground mb-3">{group.category}</h3>
+                    <ul className="space-y-1.5">
+                      {group.items.map((item) => (
+                        <li key={item} className="text-muted-foreground text-sm flex items-center gap-2">
+                          <span className="h-1.5 w-1.5 rounded-full bg-foreground/30 shrink-0" />
+                          {item}
+                        </li>
+                      ))}
+                    </ul>
                   </div>
-                </details>
+                </Reveal>
               ))}
             </div>
           </section>
 
           <section className="py-16 border-t border-border">
-            <div className="bg-card/50 border border-border rounded-[--radius] p-8 sm:p-12 text-center">
-              <h2 className="text-3xl sm:text-4xl font-heading text-foreground mb-4">
-                Ready to Bring AI to Your Greenville Business?
+            <Reveal>
+              <h2 className="text-3xl sm:text-4xl font-heading text-foreground mb-8">
+                Frequently Asked Questions About AI Development in Greenville, SC
               </h2>
-              <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
-                Let&apos;s talk about how AI can save you time, reduce costs,
-                and give your business a competitive edge. Free consultation,
-                no commitment.
-              </p>
-              <div className="flex flex-wrap justify-center gap-4">
-                <Link
-                  href="mailto:ryanmcgatha@gmail.com"
-                  className="inline-flex items-center gap-2 bg-foreground text-background px-6 py-3 rounded-[--radius] font-heading text-sm hover:opacity-90 transition-opacity"
-                >
-                  ryanmcgatha@gmail.com
-                </Link>
-                <Link
-                  href="https://www.linkedin.com/in/ryanmcgatha"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="inline-flex items-center gap-2 border border-foreground/20 px-6 py-3 rounded-[--radius] font-heading text-sm text-foreground hover:bg-foreground/5 transition-colors"
-                >
-                  Connect on LinkedIn
-                </Link>
-              </div>
-              <p className="text-sm text-muted-foreground mt-6">
-                Based in Greenville, South Carolina — available for local and remote AI projects
-              </p>
+            </Reveal>
+            <div className="space-y-6">
+              {faqs.map((faq, index) => (
+                <Reveal key={faq.q} delay={0.05 * index} width="w-full">
+                  <details className="group border border-border rounded-[--radius] overflow-hidden">
+                    <summary className="flex items-center justify-between p-6 cursor-pointer font-heading text-foreground hover:bg-card/50 transition-colors">
+                      <span className="pr-4">{faq.q}</span>
+                      <ArrowRightIcon className="h-4 w-4 shrink-0 text-muted-foreground group-open:rotate-90 transition-transform" />
+                    </summary>
+                    <div className="px-6 pb-6 text-muted-foreground leading-relaxed">
+                      {faq.a}
+                    </div>
+                  </details>
+                </Reveal>
+              ))}
             </div>
+          </section>
+
+          <section className="py-16 border-t border-border">
+            <Reveal width="w-full">
+              <div className="bg-card/50 border border-border rounded-[--radius] p-8 sm:p-12 text-center">
+                <h2 className="text-3xl sm:text-4xl font-heading text-foreground mb-4">
+                  Ready to Bring AI to Your Greenville Business?
+                </h2>
+                <p className="text-lg text-muted-foreground mb-8 max-w-xl mx-auto">
+                  Let&apos;s talk about how AI can save you time, reduce costs,
+                  and give your business a competitive edge. Free consultation,
+                  no commitment.
+                </p>
+                <div className="flex flex-wrap justify-center gap-4">
+                  <Link
+                    href="mailto:ryanmcgatha@gmail.com"
+                    className="inline-flex items-center gap-2 bg-foreground text-background px-6 py-3 rounded-[--radius] font-heading text-sm hover:opacity-90 transition-opacity"
+                  >
+                    ryanmcgatha@gmail.com
+                  </Link>
+                  <Link
+                    href="https://www.linkedin.com/in/ryanmcgatha"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-2 border border-foreground/20 px-6 py-3 rounded-[--radius] font-heading text-sm text-foreground hover:bg-foreground/5 transition-colors"
+                  >
+                    Connect on LinkedIn
+                  </Link>
+                </div>
+                <p className="text-sm text-muted-foreground mt-6">
+                  Based in Greenville, South Carolina — available for local and remote AI projects
+                </p>
+              </div>
+            </Reveal>
           </section>
         </main>
       </div>

@@ -31,7 +31,7 @@ export const SideBar = () => {
 
   return (
     <motion.nav
-      initial={false}
+      initial={{ x: -70 }}
       animate={{ x: 0 }}
       transition={{ duration: 0.5 }}
       className="no-scrollbar bg-background h-screen sticky top-0 left-0 z-20 flex flex-col items-center overflow-y-scroll border-r border-border"

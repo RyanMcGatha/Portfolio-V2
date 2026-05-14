@@ -215,48 +215,21 @@ export function ProfessionalServiceJsonLd() {
   );
 }
 
-export function BreadcrumbJsonLd() {
+/** Pass an ordered array of { name, url } crumbs for the current page. */
+export function BreadcrumbJsonLd({
+  crumbs,
+}: {
+  crumbs: { name: string; url: string }[];
+}) {
   const data = {
     "@context": "https://schema.org",
     "@type": "BreadcrumbList",
-    itemListElement: [
-      {
-        "@type": "ListItem",
-        position: 1,
-        name: "Home",
-        item: "https://ryanm.info",
-      },
-      {
-        "@type": "ListItem",
-        position: 2,
-        name: "Projects",
-        item: "https://ryanm.info/projects",
-      },
-      {
-        "@type": "ListItem",
-        position: 3,
-        name: "AI Services",
-        item: "https://ryanm.info/ai-services",
-      },
-      {
-        "@type": "ListItem",
-        position: 4,
-        name: "About",
-        item: "https://ryanm.info/#about",
-      },
-      {
-        "@type": "ListItem",
-        position: 5,
-        name: "Experience",
-        item: "https://ryanm.info/#experience",
-      },
-      {
-        "@type": "ListItem",
-        position: 6,
-        name: "Contact",
-        item: "https://ryanm.info/#contact",
-      },
-    ],
+    itemListElement: crumbs.map((crumb, i) => ({
+      "@type": "ListItem",
+      position: i + 1,
+      name: crumb.name,
+      item: crumb.url,
+    })),
   };
 
   return (
