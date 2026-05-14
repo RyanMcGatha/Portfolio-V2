@@ -10,8 +10,10 @@ import { BackgroundAnimationLazy } from "./components/util/BackgroundAnimationLa
 
 export default function Home() {
   return (
-    <div className="grid grid-cols-[54px_1fr]">
-      <SideBar />
+    <div className="grid grid-cols-1 md:grid-cols-[54px_1fr]">
+      <div className="hidden md:block">
+        <SideBar />
+      </div>
       <main id="main-content">
         <Header />
 

@@ -34,10 +34,10 @@ export function HeroSection({ badge, title, description, actions }: HeroProps) {
     <section
       className={cn(
         "text-foreground",
-        "overflow-hidden flex items-center justify-center relative"
+        "overflow-hidden flex items-center justify-center relative",
       )}
     >
-      <div className="mx-auto flex max-w-container flex-col gap-12 pt-16 sm:gap-24">
+      <div className="mx-auto flex max-w-container flex-col gap-12 pt-16 sm:gap-24 min-h-[924px] min-[420px]:min-h-[841px] min-[440px]:min-h-[740px] min-[470px]:min-h-[685px] min-[510px]:min-h-[655px] min-[600px]:min-h-[626px]">
         <div className="flex flex-col items-center gap-8 text-center sm:gap-14">
           {badge && (
             <Badge
@@ -61,7 +61,7 @@ export function HeroSection({ badge, title, description, actions }: HeroProps) {
             {title}
           </h1>
 
-          <p className="text-lg relative z-10 max-w-[550px] leading-relaxed text-muted-foreground sm:text-xl">
+          <p className="text-lg relative z-10 max-w-[570px] leading-relaxed text-muted-foreground sm:text-xl">
             {description}
           </p>
 
