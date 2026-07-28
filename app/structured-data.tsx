@@ -5,7 +5,7 @@ export function PersonJsonLd() {
     name: "Ryan McGatha",
     url: "https://ryanm.info",
     email: "mailto:ryanmcgatha@gmail.com",
-    telephone: "+1-864-434-6547",
+    telephone: "+1-864-201-6487",
     jobTitle: "Full-Stack Web Developer & Designer",
     description:
       "Ryan McGatha is a full-stack web developer and designer based in Greenville, SC. He designs and builds modern websites, polished user interfaces, and custom web applications for businesses across the Upstate, and also develops AI agents, chatbots, and LLM integrations when projects call for it.",
@@ -129,7 +129,7 @@ export function ProfessionalServiceJsonLd() {
     "@type": "ProfessionalService",
     name: "Ryan McGatha - Web Development, Web Design & AI Services in Greenville, SC",
     url: "https://ryanm.info",
-    telephone: "+1-864-434-6547",
+    telephone: "+1-864-201-6487",
     email: "ryanmcgatha@gmail.com",
     description:
       "Professional full-stack web development, web design, and AI development services in Greenville, SC. Modern websites, custom web apps, polished UI/UX design, and AI agents, chatbots, and LLM integrations for local businesses.",

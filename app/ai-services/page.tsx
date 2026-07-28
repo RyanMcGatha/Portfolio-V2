@@ -120,7 +120,7 @@ function AIServiceJsonLd() {
     "@id": "https://ryanm.info/ai-services",
     name: "Ryan McGatha - AI Development Services in Greenville, SC",
     url: "https://ryanm.info/ai-services",
-    telephone: "+1-864-434-6547",
+    telephone: "+1-864-201-6487",
     email: "ryanmcgatha@gmail.com",
     description:
       "Professional AI development services in Greenville, SC. Custom AI agents, chatbots, LLM integrations, RAG pipelines, and intelligent automation for local businesses.",

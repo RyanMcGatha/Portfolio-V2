@@ -76,7 +76,7 @@ export const MyLinks = () => (
       className="hidden sm:block"
     />
     <SocialLink
-      href="tel:+18644346547"
+      href="tel:+18642016487"
       icon={<AiFillPhone />}
       label="Call phone"
       className="hidden sm:block"

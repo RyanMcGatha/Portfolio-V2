@@ -56,8 +56,8 @@ const contactLinks = [
   {
     icon: <AiFillPhone className="h-5 w-5 shrink-0" />,
     label: "Phone",
-    value: "(864) 434-6547",
-    href: "tel:+18644346547",
+    value: "(864) 201-6487",
+    href: "tel:+18642016487",
     external: false,
   },
   {
