@@ -2,6 +2,23 @@
  * Small async/parsing helpers shared by the SEO report modules.
  */
 
+import { existsSync, readFileSync } from "node:fs";
+
+/** Populate process.env from a .env-style file, without overriding vars already set. */
+export function loadDotEnv(path: string) {
+  if (!existsSync(path)) return;
+  const raw = readFileSync(path, "utf8");
+  for (const line of raw.split("\n")) {
+    const trimmed = line.trim();
+    if (!trimmed || trimmed.startsWith("#")) continue;
+    const eq = trimmed.indexOf("=");
+    if (eq < 0) continue;
+    const key = trimmed.slice(0, eq).trim();
+    const value = trimmed.slice(eq + 1).trim().replace(/^['"]|['"]$/g, "");
+    if (!process.env[key]) process.env[key] = value;
+  }
+}
+
 export function sleep(ms: number) {
   return new Promise((r) => setTimeout(r, ms));
 }

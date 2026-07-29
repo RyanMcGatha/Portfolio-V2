@@ -139,6 +139,7 @@ const NavLink = ({
     >
       <Link
         href={href}
+        data-nav="mobile"
         onClick={onClick}
         className="block text-5xl font-heading font-semibold text-background/70 transition-colors hover:text-background md:text-7xl"
       >
@@ -191,6 +192,7 @@ const FooterCTAs = () => {
 
       <motion.a
         href="/contact"
+        data-nav="mobile"
         initial={{ opacity: 0, y: 8 }}
         animate={{
           opacity: 1,

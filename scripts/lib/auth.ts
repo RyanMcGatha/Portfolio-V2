@@ -25,6 +25,18 @@ export const SCOPES = [
   // revoke access at https://myaccount.google.com/permissions and re-run
   // `npm run auth` to pick up the new scope.
   "https://www.googleapis.com/auth/calendar.events",
+  // Lets scripts/ga4-setup.ts create GA4 custom dimensions and mark key
+  // events via the Admin API.
+  "https://www.googleapis.com/auth/analytics.edit",
+  // Lets scripts/gtm-setup.ts read and edit the GTM container (find it by
+  // its public ID, add workspace changes, build a version) and, separately,
+  // publish that version live.
+  "https://www.googleapis.com/auth/tagmanager.readonly",
+  "https://www.googleapis.com/auth/tagmanager.edit.containers",
+  "https://www.googleapis.com/auth/tagmanager.publish",
+  // If your existing .oauth-token.json predates the four scopes above,
+  // revoke access at https://myaccount.google.com/permissions and re-run
+  // `npm run auth` to pick them up.
 ];
 
 interface OAuthClientFile {

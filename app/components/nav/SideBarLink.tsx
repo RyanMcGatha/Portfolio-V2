@@ -29,6 +29,7 @@ export const SideBarLink = ({
       animate={{ x: 0 }}
       transition={{ duration: 0.5, delay: 0.1 }}
       href={href}
+      data-nav="sidebar"
       onClick={() => {
         setSelected(value);
       }}

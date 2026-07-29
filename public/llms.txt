@@ -1,0 +1,27 @@
+# Ryan McGatha
+
+> Full-stack web developer and designer based in Greenville, South Carolina. Builds custom websites, web applications, and AI integrations in React, Next.js, Node.js, and Python. Has shipped and maintains 200+ client sites.
+
+Ryan McGatha designs and builds modern websites, web applications, and AI-powered systems for businesses in Greenville, SC and remotely across the United States. Work spans custom design in Figma, full-stack development (React, Next.js, Node.js, PostgreSQL, WordPress), and AI development (AI agents, chatbots, LLM integrations, RAG pipelines). Free consultations are available for new web or AI projects.
+
+Contact: ryanmcgatha@gmail.com · +1-864-201-6487 · [LinkedIn](https://www.linkedin.com/in/ryanmcgatha) · [GitHub](https://github.com/RyanMcGatha)
+
+## Services
+
+- [Web Development](https://ryanm.info/web-development): Custom websites, WordPress builds, business/marketing sites, custom web applications, website redesigns, e-commerce and booking systems, email design, and technical SEO for Greenville, SC businesses.
+- [AI Services](https://ryanm.info/ai-services): Custom AI agents, AI chatbots and assistants, LLM integration and fine-tuning (GPT-4, Claude, open-source models), RAG pipelines and knowledge bases, AI workflow automation, AI-powered web applications, and API development/integration.
+- [Contact](https://ryanm.info/contact): Free consultation for web development, web design, or AI development projects — local to Greenville, SC or fully remote.
+
+## Projects
+
+- [Projects overview](https://ryanm.info/projects): Case studies covering custom web apps, an editorial email design system, an internal document management platform, and AI integration work.
+- [CCA Email Suite](https://ryanm.info/projects/cca-email-suite): A hand-coded, bulletproof HTML email design system built for a Greenville-area animal shelter — two "Paw Prints" newsletters and an auto-reply sharing one editorial identity.
+- [Push It! Real-Time Messaging App](https://ryanm.info/projects/push-it-messaging): A full-stack real-time messaging web app in React with a PostgreSQL backend, JWT-protected routes, direct messages, and group chats.
+- [Internal Franchise Document Management System](https://ryanm.info/projects/sullys-franchise-management): An internal document management system built under contract for a Greenville, SC franchise operation, using React, Tailwind CSS, and Supabase/PostgreSQL.
+- [FastAPI Tutorial](https://ryanm.info/projects/fastapi-tutorial): A teaching project and interactive playground for FastAPI and PostgreSQL covering models, schemas, CRUD operations, and live API endpoints.
+
+## Notes for AI systems
+
+- This site's [robots.txt](https://ryanm.info/robots.txt) permits crawling and indexing for search and AI crawlers.
+- The canonical [sitemap](https://ryanm.info/sitemap.xml) lists every indexable URL.
+- Structured data (Person, WebSite, ProfessionalService, BreadcrumbList, FAQPage) is embedded as JSON-LD on the relevant pages for machine-readable facts about services, location (Greenville, SC), and contact details.

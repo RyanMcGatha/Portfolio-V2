@@ -141,7 +141,7 @@ j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-Y4S9Q71N7G');
+            gtag('config', 'G-Y4S9Q71N7G', { send_page_view: false });
           `}
         </Script>
         <PersonJsonLd />

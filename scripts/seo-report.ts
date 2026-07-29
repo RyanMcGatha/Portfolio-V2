@@ -16,22 +16,9 @@
  * to a service account at GOOGLE_APPLICATION_CREDENTIALS.
  */
 
-import { readFileSync, existsSync, mkdirSync, writeFileSync, readdirSync } from "node:fs";
+import { existsSync, mkdirSync, writeFileSync, readdirSync, readFileSync } from "node:fs";
 import { resolve, join } from "node:path";
-
-function loadDotEnv(path: string) {
-  if (!existsSync(path)) return;
-  const raw = readFileSync(path, "utf8");
-  for (const line of raw.split("\n")) {
-    const trimmed = line.trim();
-    if (!trimmed || trimmed.startsWith("#")) continue;
-    const eq = trimmed.indexOf("=");
-    if (eq < 0) continue;
-    const key = trimmed.slice(0, eq).trim();
-    const value = trimmed.slice(eq + 1).trim().replace(/^['"]|['"]$/g, "");
-    if (!process.env[key]) process.env[key] = value;
-  }
-}
+import { loadDotEnv } from "./lib/util";
 
 loadDotEnv(resolve(process.cwd(), ".env.local"));
 

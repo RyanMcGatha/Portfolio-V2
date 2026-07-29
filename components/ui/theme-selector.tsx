@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { OutlineButton } from "@/app/components/buttons/OutlineButton";
+import { trackEvent } from "@/app/components/util/ConversionTracking";
 
 export function ModeToggle() {
   const { setTheme, resolvedTheme } = useTheme();
@@ -28,7 +29,11 @@ export function ModeToggle() {
 
   return (
     <OutlineButton
-      onClick={() => setTheme(isLight ? "dark" : "light")}
+      onClick={() => {
+        const next = isLight ? "dark" : "light";
+        trackEvent("theme_toggle", { theme: next });
+        setTheme(next);
+      }}
       aria-label={`Switch to ${isLight ? "dark" : "light"} mode`}
     >
       {isLight ? <Moon className="size-5" /> : <Sun className="size-5" />}

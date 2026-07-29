@@ -8,6 +8,7 @@
     "start": "next start",
     "lint": "next lint",
     "auth": "tsx scripts/auth.ts",
+    "ga4:setup": "tsx scripts/ga4-setup.ts",
     "seo:report": "tsx scripts/seo-report.ts",
     "seo:report:full": "tsx scripts/seo-report.ts --full",
     "seo:report:fast": "tsx scripts/seo-report.ts --fast",

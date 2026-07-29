@@ -10,7 +10,7 @@ export const Header = () => {
   return (
     <header className="h-16 px-4 md:px-6 flex items-center justify-between sticky top-0 bg-background/80 backdrop-blur-md border-b border-border shadow-sm font-heading z-20">
       <div className="flex items-center gap-3 sm:gap-4">
-        <Link href="/" aria-label="Go to homepage">
+        <Link href="/" aria-label="Go to homepage" data-nav="logo">
           <Image
             src="/favicon.ico"
             alt="Ryan McGatha"
@@ -24,24 +24,28 @@ export const Header = () => {
       <div className="flex items-center gap-2 sm:gap-4">
         <Link
           href="/projects"
+          data-nav="header"
           className="text-sm font-heading text-muted-foreground hover:text-foreground transition-colors hidden lg:block"
         >
           Projects
         </Link>
         <Link
           href="/web-development"
+          data-nav="header"
           className="text-sm font-heading text-muted-foreground hover:text-foreground transition-colors hidden sm:block"
         >
           Web Development
         </Link>
         <Link
           href="/ai-services"
+          data-nav="header"
           className="text-sm font-heading text-muted-foreground hover:text-foreground transition-colors hidden sm:block"
         >
           AI Services
         </Link>
         <Link
           href="/contact"
+          data-nav="header"
           className="text-sm font-heading text-muted-foreground hover:text-foreground transition-colors hidden sm:block"
         >
           Contact
@@ -53,6 +57,7 @@ export const Header = () => {
             target="_blank"
             rel="nofollow noopener"
             aria-label="Download my resume (PDF)"
+            data-nav="header"
           >
             My Resume
           </a>

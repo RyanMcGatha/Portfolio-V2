@@ -35,7 +35,7 @@ export function ContactForm() {
       if (!res.ok) {
         setStatus("error");
         setErrorMsg(data.error || "Something went wrong.");
-        trackEvent("contact_form_error", { page_path: window.location.pathname });
+        trackEvent("contact_form_error");
         return;
       }
 
@@ -43,10 +43,7 @@ export function ContactForm() {
       formRef.current?.reset();
       // GA4 recommended event name — mark this as a key event in GA4 Admin so
       // the report can show leads instead of only pageviews.
-      trackEvent("generate_lead", {
-        form_name: "contact",
-        page_path: window.location.pathname,
-      });
+      trackEvent("generate_lead", { form_name: "contact" });
     } catch {
       setStatus("error");
       setErrorMsg("Network error. Please try again.");
