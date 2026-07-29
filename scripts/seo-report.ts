@@ -1,16 +1,22 @@
 /**
  * SEO + analytics aggregator. Pulls real-world data from:
- *   - Google Search Console (queries, pages, indexing)
- *   - Google Analytics 4 (traffic, sources, devices, engagement)
- *   - PageSpeed Insights / CrUX (Core Web Vitals from real users)
+ *   - Google Search Console  (queries, pages, index status, sitemaps, trends)
+ *   - Google Analytics 4     (traffic, landing pages, channels, engagement)
+ *   - PageSpeed Insights     (Lighthouse per page × device, failing audits)
+ *   - Chrome UX Report       (real-user Core Web Vitals, URL + origin level)
+ *   - The live site itself    (on-page crawl: meta, headings, links, schema)
  *
  * Run: npm run seo:report
+ *   --full        print the entire report to the terminal (default prints the summary)
+ *   --fast        only audit / and /ai-services in PageSpeed (much quicker)
+ *   --no-psi      skip PageSpeed entirely (it's the slow part)
+ *   --no-crawl    skip the on-page crawl
  *
  * Auth: prefers OAuth (.oauth-token.json from `npm run auth`) and falls back
  * to a service account at GOOGLE_APPLICATION_CREDENTIALS.
  */
 
-import { readFileSync, existsSync, mkdirSync, writeFileSync } from "node:fs";
+import { readFileSync, existsSync, mkdirSync, writeFileSync, readdirSync } from "node:fs";
 import { resolve, join } from "node:path";
 
 function loadDotEnv(path: string) {
@@ -29,433 +35,347 @@ function loadDotEnv(path: string) {
 
 loadDotEnv(resolve(process.cwd(), ".env.local"));
 
-import { google } from "googleapis";
-import { BetaAnalyticsDataClient } from "@google-analytics/data";
 import { resolveAuth } from "./lib/auth";
+import { gscSection } from "./lib/gsc";
+import { ga4Section } from "./lib/ga4";
+import { psiSection } from "./lib/psi";
+import { crawlSection } from "./lib/crawl";
+import { fetchSitemap, technicalChecks, PUBLIC_URL, IS_LOCAL_TARGET } from "./lib/site";
+import {
+  SEVERITY_ICON,
+  SEVERITY_ORDER,
+  bullet,
+  delta,
+  table,
+  type Action,
+  type SectionResult,
+} from "./lib/fmt";
+import { errMsg } from "./lib/util";
+
+const argv = process.argv.slice(2);
+const OPT = {
+  full: argv.includes("--full"),
+  fast: argv.includes("--fast"),
+  noPsi: argv.includes("--no-psi"),
+  noCrawl: argv.includes("--no-crawl"),
+};
 
 const SITE_URL = process.env.GSC_SITE_URL;
 const GA4_PROPERTY_ID = process.env.GA4_PROPERTY_ID;
 const PSI_API_KEY = process.env.PSI_API_KEY;
-const PUBLIC_URL = "https://ryanm.info";
 
 const auth = resolveAuth();
 
 const reportDir = resolve(process.cwd(), ".reports");
-if (!existsSync(reportDir)) mkdirSync(reportDir, { recursive: true });
+const snapshotDir = join(reportDir, "snapshots");
+for (const dir of [reportDir, snapshotDir]) {
+  if (!existsSync(dir)) mkdirSync(dir, { recursive: true });
+}
 
 const today = new Date().toISOString().slice(0, 10);
-const ago = (days: number) => {
-  const d = new Date();
-  d.setUTCDate(d.getUTCDate() - days);
-  return d.toISOString().slice(0, 10);
-};
+const log = (msg: string) => console.log(msg);
 
-interface ReportSection {
-  heading: string;
-  body: string;
+/** Keys lifted out of the snapshots for the run-over-run trend table. */
+const TREND_KEYS: { path: string; label: string; digits?: number; lowerIsBetter?: boolean }[] = [
+  { path: "gsc.impressions", label: "GSC impressions (28d)" },
+  { path: "gsc.clicks", label: "GSC clicks (28d)" },
+  { path: "gsc.position", label: "GSC avg position", digits: 1, lowerIsBetter: true },
+  { path: "gsc.uniqueQueries", label: "GSC unique queries" },
+  { path: "gsc.nonBrandedImpressions", label: "GSC non-branded impressions" },
+  { path: "gsc.indexedKeyUrls", label: "Indexed key URLs" },
+  { path: "ga4.users", label: "GA4 users (28d)" },
+  { path: "ga4.sessions", label: "GA4 sessions (28d)" },
+  { path: "ga4.organicSessions", label: "GA4 organic sessions" },
+  { path: "ga4.keyEvents", label: "GA4 key events" },
+  { path: "crawl.avgWordCount", label: "Avg words per page" },
+  { path: "crawl.thinPages", label: "Thin pages (<300 words)", lowerIsBetter: true },
+  { path: "crawl.missingAlt", label: "Images missing alt", lowerIsBetter: true },
+  { path: "crawl.missingDims", label: "Images missing dimensions", lowerIsBetter: true },
+  { path: "crawl.orphanPages", label: "Orphan pages", lowerIsBetter: true },
+  { path: "crawl.brokenUrls", label: "Broken URLs", lowerIsBetter: true },
+  { path: "crawl.pagesWithoutStructuredData", label: "Pages without schema", lowerIsBetter: true },
+];
+
+function dig(obj: unknown, path: string): number | null {
+  let cur: unknown = obj;
+  for (const part of path.split(".")) {
+    if (!cur || typeof cur !== "object") return null;
+    cur = (cur as Record<string, unknown>)[part];
+  }
+  return typeof cur === "number" ? cur : null;
 }
 
-const sections: ReportSection[] = [];
-
-async function gscReport() {
-  if (!SITE_URL) {
-    sections.push({
-      heading: "Google Search Console",
-      body: "Skipped — set GSC_SITE_URL in .env.local.",
-    });
-    return;
+function loadPreviousSnapshot(): { date: string; data: unknown } | null {
+  const files = readdirSync(snapshotDir)
+    .filter((f) => f.startsWith("snapshot-") && f.endsWith(".json") && f !== `snapshot-${today}.json`)
+    .sort();
+  const last = files.pop();
+  if (!last) return null;
+  try {
+    return {
+      date: last.replace("snapshot-", "").replace(".json", ""),
+      data: JSON.parse(readFileSync(join(snapshotDir, last), "utf8")),
+    };
+  } catch {
+    return null;
   }
-
-  const webmastersAuth =
-    auth.kind === "oauth"
-      ? auth.authClient!
-      : new google.auth.GoogleAuth({
-          scopes: ["https://www.googleapis.com/auth/webmasters.readonly"],
-        });
-
-  const webmasters = google.webmasters({ version: "v3", auth: webmastersAuth });
-  const startDate = ago(28);
-  const endDate = ago(2);
-
-  const queries = await webmasters.searchanalytics.query({
-    siteUrl: SITE_URL,
-    requestBody: {
-      startDate,
-      endDate,
-      dimensions: ["query"],
-      rowLimit: 50,
-    },
-  });
-
-  const pages = await webmasters.searchanalytics.query({
-    siteUrl: SITE_URL,
-    requestBody: {
-      startDate,
-      endDate,
-      dimensions: ["page"],
-      rowLimit: 50,
-    },
-  });
-
-  const countries = await webmasters.searchanalytics.query({
-    siteUrl: SITE_URL,
-    requestBody: {
-      startDate,
-      endDate,
-      dimensions: ["country"],
-      rowLimit: 10,
-    },
-  });
-
-  const devices = await webmasters.searchanalytics.query({
-    siteUrl: SITE_URL,
-    requestBody: {
-      startDate,
-      endDate,
-      dimensions: ["device"],
-      rowLimit: 5,
-    },
-  });
-
-  const formatRow = (r: {
-    keys?: string[] | null;
-    clicks?: number | null;
-    impressions?: number | null;
-    ctr?: number | null;
-    position?: number | null;
-  }) => {
-    const key = r.keys?.[0] ?? "(none)";
-    return `${(r.clicks ?? 0).toString().padStart(5)} clk | ${(r.impressions ?? 0)
-      .toString()
-      .padStart(6)} imp | ${((r.ctr ?? 0) * 100)
-      .toFixed(1)
-      .padStart(4)}% ctr | pos ${(r.position ?? 0).toFixed(1).padStart(5)}  ${key}`;
-  };
-
-  const rows = queries.data.rows ?? [];
-  const body = [
-    `### Window: ${startDate} → ${endDate}`,
-    ``,
-    `#### Top 25 search queries`,
-    `clicks | impressions | ctr | avg position | query`,
-    ...rows.slice(0, 25).map(formatRow),
-    ``,
-    `#### Almost-ranking queries (impressions > 10, position 5–20) — easiest CTR wins`,
-    ...rows
-      .filter(
-        (r) =>
-          (r.impressions ?? 0) > 10 &&
-          (r.position ?? 99) >= 5 &&
-          (r.position ?? 99) <= 20
-      )
-      .sort((a, b) => (b.impressions ?? 0) - (a.impressions ?? 0))
-      .slice(0, 20)
-      .map(formatRow),
-    ``,
-    `#### Top 20 pages`,
-    `clicks | impressions | ctr | avg position | page`,
-    ...(pages.data.rows ?? []).slice(0, 20).map(formatRow),
-    ``,
-    `#### Country breakdown`,
-    ...(countries.data.rows ?? []).map(formatRow),
-    ``,
-    `#### Device breakdown`,
-    ...(devices.data.rows ?? []).map(formatRow),
-  ].join("\n");
-
-  sections.push({ heading: "Google Search Console", body });
 }
 
-async function ga4Report() {
-  if (!GA4_PROPERTY_ID) {
-    sections.push({
-      heading: "Google Analytics 4",
-      body: "Skipped — set GA4_PROPERTY_ID in .env.local.",
-    });
-    return;
-  }
+const GLOSSARY = `
+## How to read this report
 
-  const client =
-    auth.kind === "oauth"
-      ? new BetaAnalyticsDataClient({ authClient: auth.authClient! })
-      : new BetaAnalyticsDataClient();
+**Search Console vs Analytics.** GSC measures what happens *in Google's results*
+(impressions, clicks, position). GA4 measures what happens *on the site* after the
+click. They will never match exactly: different windows, different attribution,
+and GA4 misses visitors who block analytics.
 
-  const startDate = ago(28);
-  const endDate = "today";
-  const property = `properties/${GA4_PROPERTY_ID}`;
+**Why query totals don't equal page totals.** GSC hides queries that too few
+people searched, for privacy. On a low-traffic site most impressions come from
+these hidden queries, so the query table always sums to less than the page table.
 
-  const [overview] = await client.runReport({
-    property,
-    dateRanges: [{ startDate, endDate }],
-    metrics: [
-      { name: "totalUsers" },
-      { name: "newUsers" },
-      { name: "sessions" },
-      { name: "engagedSessions" },
-      { name: "averageSessionDuration" },
-      { name: "screenPageViews" },
-      { name: "bounceRate" },
-    ],
-  });
+**Impressions** = your page appeared in results someone loaded. **Position** is
+impression-weighted average rank; 1–10 is page one. Positions above ~20 get
+effectively zero clicks, so ranking movement there matters more than CTR.
 
-  const [topPages] = await client.runReport({
-    property,
-    dateRanges: [{ startDate, endDate }],
-    dimensions: [{ name: "pagePath" }],
-    metrics: [
-      { name: "screenPageViews" },
-      { name: "totalUsers" },
-      { name: "averageSessionDuration" },
-      { name: "bounceRate" },
-    ],
-    orderBys: [{ metric: { metricName: "screenPageViews" }, desc: true }],
-    limit: 20,
-  });
+**Striking distance** = queries at position 4–20. These are the cheapest wins:
+Google already considers you relevant, so tighter titles, an H2 matching the
+phrase, and an internal link can move them onto page one.
 
-  const [sources] = await client.runReport({
-    property,
-    dateRanges: [{ startDate, endDate }],
-    dimensions: [
-      { name: "sessionDefaultChannelGroup" },
-      { name: "sessionSource" },
-    ],
-    metrics: [{ name: "sessions" }, { name: "engagedSessions" }],
-    orderBys: [{ metric: { metricName: "sessions" }, desc: true }],
-    limit: 15,
-  });
+**Engagement rate** (GA4) = share of sessions lasting 10s+, hitting 2+ pages, or
+firing a key event. Bounce rate is its inverse. Under 40% engagement usually
+means the top of the page isn't answering "what is this and is it for me?".
 
-  const [devices] = await client.runReport({
-    property,
-    dateRanges: [{ startDate, endDate }],
-    dimensions: [{ name: "deviceCategory" }],
-    metrics: [
-      { name: "totalUsers" },
-      { name: "engagementRate" },
-      { name: "averageSessionDuration" },
-    ],
-  });
+**Core Web Vitals thresholds.** LCP ≤ 2.5s (how fast the main content paints),
+CLS ≤ 0.10 (how much the layout jumps), INP ≤ 200ms (input responsiveness; TBT
+is the lab proxy). These are real ranking inputs, and they're judged on *field*
+data from Chrome users — not the lab scores in this report.
 
-  const [events] = await client.runReport({
-    property,
-    dateRanges: [{ startDate, endDate }],
-    dimensions: [{ name: "eventName" }],
-    metrics: [{ name: "eventCount" }],
-    orderBys: [{ metric: { metricName: "eventCount" }, desc: true }],
-    limit: 15,
-  });
+**Lab vs field.** Lighthouse simulates a throttled device from a Google datacenter,
+so it's a consistent regression check, not truth. CrUX is real Chrome users at the
+75th percentile; it needs meaningful traffic before it reports anything.
 
-  const ov = overview.rows?.[0]?.metricValues ?? [];
-  const get = (i: number) => ov[i]?.value ?? "0";
-  const overviewBody = [
-    `Users (28d):              ${get(0)}`,
-    `New users:                ${get(1)}`,
-    `Sessions:                 ${get(2)}`,
-    `Engaged sessions:         ${get(3)}`,
-    `Avg session duration (s): ${parseFloat(get(4)).toFixed(1)}`,
-    `Page views:               ${get(5)}`,
-    `Bounce rate:              ${(parseFloat(get(6)) * 100).toFixed(1)}%`,
-  ].join("\n");
+**Audit weight** (PageSpeed section) tells you how much a failing audit drags its
+category score. A weight-0 failure costs nothing — fix the heavy ones first.
 
-  const fmtRow = (
-    dims: string[],
-    metrics: { value?: string | null }[]
-  ) =>
-    `${dims.join(" | ").padEnd(45)} ${metrics
-      .map((m) => m.value ?? "")
-      .join(" | ")}`;
+**Word count** is a proxy, not a target. The reason thin pages lose isn't length,
+it's that there's nothing on them for Google to match a query against.
 
-  const body = [
-    `### Window: last 28 days`,
-    ``,
-    `#### Overview`,
-    overviewBody,
-    ``,
-    `#### Top 20 pages by views`,
-    `path | views | users | avg duration (s) | bounce rate`,
-    ...(topPages.rows ?? []).map((r) =>
-      fmtRow(
-        r.dimensionValues?.map((d) => d.value ?? "") ?? [],
-        r.metricValues ?? []
-      )
-    ),
-    ``,
-    `#### Sources`,
-    `channel | source | sessions | engaged sessions`,
-    ...(sources.rows ?? []).map((r) =>
-      fmtRow(
-        r.dimensionValues?.map((d) => d.value ?? "") ?? [],
-        r.metricValues ?? []
-      )
-    ),
-    ``,
-    `#### Devices`,
-    `device | users | engagement rate | avg duration`,
-    ...(devices.rows ?? []).map((r) =>
-      fmtRow(
-        r.dimensionValues?.map((d) => d.value ?? "") ?? [],
-        r.metricValues ?? []
-      )
-    ),
-    ``,
-    `#### Top events`,
-    `event | count`,
-    ...(events.rows ?? []).map((r) =>
-      fmtRow(
-        r.dimensionValues?.map((d) => d.value ?? "") ?? [],
-        r.metricValues ?? []
-      )
-    ),
-  ].join("\n");
+**Orphan pages** get no internal links. Google discovers and weights pages largely
+through links; a sitemap entry alone is a weak hint.
+`.trim();
 
-  sections.push({ heading: "Google Analytics 4", body });
-}
+async function main() {
+  const started = Date.now();
+  console.log(`\nSEO report — ${PUBLIC_URL}`);
+  console.log(`Auth mode: ${auth.kind}`);
+  console.log(`GSC site:  ${SITE_URL ?? "(skipped — set GSC_SITE_URL)"}`);
+  console.log(`GA4 prop:  ${GA4_PROPERTY_ID ?? "(skipped — set GA4_PROPERTY_ID)"}`);
+  console.log(`PSI key:   ${PSI_API_KEY ? "set" : "(skipped — set PSI_API_KEY)"}`);
+  console.log(
+    `Options:   ${
+      [OPT.full && "--full", OPT.fast && "--fast", OPT.noPsi && "--no-psi", OPT.noCrawl && "--no-crawl"]
+        .filter(Boolean)
+        .join(" ") || "(none)"
+    }\n`
+  );
 
-async function psiReport() {
-  if (!PSI_API_KEY) {
-    sections.push({
-      heading: "PageSpeed Insights / CrUX",
-      body: "Skipped — set PSI_API_KEY in .env.local to enable.",
-    });
-    return;
-  }
+  log("Fetching sitemap…");
+  const sitemap = await fetchSitemap();
+  log(
+    `  ${sitemap.entries.length} URLs from ${sitemap.source}${sitemap.error ? ` (${sitemap.error})` : ""}\n`
+  );
 
-  const targets = [PUBLIC_URL, `${PUBLIC_URL}/ai-services`];
-  const results: string[] = [];
+  const psiTargets = OPT.fast
+    ? [`${PUBLIC_URL}`, `${PUBLIC_URL}/ai-services`]
+    : sitemap.entries.map((e) => e.url);
 
-  for (const target of targets) {
-    for (const strategy of ["mobile", "desktop"] as const) {
-      const url = `https://www.googleapis.com/pagespeedonline/v5/runPagespeed?url=${encodeURIComponent(
-        target
-      )}&strategy=${strategy}&category=performance&category=accessibility&category=seo&category=best-practices&key=${PSI_API_KEY}`;
-      const res = await fetch(url);
-      if (!res.ok) {
-        results.push(
-          `### ${strategy} | ${target}\nERROR ${res.status}: ${await res.text()}`
-        );
-        continue;
-      }
-      const data = (await res.json()) as {
-        lighthouseResult?: {
-          categories?: Record<string, { score?: number | null }>;
-          audits?: Record<
-            string,
-            {
-              displayValue?: string;
-              numericValue?: number;
-              title?: string;
-              score?: number | null;
-            }
-          >;
-        };
-        loadingExperience?: {
-          metrics?: Record<
-            string,
-            {
-              percentile?: number;
-              category?: string;
-              distributions?: { proportion: number }[];
-            }
-          >;
-          overall_category?: string;
-        };
-      };
+  const errors: string[] = [];
+  const sections: SectionResult[] = [];
+  const snapshot: Record<string, unknown> = { date: today };
 
-      const lh = data.lighthouseResult;
-      const cats = lh?.categories ?? {};
-      const audits = lh?.audits ?? {};
+  const tasks: Promise<void>[] = [];
 
-      const lines = [
-        `### ${strategy.toUpperCase()} | ${target}`,
-        `Lighthouse: perf ${pct(cats.performance?.score)}  a11y ${pct(
-          cats.accessibility?.score
-        )}  best-practices ${pct(
-          cats["best-practices"]?.score
-        )}  seo ${pct(cats.seo?.score)}`,
-        `LCP:         ${audits["largest-contentful-paint"]?.displayValue ?? "?"}`,
-        `FCP:         ${audits["first-contentful-paint"]?.displayValue ?? "?"}`,
-        `TBT:         ${audits["total-blocking-time"]?.displayValue ?? "?"}`,
-        `CLS:         ${audits["cumulative-layout-shift"]?.displayValue ?? "?"}`,
-        `Speed Index: ${audits["speed-index"]?.displayValue ?? "?"}`,
-        `TTI:         ${audits["interactive"]?.displayValue ?? "?"}`,
-      ];
-
-      const cwv = data.loadingExperience?.metrics;
-      if (cwv) {
-        lines.push(
-          ``,
-          `Real-user CrUX (last 28 days): ${data.loadingExperience?.overall_category ?? "?"}`
-        );
-        for (const [k, v] of Object.entries(cwv)) {
-          lines.push(
-            `  ${k.padEnd(38)} p75=${v.percentile ?? "?"}  bucket=${v.category ?? "?"}`
-          );
-        }
-      } else {
-        lines.push(``, `Real-user CrUX: not enough field data yet.`);
-      }
-
-      const opportunities = Object.entries(audits)
-        .filter(
-          ([, a]) =>
-            a.score !== null &&
-            (a.score ?? 1) < 0.9 &&
-            a.numericValue &&
-            a.numericValue > 100
+  if (SITE_URL) {
+    tasks.push(
+      gscSection(
+        auth,
+        SITE_URL,
+        // GSC can only inspect the real property, never a localhost build.
+        sitemap.entries.map((e) =>
+          IS_LOCAL_TARGET ? e.url.replace(/^https?:\/\/[^/]+/, "https://ryanm.info") : e.url
         )
-        .sort((a, b) => (b[1].numericValue ?? 0) - (a[1].numericValue ?? 0))
-        .slice(0, 10);
+      )
+        .then((s) => {
+          sections.push(s);
+          snapshot.gsc = s.snapshot;
+        })
+        .catch((e) => {
+          errors.push(`Search Console: ${errMsg(e)}`);
+        })
+    );
+  }
 
-      if (opportunities.length) {
-        lines.push(``, `Top opportunities (lower score = bigger win):`);
-        for (const [id, a] of opportunities) {
-          lines.push(`  [${pct(a.score)}] ${a.title ?? id}  ${a.displayValue ?? ""}`);
-        }
-      }
+  if (GA4_PROPERTY_ID) {
+    tasks.push(
+      ga4Section(auth, GA4_PROPERTY_ID)
+        .then((s) => {
+          sections.push(s);
+          snapshot.ga4 = s.snapshot;
+        })
+        .catch((e) => {
+          errors.push(`GA4: ${errMsg(e)}`);
+        })
+    );
+  }
 
-      results.push(lines.join("\n"));
+  if (!OPT.noCrawl) {
+    tasks.push(
+      crawlSection(sitemap.entries, log)
+        .then((s) => {
+          sections.push(s);
+          snapshot.crawl = s.snapshot;
+        })
+        .catch((e) => {
+          errors.push(`Crawl: ${errMsg(e)}`);
+        })
+    );
+  }
+
+  if (PSI_API_KEY && !OPT.noPsi) {
+    tasks.push(
+      psiSection(PSI_API_KEY, psiTargets, log)
+        .then((s) => {
+          sections.push(s);
+          snapshot.psi = s.snapshot;
+        })
+        .catch((e) => {
+          errors.push(`PageSpeed: ${errMsg(e)}`);
+        })
+    );
+  }
+
+  const checks = await technicalChecks();
+  await Promise.all(tasks);
+
+  // Keep a stable section order regardless of which promise settled first.
+  const order = [
+    "Google Search Console",
+    "Google Analytics 4",
+    "On-page crawl (live HTML)",
+    "PageSpeed Insights + Core Web Vitals",
+  ];
+  sections.sort((a, b) => order.indexOf(a.heading) - order.indexOf(b.heading));
+
+  for (const c of checks) {
+    if (c.ok === false) {
+      errors.push(`Technical check failed — ${c.name}: ${c.detail}`);
     }
   }
 
-  sections.push({ heading: "PageSpeed Insights + CrUX", body: results.join("\n\n") });
-}
+  const actions: Action[] = sections
+    .flatMap((s) => s.actions)
+    .sort((a, b) => SEVERITY_ORDER[a.severity] - SEVERITY_ORDER[b.severity]);
 
-function pct(n: number | null | undefined) {
-  if (n == null) return "?";
-  return `${Math.round(n * 100)}`;
-}
+  const prev = loadPreviousSnapshot();
+  const trendRows = prev
+    ? TREND_KEYS.map((k) => {
+        const cur = dig(snapshot, k.path);
+        const old = dig(prev.data, k.path);
+        if (cur === null && old === null) return null;
+        return [
+          k.label,
+          old === null ? "–" : old.toFixed(k.digits ?? 0),
+          cur === null ? "–" : cur.toFixed(k.digits ?? 0),
+          delta(cur, old, { digits: k.digits ?? 0, lowerIsBetter: k.lowerIsBetter }),
+        ];
+      }).filter((r): r is string[] => r !== null)
+    : [];
 
-async function main() {
-  console.log(`\nAuth mode: ${auth.kind}`);
-  console.log(`GSC site:  ${SITE_URL ?? "(skipped)"}`);
-  console.log(`GA4 prop:  ${GA4_PROPERTY_ID ?? "(skipped)"}`);
-  console.log(`PSI key:   ${PSI_API_KEY ? "set" : "(skipped)"}\n`);
+  const actionPlan = actions.length
+    ? actions
+        .map(
+          (a, i) =>
+            `${i + 1}. ${SEVERITY_ICON[a.severity]} **[${a.severity.toUpperCase()} · ${a.area}]** ${a.title}\n` +
+            `    ${a.detail.replace(/\n/g, "\n    ")}`
+        )
+        .join("\n\n")
+    : "_No issues detected._";
 
-  const errors: string[] = [];
-  await Promise.allSettled([
-    gscReport().catch((e) => {
-      errors.push(`GSC error: ${e.message}`);
-    }),
-    ga4Report().catch((e) => {
-      errors.push(`GA4 error: ${e.message}`);
-    }),
-    psiReport().catch((e) => {
-      errors.push(`PSI error: ${e.message}`);
-    }),
-  ]);
+  const severityCounts = (["critical", "high", "medium", "low"] as const).map(
+    (s) => `${SEVERITY_ICON[s]} ${actions.filter((a) => a.severity === s).length} ${s}`
+  );
 
-  const out = [
+  const report = [
     `# SEO + analytics report — ryanm.info`,
-    `Generated: ${new Date().toISOString()}`,
-    `Auth: ${auth.kind}`,
     ``,
-    ...sections.flatMap((s) => [`## ${s.heading}`, s.body, ``]),
-    errors.length ? `## Errors\n${errors.join("\n")}` : "",
+    `- **Generated:** ${new Date().toISOString()}`,
+    `- **Auth:** ${auth.kind}`,
+    `- **URLs analyzed:** ${sitemap.entries.length} (from ${sitemap.source})`,
+    `- **Sections:** ${sections.map((s) => s.heading).join(" · ") || "none"}`,
+    `- **Issues found:** ${severityCounts.join(" · ")}`,
+    ``,
+    `## Executive summary`,
+    sections
+      .map((s) => `**${s.heading}**\n${bullet(s.summary)}`)
+      .join("\n\n") || "_No data collected._",
+    ``,
+    `## Prioritized action plan`,
+    ``,
+    actionPlan,
+    ``,
+    `## Trend vs previous run`,
+    prev
+      ? table(["metric", prev.date, today, "change"], trendRows, ["l", "r", "r", "l"])
+      : `_No previous snapshot to compare against. This run wrote \`.reports/snapshots/snapshot-${today}.json\`; the next run will show deltas._`,
+    ``,
+    `## Technical checks`,
+    table(
+      ["check", "result", "detail"],
+      checks.map((c) => [c.name, c.ok === null ? "?" : c.ok ? "✅" : "❌", c.detail])
+    ),
+    ``,
+    ...sections.flatMap((s) => [`# ${s.heading}`, ``, s.body, ``]),
+    GLOSSARY,
+    ``,
+    errors.length ? `## Errors\n${bullet(errors)}` : "",
   ].join("\n");
 
-  const path = join(reportDir, `report-${today}.md`);
-  writeFileSync(path, out);
-  console.log(`\nWrote ${path}\n`);
-  console.log(out);
+  const reportPath = join(reportDir, `report-${today}.md`);
+  writeFileSync(reportPath, report);
+  writeFileSync(join(reportDir, "latest.md"), report);
+  writeFileSync(join(snapshotDir, `snapshot-${today}.json`), JSON.stringify(snapshot, null, 2));
+
+  const elapsed = ((Date.now() - started) / 1000).toFixed(0);
+
+  if (OPT.full) {
+    console.log("\n" + report);
+  } else {
+    // Terminal gets the decision-making part; the file has everything.
+    console.log(
+      "\n" +
+        [
+          `## Executive summary`,
+          sections.map((s) => `**${s.heading}**\n${bullet(s.summary)}`).join("\n\n"),
+          ``,
+          `## Prioritized action plan (${severityCounts.join(" · ")})`,
+          ``,
+          actionPlan,
+          ``,
+          prev ? `## Trend vs ${prev.date}\n${table(["metric", prev.date, today, "change"], trendRows, ["l", "r", "r", "l"])}` : "",
+          errors.length ? `## Errors\n${bullet(errors)}` : "",
+        ]
+          .filter(Boolean)
+          .join("\n")
+    );
+  }
+
+  console.log(
+    `\nFull report (${(report.length / 1024).toFixed(0)} KB): ${reportPath}` +
+      `\nAlso at:                 ${join(reportDir, "latest.md")}` +
+      `\nSnapshot:                ${join(snapshotDir, `snapshot-${today}.json`)}` +
+      `\nFinished in ${elapsed}s.` +
+      (OPT.full ? "" : `\nRe-run with --full to print everything to the terminal.\n`)
+  );
 }
 
 main().catch((e) => {

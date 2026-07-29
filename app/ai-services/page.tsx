@@ -5,9 +5,17 @@ import { Header } from "../components/nav/Header";
 import Reveal from "../components/util/Reveal";
 
 export const metadata: Metadata = {
-  title: "AI Development Services in Greenville, SC",
+  title: "AI Developer in Greenville, SC",
   description:
-    "Custom AI development services in Greenville, SC. Ryan McGatha builds AI agents, chatbots, LLM integrations, RAG pipelines, and intelligent automation for businesses in the Greenville, South Carolina area.",
+    "AI development services in Greenville, SC. Custom AI agents, chatbots, LLM integrations, RAG pipelines, and workflow automation for local businesses.",
+  keywords: [
+    "AI developer Greenville SC",
+    "AI development Greenville SC",
+    "AI services Greenville SC",
+    "chatbot developer Greenville SC",
+    "AI automation Greenville SC",
+    "LLM integration developer",
+  ],
   openGraph: {
     title: "AI Development Services in Greenville, SC | Ryan McGatha",
     description:
@@ -300,17 +308,17 @@ export default function AIServicesPage() {
             <Reveal delay={0.3}>
               <div className="flex flex-wrap gap-4">
                 <Link
-                  href="/#contact"
+                  href="/contact"
                   className="inline-flex items-center gap-2 bg-foreground text-background px-6 py-3 rounded-[--radius] font-heading text-sm hover:opacity-90 transition-opacity"
                 >
                   Get a Free AI Consultation
                   <ArrowRightIcon className="h-4 w-4" />
                 </Link>
                 <Link
-                  href="/#projects"
+                  href="/projects"
                   className="inline-flex items-center gap-2 border border-foreground/20 px-6 py-3 rounded-[--radius] font-heading text-sm text-foreground hover:bg-foreground/5 transition-colors"
                 >
-                  View My Work
+                  View AI and web development projects
                 </Link>
               </div>
             </Reveal>
@@ -430,6 +438,30 @@ export default function AIServicesPage() {
 
           <section className="py-16 border-t border-border">
             <Reveal>
+              <h2 className="text-3xl sm:text-4xl font-heading text-foreground mb-4">
+                Need a Website Built, Not Just AI?
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="text-lg text-muted-foreground max-w-2xl mb-6">
+                AI is one tool in the box. Most of my work is designing and
+                building websites and web applications for Greenville
+                businesses — and plenty of those projects need no AI at all.
+              </p>
+            </Reveal>
+            <Reveal delay={0.15}>
+              <Link
+                href="/web-development"
+                className="inline-flex items-center gap-2 font-heading text-sm text-foreground border-b border-foreground/40 hover:border-foreground transition-colors pb-0.5"
+              >
+                See web development services in Greenville, SC
+                <ArrowRightIcon className="h-4 w-4" />
+              </Link>
+            </Reveal>
+          </section>
+
+          <section className="py-16 border-t border-border">
+            <Reveal>
               <h2 className="text-3xl sm:text-4xl font-heading text-foreground mb-8">
                 Frequently Asked Questions About AI Development in Greenville, SC
               </h2>
@@ -464,19 +496,18 @@ export default function AIServicesPage() {
                 </p>
                 <div className="flex flex-wrap justify-center gap-4">
                   <Link
-                    href="mailto:ryanmcgatha@gmail.com"
+                    href="/contact"
                     className="inline-flex items-center gap-2 bg-foreground text-background px-6 py-3 rounded-[--radius] font-heading text-sm hover:opacity-90 transition-opacity"
                   >
-                    ryanmcgatha@gmail.com
+                    Contact Ryan McGatha
+                    <ArrowRightIcon className="h-4 w-4" />
                   </Link>
-                  <Link
-                    href="https://www.linkedin.com/in/ryanmcgatha"
-                    target="_blank"
-                    rel="noopener noreferrer"
+                  <a
+                    href="tel:+18642016487"
                     className="inline-flex items-center gap-2 border border-foreground/20 px-6 py-3 rounded-[--radius] font-heading text-sm text-foreground hover:bg-foreground/5 transition-colors"
                   >
-                    Connect on LinkedIn
-                  </Link>
+                    Call (864) 201-6487
+                  </a>
                 </div>
                 <p className="text-sm text-muted-foreground mt-6">
                   Based in Greenville, South Carolina — available for local and remote AI projects

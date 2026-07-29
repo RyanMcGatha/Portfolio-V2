@@ -2,6 +2,7 @@
 
 import { useState, useRef, type FormEvent } from "react";
 import { motion, AnimatePresence } from "framer-motion";
+import { trackEvent } from "../util/ConversionTracking";
 
 type Status = "idle" | "sending" | "success" | "error";
 
@@ -34,11 +35,18 @@ export function ContactForm() {
       if (!res.ok) {
         setStatus("error");
         setErrorMsg(data.error || "Something went wrong.");
+        trackEvent("contact_form_error", { page_path: window.location.pathname });
         return;
       }
 
       setStatus("success");
       formRef.current?.reset();
+      // GA4 recommended event name — mark this as a key event in GA4 Admin so
+      // the report can show leads instead of only pageviews.
+      trackEvent("generate_lead", {
+        form_name: "contact",
+        page_path: window.location.pathname,
+      });
     } catch {
       setStatus("error");
       setErrorMsg("Network error. Please try again.");

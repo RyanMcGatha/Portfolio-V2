@@ -2,6 +2,10 @@ export function PersonJsonLd() {
   const data = {
     "@context": "https://schema.org",
     "@type": "Person",
+    // Stable @id so the Person, WebSite, and ProfessionalService nodes below
+    // resolve to one entity graph instead of three unrelated blobs — and so the
+    // per-page ProfessionalService nodes aren't read as duplicates of this one.
+    "@id": "https://ryanm.info/#person",
     name: "Ryan McGatha",
     url: "https://ryanm.info",
     email: "mailto:ryanmcgatha@gmail.com",
@@ -105,14 +109,14 @@ export function WebSiteJsonLd() {
   const data = {
     "@context": "https://schema.org",
     "@type": "WebSite",
-    name: "Ryan McGatha - Full-Stack Developer & Designer in Greenville, SC",
+    "@id": "https://ryanm.info/#website",
+    name: "Ryan McGatha - Web Developer & Designer in Greenville, SC",
     url: "https://ryanm.info",
     description:
-      "Ryan McGatha is a full-stack web developer and designer in Greenville, South Carolina. Custom websites, web app design and development, and AI integrations for local businesses.",
-    author: {
-      "@type": "Person",
-      name: "Ryan McGatha",
-    },
+      "Ryan McGatha is a web developer and designer in Greenville, South Carolina. Custom websites, web app design and development, and AI integrations for local businesses.",
+    inLanguage: "en-US",
+    author: { "@id": "https://ryanm.info/#person" },
+    publisher: { "@id": "https://ryanm.info/#person" },
   };
 
   return (
@@ -127,8 +131,10 @@ export function ProfessionalServiceJsonLd() {
   const data = {
     "@context": "https://schema.org",
     "@type": "ProfessionalService",
+    "@id": "https://ryanm.info/#business",
     name: "Ryan McGatha - Web Development, Web Design & AI Services in Greenville, SC",
     url: "https://ryanm.info",
+    provider: { "@id": "https://ryanm.info/#person" },
     telephone: "+1-864-201-6487",
     email: "ryanmcgatha@gmail.com",
     description:
@@ -143,8 +149,30 @@ export function ProfessionalServiceJsonLd() {
         },
       },
       {
+        "@type": "AdministrativeArea",
+        name: "Upstate South Carolina",
+      },
+      {
         "@type": "State",
         name: "South Carolina",
+      },
+      // Local-first, but the work isn't geographically capped.
+      {
+        "@type": "Country",
+        name: "United States",
+      },
+    ],
+    // Points Google at the two pages that should rank for service queries.
+    subjectOf: [
+      {
+        "@type": "WebPage",
+        name: "Web Development in Greenville, SC",
+        url: "https://ryanm.info/web-development",
+      },
+      {
+        "@type": "WebPage",
+        name: "AI Development in Greenville, SC",
+        url: "https://ryanm.info/ai-services",
       },
     ],
     serviceType: [

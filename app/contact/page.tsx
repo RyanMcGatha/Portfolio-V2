@@ -7,24 +7,27 @@ import { ContactForm } from "../components/contact/ContactForm";
 import Reveal from "../components/util/Reveal";
 
 export const metadata: Metadata = {
-  title: "Contact | Ryan McGatha — Web & AI Developer in Greenville, SC",
+  // Root layout appends "| Ryan McGatha" — don't repeat the name here.
+  title: "Contact a Web Developer in Greenville, SC",
   description:
-    "Get in touch with Ryan McGatha, a full-stack web and AI developer based in Greenville, SC. Available for web development, AI agent projects, and freelance work locally and remotely.",
+    "Contact Ryan McGatha, a web and AI developer in Greenville, SC. Free consultation for websites, web apps, and AI projects — local or fully remote.",
   alternates: {
     canonical: "https://ryanm.info/contact",
   },
   openGraph: {
-    title: "Contact Ryan McGatha | Web & AI Developer Greenville SC",
+    title: "Contact a Web Developer in Greenville, SC | Ryan McGatha",
     description:
-      "Reach out to Ryan McGatha for web development, AI agent development, and freelance projects in Greenville, SC.",
+      "Reach out about web development, web design, or AI development in Greenville, SC. Free consultation, no obligation.",
     url: "https://ryanm.info/contact",
     type: "website",
+    images: ["https://ryanm.info/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Contact Ryan McGatha | Web & AI Developer Greenville SC",
+    title: "Contact a Web Developer in Greenville, SC | Ryan McGatha",
     description:
-      "Reach out to Ryan McGatha for web development, AI agent development, and freelance projects in Greenville, SC.",
+      "Reach out about web development, web design, or AI development in Greenville, SC. Free consultation, no obligation.",
+    images: ["https://ryanm.info/opengraph-image"],
   },
 };
 
@@ -106,16 +109,125 @@ export default function ContactPage() {
             </Reveal>
             <Reveal delay={0.1}>
               <h1 className="text-4xl sm:text-5xl md:text-7xl font-heading font-bold leading-[1.1] text-foreground mb-6">
-                Contact
+                Contact a Web Developer
+                <br />
+                <span className="text-muted-foreground">in Greenville, SC</span>
               </h1>
             </Reveal>
             <Reveal delay={0.2}>
-              <p className="text-lg sm:text-xl leading-relaxed text-muted-foreground max-w-2xl">
+              <p className="text-lg sm:text-xl leading-relaxed text-muted-foreground max-w-2xl mb-6">
                 Have a project in mind or want to talk through an idea? Fill out
                 the form below or reach out directly — I&apos;m always happy to
                 chat about web development, AI, or anything in between.
               </p>
             </Reveal>
+            <Reveal delay={0.25}>
+              <p className="text-base leading-relaxed text-muted-foreground max-w-2xl">
+                I&apos;m Ryan McGatha, a full-stack web developer and designer
+                based in Greenville, South Carolina. I work with businesses
+                across the Upstate — Greenville, Greer, Simpsonville, Mauldin,
+                Easley, Spartanburg, and Anderson — and take on remote projects
+                nationwide. Whether you need a brand-new website, a rebuild of
+                one that has aged badly, a custom web application, or an AI
+                integration, the first conversation is free and there is no
+                obligation attached to it.
+              </p>
+            </Reveal>
+          </section>
+
+          <section className="border-t border-border py-16">
+            <Reveal>
+              <h2 className="text-2xl sm:text-3xl font-heading text-foreground mb-8">
+                What I can help with
+              </h2>
+            </Reveal>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 mb-12">
+              <Reveal delay={0.1} width="w-full">
+                <Link
+                  href="/web-development"
+                  className="group block h-full p-6 rounded-[--radius] border border-border hover:border-foreground/20 bg-card/50 transition-colors duration-300"
+                >
+                  <h3 className="font-heading text-foreground mb-2">
+                    Web development &amp; design
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Custom websites, WordPress builds and maintenance,
+                    redesigns, e-commerce, HTML email, and custom web
+                    applications in React and Next.js.
+                  </p>
+                </Link>
+              </Reveal>
+              <Reveal delay={0.15} width="w-full">
+                <Link
+                  href="/ai-services"
+                  className="group block h-full p-6 rounded-[--radius] border border-border hover:border-foreground/20 bg-card/50 transition-colors duration-300"
+                >
+                  <h3 className="font-heading text-foreground mb-2">
+                    AI development
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    AI agents, chatbots trained on your business data, LLM
+                    integrations, RAG pipelines, and workflow automation.
+                  </p>
+                </Link>
+              </Reveal>
+            </div>
+
+            <Reveal>
+              <h2 className="text-2xl sm:text-3xl font-heading text-foreground mb-6">
+                What happens after you reach out
+              </h2>
+            </Reveal>
+            <ol className="space-y-4 max-w-2xl mb-12">
+              {[
+                "I reply within one business day — usually the same day.",
+                "We have a short conversation about the business, what you need, and what is not working now. No charge, no pitch deck.",
+                "I send back a scope and a transparent price before any work begins, so you know exactly what you are getting.",
+              ].map((item, index) => (
+                <Reveal key={item} delay={0.05 * index} width="w-full">
+                  <li className="flex gap-4 text-muted-foreground leading-relaxed">
+                    <span className="font-heading text-foreground shrink-0">
+                      0{index + 1}
+                    </span>
+                    <span>{item}</span>
+                  </li>
+                </Reveal>
+              ))}
+            </ol>
+
+            <Reveal>
+              <h2 className="text-2xl sm:text-3xl font-heading text-foreground mb-6">
+                Helpful things to include
+              </h2>
+            </Reveal>
+            <Reveal delay={0.05}>
+              <p className="text-muted-foreground leading-relaxed max-w-2xl mb-4">
+                None of this is required — a one-line message is completely
+                fine, and I would rather hear from you with half the details
+                than not at all. But if you already know the answers, including
+                them means my first reply can be useful instead of a list of
+                questions:
+              </p>
+            </Reveal>
+            <ul className="space-y-3 max-w-2xl">
+              {[
+                "Your current website address, if you have one, and what specifically frustrates you about it.",
+                "What you need the site or app to actually do — sell something, book appointments, generate leads, replace a manual process.",
+                "Whether you need design work too, or you already have branding and designs to build from.",
+                "Any deadline you are working toward, and a rough budget range if you have one in mind.",
+              ].map((item) => (
+                <li
+                  key={item}
+                  className="flex gap-3 text-muted-foreground leading-relaxed"
+                >
+                  <span
+                    aria-hidden="true"
+                    className="mt-2 h-1.5 w-1.5 rounded-full bg-foreground/30 shrink-0"
+                  />
+                  <span>{item}</span>
+                </li>
+              ))}
+            </ul>
           </section>
 
           <section className="border-t border-border py-16">

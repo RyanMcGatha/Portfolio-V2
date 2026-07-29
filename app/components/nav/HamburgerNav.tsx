@@ -11,6 +11,7 @@ import Link from "next/link";
 const LINKS = [
   { title: "home", href: "/" },
   { title: "projects", href: "/projects" },
+  { title: "web development", href: "/web-development" },
   { title: "ai services", href: "/ai-services" },
   { title: "contact", href: "/contact" },
 ];

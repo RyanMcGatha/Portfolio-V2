@@ -43,12 +43,12 @@ export default function Home() {
                 />
               </>
             }
-            description="Full-stack developer and designer in Greenville, SC. I design and build modern websites, polished interfaces, and custom web apps in React, Node.js, and Python — including AI agents and LLM integrations when a project calls for it."
+            description="Web developer and designer in Greenville, SC. I design and build modern websites, polished interfaces, and custom web apps in React, Node.js, and Python — including AI agents and LLM integrations when a project calls for it. Currently managing 200+ client sites at Drum Creative."
             actions={[
               {
-                text: "View Projects",
-                href: "/#projects",
-                prefetch: false,
+                text: "Web Development",
+                href: "/web-development",
+                prefetch: true,
               },
               {
                 text: "AI Services",
@@ -57,7 +57,7 @@ export default function Home() {
               },
               {
                 text: "Contact Me",
-                href: "/#contact",
+                href: "/contact",
                 prefetch: false,
               },
             ]}

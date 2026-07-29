@@ -1,10 +1,15 @@
 "use client";
 
+import Link from "next/link";
 import { AiOutlineArrowRight } from "react-icons/ai";
 import { SectionHeader } from "../util/SectionHeader";
 import Reveal from "../util/Reveal";
 import { MyLinks } from "../nav/Header";
 import { Stats } from "./Stats";
+
+/** Inline link styling for contextual links inside body copy. */
+const inlineLink =
+  "text-foreground border-b border-foreground/40 hover:border-foreground transition-colors";
 
 export const About = () => {
   return (
@@ -21,9 +26,11 @@ export const About = () => {
                   </span>
                 </span>
                 ey! I&apos;m Ryan McGatha, a full-stack web developer and
-                designer based in Greenville, SC. I design and build modern
-                websites, polished user interfaces, and custom web apps for
-                businesses across the Upstate — and I bring AI into the
+                designer based in Greenville, SC. I design and build{" "}
+                <Link href="/web-development" className={inlineLink}>
+                  modern websites, polished user interfaces, and custom web apps
+                </Link>{" "}
+                for businesses across the Upstate — and I bring AI into the
                 picture when it actually moves the needle. Currently at Drum
                 Creative, I manage over 200 client websites and build roughly
                 one new site per week, handling everything from design and
@@ -48,8 +55,11 @@ export const About = () => {
               dynamic URL crawlers, AI agent tooling that performed real-time
               RESTful API calls with autonomous data capture, and third-party
               integrations with Fireflies, Notion, and Calendly. So when a
-              project benefits from a custom AI agent, chatbot, or LLM
-              integration, that&apos;s a tool in the box too — not the only one.
+              project benefits from{" "}
+              <Link href="/ai-services" className={inlineLink}>
+                a custom AI agent, chatbot, or LLM integration
+              </Link>
+              , that&apos;s a tool in the box too — not the only one.
             </p>
           </Reveal>
           <Reveal>

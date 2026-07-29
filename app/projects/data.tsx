@@ -7,7 +7,13 @@ export interface ProjectData {
   title: string;
   imgSrc: string;
   tech: string[];
+  /** Lead paragraph shown on the page — can run long. */
   description: string;
+  /**
+   * 140–160 char version used for <meta name="description">. Google truncates
+   * around 160, so the on-page lead copy can't double as the snippet.
+   */
+  metaDescription?: string;
   projectLink: string;
   projectLinkLabel?: string;
   code?: string;
@@ -35,6 +41,8 @@ export const projects: ProjectData[] = [
     ],
     description:
       "A three-piece email suite designed and developed for Concerned Citizens for Animals — Paw Prints Spring 2026, Paw Prints Winter 2025, and a send-only auto-reply, all sharing one editorial design system.",
+    metaDescription:
+      "An editorial email system designed and hand-coded for a Greenville-area animal shelter — two Paw Prints newsletters and an auto-reply on one design system.",
     body: (
       <>
         <p>
@@ -237,17 +245,63 @@ export const projects: ProjectData[] = [
     year: "2024",
     tech: ["React.js", "PostgreSQL", "Node.js", "Express.js", "JWT"],
     description:
-      "A real-time messaging application offering secure user registration and dynamic messaging capabilities.",
+      "A real-time messaging application with secure registration, JWT-protected routes, direct messages, and group chats — built as a full-stack web app in React with a PostgreSQL backend.",
+    metaDescription:
+      "A full-stack real-time messaging web app with JWT authentication, direct messages, and group chats — built in React with a PostgreSQL backend.",
     body: (
       <>
         <p>
-          Push It! is a real-time messaging application developed with
-          React.js, PostgreSQL, Node.js, Express.js, and JWT. It offers
-          secure user registration and dynamic messaging features.
+          Push It! is a real-time messaging platform I designed and built to
+          handle the two things every chat app has to get right: knowing who
+          somebody is, and making sure they only ever see the conversations
+          they belong to. Users register and sign in, then start direct
+          conversations or create group chats — with access to each thread
+          restricted to its participants.
+        </p>
+
+        <h2>The problem worth solving</h2>
+        <p>
+          Messaging looks simple until you write it. A message is easy; a
+          message that only the right two people can read, in a thread that
+          persists, behind an API that refuses everyone else, is the actual
+          engineering. Most of the work on this project went into the
+          authorization layer rather than the chat interface.
         </p>
         <p>
-          This project showcases my ability to quickly learn and apply new
-          technologies, demonstrating my skills in full-stack development.
+          Every protected API route sits behind JSON Web Token verification.
+          The token is issued at login and checked on each subsequent request,
+          so an endpoint cannot be called by simply knowing its URL. Chats
+          themselves carry a user-protected status — being authenticated is not
+          enough to read a thread, you have to be a participant in it. That
+          distinction between authentication (who are you) and authorization
+          (what are you allowed to see) is the part that most tutorial-grade
+          chat apps skip.
+        </p>
+
+        <h2>How it is built</h2>
+        <p>
+          The interface is a React single-page application built with Vite and
+          styled with Tailwind CSS, structured around conversation lists,
+          thread views, and group creation. Data lives in PostgreSQL — users,
+          chats, chat membership, and messages — reached through auto-generated
+          REST and GraphQL endpoints, which meant I could move quickly on the
+          data layer and spend the time on access control and the client
+          instead of hand-writing boilerplate CRUD.
+        </p>
+        <p>
+          The application is deployed and publicly available, and the source is
+          on GitHub across roughly 74 commits of iteration.
+        </p>
+
+        <h2>What I took from it</h2>
+        <p>
+          This was the project where token-based auth stopped being a concept I
+          had read about and became something I had debugged — expired tokens,
+          protected-route redirects, and the difference between hiding a
+          feature in the UI and actually refusing it at the API. That
+          distinction carries into every client application I have built since,
+          including internal tools where the data is far more sensitive than
+          chat messages.
         </p>
       </>
     ),
@@ -262,18 +316,61 @@ export const projects: ProjectData[] = [
     year: "2024",
     tech: ["React.js", "PostgreSQL", "Tailwind CSS", "Supabase"],
     description:
-      "A comprehensive document management system to enhance operational efficiency and support franchise expansion.",
+      "An internal document management system built under contract for a Greenville, SC franchise operation — centralizing the paperwork franchisees need so operations and new-location onboarding stop depending on email attachments.",
+    metaDescription:
+      "An internal document management web app built under contract for a Greenville, SC franchise — React, Tailwind, and Supabase on PostgreSQL.",
     body: (
       <>
         <p>
-          The Internal Franchise Document Management System is designed to
-          streamline operations and support franchise expansion.
+          I built this internal document management system as a Contract
+          Software Developer for Sully&apos;s Steamers, a Greenville, South
+          Carolina restaurant business expanding into franchising. It is the
+          kind of project that never gets a marketing page: unglamorous,
+          internal, and the difference between a franchise system that scales
+          and one that runs on forwarded email attachments.
+        </p>
+
+        <h2>The problem worth solving</h2>
+        <p>
+          Franchising multiplies paperwork. Every new location needs the same
+          set of operational documents — procedures, training material, brand
+          standards, forms — and every one of those documents gets revised over
+          time. When that lives in inboxes and shared drives, two things go
+          wrong immediately: nobody is certain which version is current, and
+          onboarding a new franchisee becomes a manual scavenger hunt for
+          somebody at headquarters.
         </p>
         <p>
-          Utilizing React.js for the frontend, PostgreSQL for database
-          management, Tailwind CSS for styling, and Supabase for backend
-          services, this project significantly improved the company&apos;s
-          operational efficiency.
+          The goal was a single place where the current version of any document
+          is the one you find, accessible to the franchisees who need it and
+          closed to everyone else.
+        </p>
+
+        <h2>How it is built</h2>
+        <p>
+          The front end is a React application styled with Tailwind CSS,
+          organized around browsing and retrieving documents quickly rather
+          than around admin-panel conventions — the people using it are running
+          restaurants, not filing tickets.
+        </p>
+        <p>
+          The backend runs on Supabase, which gave me PostgreSQL for relational
+          document metadata, authentication for gating access, and file storage
+          for the documents themselves behind one consistent set of APIs. For a
+          contract project on a real timeline, that mattered: I could put the
+          effort into the data model and the access rules instead of standing up
+          and maintaining separate services for auth, storage, and database.
+        </p>
+
+        <h2>What I took from it</h2>
+        <p>
+          This was my first contract engagement where the requirements came from
+          how a business actually operates rather than from a spec I wrote
+          myself, and it reshaped how I start projects. The useful questions
+          turned out to be organizational, not technical: who needs to see
+          this, who is allowed to change it, and what happens when the document
+          is revised six months from now. I ask those first on every internal
+          tool I have built since.
         </p>
       </>
     ),
@@ -288,17 +385,56 @@ export const projects: ProjectData[] = [
     year: "2024",
     tech: ["Python", "FastAPI", "PostgreSQL"],
     description:
-      "A tutorial project demonstrating the use of FastAPI with PostgreSQL, including a preset API route with customizable request parameters.",
+      "A teaching project for FastAPI and PostgreSQL — a guided walkthrough of project setup, models, schemas, CRUD operations, and endpoints, paired with a live API route students can reconfigure from drop-down menus.",
+    metaDescription:
+      "A teaching project and interactive playground for FastAPI and PostgreSQL — project setup, models, schemas, CRUD operations, and live API endpoints.",
     body: (
       <>
         <p>
-          The FastAPI Tutorial project demonstrates the use of FastAPI with
-          PostgreSQL. It features a preset API route with drop-down menus
-          to customize different parts of the API request.
+          This is a teaching project: a guide to building a FastAPI application
+          from an empty directory to working endpoints, written for students
+          learning backend development. It walks through project setup, defining
+          database models, writing schemas for request and response validation,
+          implementing CRUD operations, and exposing them as API endpoints
+          backed by PostgreSQL.
+        </p>
+
+        <h2>The problem worth solving</h2>
+        <p>
+          Most API tutorials fail in the same place. A student can follow along
+          and produce working code without ever forming a mental model of what a
+          request actually is — that a URL, a method, a set of query parameters,
+          and a body are separate, changeable things, and that changing one
+          changes the response in a predictable way. Reading about it does not
+          fix that. Changing it and watching the result does.
+        </p>
+
+        <h2>How it is built</h2>
+        <p>
+          Rather than only documenting the endpoints, the project ships an
+          interactive route: a preset API request with drop-down menus that let
+          students recompose different parts of it and immediately see what
+          comes back. The abstract idea of &ldquo;the parameters shape the
+          response&rdquo; becomes something they can operate.
         </p>
         <p>
-          This project is designed to teach students how to build efficient
-          and scalable backend services using FastAPI.
+          The backend is FastAPI in Python, connected to a PostgreSQL database,
+          following the same layered structure the tutorial teaches — models for
+          the database layer, schemas for validation at the boundary, and
+          endpoint handlers kept thin. The companion front end that hosts the
+          interactive explorer is built with Vite and styled with Tailwind CSS,
+          and the project is deployed publicly so students can use it without
+          installing anything first.
+        </p>
+
+        <h2>What I took from it</h2>
+        <p>
+          Explaining something forces you to actually understand it. Writing
+          this made me articulate why schemas belong at the boundary and why
+          endpoint handlers should stay thin — decisions I had been making by
+          imitation until I had to defend them to someone learning from scratch.
+          It is also a reminder that documentation you can click beats
+          documentation you can only read.
         </p>
       </>
     ),

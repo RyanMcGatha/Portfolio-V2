@@ -33,8 +33,9 @@ export async function generateMetadata({
   }
   const url = `https://ryanm.info/projects/${project.slug}`;
   return {
-    title: `${project.title} | Project by Ryan McGatha`,
-    description: project.description,
+    // The root layout template appends "| Ryan McGatha" already.
+    title: project.title,
+    description: project.metaDescription ?? project.description,
     alternates: {
       canonical: url,
     },

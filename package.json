@@ -9,6 +9,8 @@
     "lint": "next lint",
     "auth": "tsx scripts/auth.ts",
     "seo:report": "tsx scripts/seo-report.ts",
+    "seo:report:full": "tsx scripts/seo-report.ts --full",
+    "seo:report:fast": "tsx scripts/seo-report.ts --fast",
     "seo:reindex": "tsx scripts/seo-reindex.ts"
   },
   "dependencies": {

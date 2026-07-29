@@ -10,6 +10,7 @@ import {
   ProfessionalServiceJsonLd,
 } from "./structured-data";
 import { BackgroundAnimationLazy } from "./components/util/BackgroundAnimationLazy";
+import { ConversionTracking } from "./components/util/ConversionTracking";
 const inter = Inter({
   subsets: ["latin"],
   variable: "--font-body",
@@ -56,13 +57,14 @@ export const viewport: Viewport = {
 
 export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
+  // Keyword first, name second: brand queries match either way, but
+  // "web developer greenville sc" only matches if it leads.
   title: {
-    default:
-      "Ryan McGatha | Full-Stack Developer & Designer in Greenville, SC",
+    default: "Web Developer & Designer in Greenville, SC | Ryan McGatha",
     template: "%s | Ryan McGatha",
   },
   description:
-    "Full-stack web developer and designer in Greenville, SC. I design and build modern websites, polished interfaces, and custom web apps in React, Node.js, and Python — including AI agents and LLM integrations when projects call for it.",
+    "Web developer and designer in Greenville, SC building custom websites, web apps, and AI integrations in React, Next.js, and Python. 200+ client sites shipped.",
   authors: [{ name: "Ryan McGatha", url: siteUrl }],
   creator: "Ryan McGatha",
   publisher: "Ryan McGatha",
@@ -83,16 +85,16 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: siteUrl,
-    title: "Ryan McGatha | Full-Stack Developer & Designer in Greenville, SC",
+    title: "Web Developer & Designer in Greenville, SC | Ryan McGatha",
     description:
-      "Full-stack web developer and designer in Greenville, SC. Designing and building modern websites, polished interfaces, and custom web apps with React, Node.js, and Python — plus AI agents and LLM integrations.",
-    siteName: "Ryan McGatha - Full-Stack Developer & Designer in Greenville, SC",
+      "Web development, web design, and AI integrations for Greenville, SC businesses. Custom websites and web apps built with React, Next.js, Node.js, and Python.",
+    siteName: "Ryan McGatha - Web Developer & Designer in Greenville, SC",
   },
   twitter: {
     card: "summary_large_image",
-    title: "Ryan McGatha | Full-Stack Developer & Designer in Greenville, SC",
+    title: "Web Developer & Designer in Greenville, SC | Ryan McGatha",
     description:
-      "Full-stack web developer and designer in Greenville, SC. Modern websites, custom web apps, and AI integrations built with React, Node.js, and Python.",
+      "Web development, web design, and AI integrations for Greenville, SC businesses. Custom websites and web apps in React, Next.js, and Python.",
     creator: "@ryanmcgatha",
   },
   robots: {
@@ -156,6 +158,7 @@ export default function RootLayout({
         >
           {children}
           <BackgroundAnimationLazy />
+          <ConversionTracking />
           <Analytics />
         </ThemeProvider>
       </body>

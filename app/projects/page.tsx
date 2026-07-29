@@ -8,24 +8,28 @@ import { Header } from "../components/nav/Header";
 import Reveal from "../components/util/Reveal";
 
 export const metadata: Metadata = {
-  title: "Projects | Web, Design & AI Work by Ryan McGatha",
+  // The root layout appends "| Ryan McGatha", so the name is deliberately
+  // omitted here — including it produced a doubled title in search results.
+  title: "Web Development & Design Projects",
   description:
-    "A collection of full-stack web apps, email design systems, and AI projects designed and built by Ryan McGatha — a full-stack developer and designer in Greenville, SC.",
+    "Case studies from a web developer in Greenville, SC: custom web apps, an editorial email system, an internal document platform, and AI integration work.",
   alternates: {
     canonical: "https://ryanm.info/projects",
   },
   openGraph: {
-    title: "Projects | Ryan McGatha",
+    title: "Web Development & Design Projects | Ryan McGatha",
     description:
-      "Selected web, design, and AI projects by Ryan McGatha — full-stack developer and designer in Greenville, SC.",
+      "Case studies from a Greenville, SC web developer — custom web apps, email design systems, internal tools, and AI integrations.",
     url: "https://ryanm.info/projects",
     type: "website",
+    images: ["https://ryanm.info/opengraph-image"],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Projects | Ryan McGatha",
+    title: "Web Development & Design Projects | Ryan McGatha",
     description:
-      "Selected web, design, and AI projects by Ryan McGatha — full-stack developer and designer in Greenville, SC.",
+      "Case studies from a Greenville, SC web developer — custom web apps, email design systems, internal tools, and AI integrations.",
+    images: ["https://ryanm.info/opengraph-image"],
   },
 };
 
@@ -109,14 +113,28 @@ export default function ProjectsIndexPage() {
             </Reveal>
             <Reveal delay={0.1}>
               <h1 className="text-4xl sm:text-5xl md:text-7xl font-heading font-bold leading-[1.1] text-foreground mb-6">
-                Projects
+                Web Development
+                <br />
+                <span className="text-muted-foreground">&amp; Design Projects</span>
               </h1>
             </Reveal>
             <Reveal delay={0.2}>
-              <p className="text-lg sm:text-xl leading-relaxed text-muted-foreground max-w-2xl">
+              <p className="text-lg sm:text-xl leading-relaxed text-muted-foreground max-w-2xl mb-6">
                 A mix of full-stack web apps, email design systems, and AI work
-                I&apos;ve designed and built. Each project has its own page with
-                the full story, the tech behind it, and links to the live work.
+                I&apos;ve designed and built as a web developer in Greenville,
+                South Carolina. Each project has its own page with the full
+                story, the tech behind it, and links to the live work.
+              </p>
+            </Reveal>
+            <Reveal delay={0.25}>
+              <p className="text-base leading-relaxed text-muted-foreground max-w-2xl">
+                Most of my day-to-day is client work under NDA at Drum Creative,
+                where I manage over 200 websites and build roughly one new site a
+                week. The projects below are the ones I can show publicly — they
+                cover the range of what I do: designing in Figma, building front
+                ends in React and Next.js, wiring up Node.js and PostgreSQL back
+                ends, hand-coding HTML email that survives Outlook, and shipping
+                AI features into real products.
               </p>
             </Reveal>
           </section>
@@ -173,6 +191,53 @@ export default function ProjectsIndexPage() {
             </ul>
           </section>
 
+          <section className="py-16 border-t border-border">
+            <Reveal>
+              <h2 className="text-2xl sm:text-3xl font-heading text-foreground mb-4">
+                What I Do for Clients
+              </h2>
+            </Reveal>
+            <Reveal delay={0.1}>
+              <p className="text-muted-foreground max-w-2xl mb-8">
+                The projects above are case studies. If you are looking for the
+                services themselves, these two pages cover what I take on, how
+                the process works, and what it costs.
+              </p>
+            </Reveal>
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <Reveal delay={0.15} width="w-full">
+                <Link
+                  href="/web-development"
+                  className="group block h-full p-6 rounded-[--radius] border border-border hover:border-foreground/20 bg-card/50 transition-colors duration-300"
+                >
+                  <h3 className="font-heading text-foreground mb-2 inline-flex items-center gap-2">
+                    Web development in Greenville, SC
+                    <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    Custom websites, WordPress builds, redesigns, and web
+                    applications — design and development from one person.
+                  </p>
+                </Link>
+              </Reveal>
+              <Reveal delay={0.2} width="w-full">
+                <Link
+                  href="/ai-services"
+                  className="group block h-full p-6 rounded-[--radius] border border-border hover:border-foreground/20 bg-card/50 transition-colors duration-300"
+                >
+                  <h3 className="font-heading text-foreground mb-2 inline-flex items-center gap-2">
+                    AI development in Greenville, SC
+                    <ArrowRightIcon className="h-4 w-4 transition-transform group-hover:translate-x-1" />
+                  </h3>
+                  <p className="text-sm text-muted-foreground leading-relaxed">
+                    AI agents, chatbots, LLM integrations, and workflow
+                    automation built into real products.
+                  </p>
+                </Link>
+              </Reveal>
+            </div>
+          </section>
+
           <section className="py-16 border-t border-border text-center">
             <Reveal>
               <h2 className="text-2xl sm:text-3xl font-heading text-foreground mb-4">
@@ -187,10 +252,10 @@ export default function ProjectsIndexPage() {
             </Reveal>
             <Reveal delay={0.2}>
               <Link
-                href="/#contact"
+                href="/contact"
                 className="inline-flex items-center gap-2 bg-foreground text-background px-6 py-3 rounded-[--radius] font-heading text-sm hover:opacity-90 transition-opacity"
               >
-                Get in touch
+                Contact Ryan McGatha
                 <ArrowRightIcon className="h-4 w-4" />
               </Link>
             </Reveal>

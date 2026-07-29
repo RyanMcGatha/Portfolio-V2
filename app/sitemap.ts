@@ -3,7 +3,11 @@ import { projects } from "./projects/data";
 
 const baseUrl = "https://ryanm.info";
 
-const lastModified = new Date("2026-05-14T00:00:00.000Z");
+/**
+ * Bump this whenever page content meaningfully changes. A stale lastmod tells
+ * Google not to bother re-crawling, so it should move when the copy moves.
+ */
+const lastModified = new Date("2026-07-29T00:00:00.000Z");
 
 export default function sitemap(): MetadataRoute.Sitemap {
   return [
@@ -13,18 +17,14 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "weekly",
       priority: 1,
     },
+    // Both service pages sit above /projects — they're the pages that need to
+    // rank for the local service queries.
     {
-      url: `${baseUrl}/projects`,
+      url: `${baseUrl}/web-development`,
       lastModified,
       changeFrequency: "weekly",
       priority: 0.9,
     },
-    ...projects.map((project) => ({
-      url: `${baseUrl}/projects/${project.slug}`,
-      lastModified,
-      changeFrequency: "monthly" as const,
-      priority: 0.7,
-    })),
     {
       url: `${baseUrl}/ai-services`,
       lastModified,
@@ -37,5 +37,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: "monthly",
       priority: 0.8,
     },
+    {
+      url: `${baseUrl}/projects`,
+      lastModified,
+      changeFrequency: "weekly",
+      priority: 0.8,
+    },
+    ...projects.map((project) => ({
+      url: `${baseUrl}/projects/${project.slug}`,
+      lastModified,
+      changeFrequency: "monthly" as const,
+      priority: 0.7,
+    })),
   ];
 }
