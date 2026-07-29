@@ -20,6 +20,11 @@ const OAUTH_TOKEN_PATH = resolve(process.cwd(), ".oauth-token.json");
 export const SCOPES = [
   "https://www.googleapis.com/auth/webmasters",
   "https://www.googleapis.com/auth/analytics.readonly",
+  // Lets the contact-form handler create events on your calendar — see
+  // lib/calendar/google.ts. If your existing .oauth-token.json predates this,
+  // revoke access at https://myaccount.google.com/permissions and re-run
+  // `npm run auth` to pick up the new scope.
+  "https://www.googleapis.com/auth/calendar.events",
 ];
 
 interface OAuthClientFile {

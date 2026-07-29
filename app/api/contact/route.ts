@@ -1,4 +1,5 @@
 import { NextRequest, NextResponse } from "next/server";
+import { addToCalendars } from "@/lib/calendar";
 
 function getResend() {
   // eslint-disable-next-line @typescript-eslint/no-require-imports
@@ -82,10 +83,19 @@ export async function POST(req: NextRequest) {
         })
       : Promise.resolve();
 
-    const results = await Promise.allSettled([emailPromise, pushPromise]);
+    const now = new Date();
+    const calendarPromise = addToCalendars({
+      summary: `Contact form: ${name}`,
+      description: `${name} (${email}) submitted the contact form.\n\n"${message}"`,
+      start: now,
+      end: new Date(now.getTime() + 30 * 60 * 1000),
+    });
 
-    const emailResult = results[0];
-    const pushResult = results[1];
+    const [emailResult, pushResult, calendarResult] = await Promise.allSettled([
+      emailPromise,
+      pushPromise,
+      calendarPromise,
+    ]);
 
     if (emailResult.status === "rejected" && pushResult.status === "rejected") {
       console.error("Email failed:", emailResult.reason);
@@ -101,6 +111,13 @@ export async function POST(req: NextRequest) {
     }
     if (pushResult.status === "rejected") {
       console.error("Push failed:", pushResult.reason);
+    }
+    if (calendarResult.status === "rejected") {
+      console.error("Calendar sync failed to run:", calendarResult.reason);
+    } else {
+      for (const r of calendarResult.value) {
+        if (!r.ok) console.error(`${r.provider} calendar event failed:`, r.error);
+      }
     }
 
     return NextResponse.json({ success: true });
