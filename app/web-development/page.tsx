@@ -473,18 +473,22 @@ export default function WebDevelopmentPage() {
             </Reveal>
             <ol className="divide-y divide-border border-y border-border">
               {process.map((phase, index) => (
-                <Reveal key={phase.step} delay={0.05 * index} width="w-full">
-                  <li className="grid grid-cols-1 md:grid-cols-[80px_220px_1fr] gap-x-6 gap-y-2 py-6">
-                    <span className="text-sm font-heading text-muted-foreground">
-                      {phase.step}
-                    </span>
-                    <h3 className="text-lg font-heading text-foreground">
-                      {phase.title}
-                    </h3>
-                    <p className="text-muted-foreground leading-relaxed">
-                      {phase.description}
-                    </p>
-                  </li>
+                <Reveal
+                  as="li"
+                  key={phase.step}
+                  delay={0.05 * index}
+                  width="w-full"
+                  className="grid grid-cols-1 md:grid-cols-[80px_220px_1fr] gap-x-6 gap-y-2 py-6"
+                >
+                  <span className="text-sm font-heading text-muted-foreground">
+                    {phase.step}
+                  </span>
+                  <h3 className="text-lg font-heading text-foreground">
+                    {phase.title}
+                  </h3>
+                  <p className="text-muted-foreground leading-relaxed">
+                    {phase.description}
+                  </p>
                 </Reveal>
               ))}
             </ol>

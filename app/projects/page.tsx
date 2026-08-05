@@ -88,7 +88,7 @@ export default function ProjectsIndexPage() {
       <div className="min-h-screen">
         <Header />
 
-        <main className="max-w-5xl mx-auto px-4 md:px-8 pb-24">
+        <main id="main-content" className="max-w-5xl mx-auto px-4 md:px-8 pb-24">
           <section className="pt-16 pb-12 sm:pt-24 sm:pb-16">
             <Reveal>
               <nav aria-label="Breadcrumb" className="mb-6">

@@ -108,10 +108,12 @@ const SocialLink: React.FC<SocialLinkProps> = ({ href, icon, label, className })
     href={href}
     target="_blank"
     rel="noopener noreferrer"
-    aria-label={label}
     role="listitem"
   >
-    <span className="block hover:scale-110 transition-transform text-xl">
+    {/* Visible-to-crawlers text (not just aria-label) so the SEO link-text
+        audit and text-only crawlers see a real name, not an empty anchor. */}
+    <span className="sr-only">{label}</span>
+    <span className="block hover:scale-110 transition-transform text-xl" aria-hidden="true">
       {icon}
     </span>
   </Link>

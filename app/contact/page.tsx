@@ -87,7 +87,7 @@ export default function ContactPage() {
       <div className="min-h-screen">
         <Header />
 
-        <main className="max-w-5xl mx-auto px-4 md:px-8 pb-24">
+        <main id="main-content" className="max-w-5xl mx-auto px-4 md:px-8 pb-24">
           <section className="pt-16 pb-12 sm:pt-24 sm:pb-16">
             <Reveal>
               <nav aria-label="Breadcrumb" className="mb-6">
@@ -184,13 +184,17 @@ export default function ContactPage() {
                 "We have a short conversation about the business, what you need, and what is not working now. No charge, no pitch deck.",
                 "I send back a scope and a transparent price before any work begins, so you know exactly what you are getting.",
               ].map((item, index) => (
-                <Reveal key={item} delay={0.05 * index} width="w-full">
-                  <li className="flex gap-4 text-muted-foreground leading-relaxed">
-                    <span className="font-heading text-foreground shrink-0">
-                      0{index + 1}
-                    </span>
-                    <span>{item}</span>
-                  </li>
+                <Reveal
+                  as="li"
+                  key={item}
+                  delay={0.05 * index}
+                  width="w-full"
+                  className="flex gap-4 text-muted-foreground leading-relaxed"
+                >
+                  <span className="font-heading text-foreground shrink-0">
+                    0{index + 1}
+                  </span>
+                  <span>{item}</span>
                 </Reveal>
               ))}
             </ol>

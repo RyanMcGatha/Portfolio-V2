@@ -40,7 +40,7 @@ export function HeroSection({ badge, title, description, actions }: HeroProps) {
     >
       <div className="mx-auto flex max-w-container flex-col gap-12 pt-16 sm:gap-24 min-h-[924px] min-[420px]:min-h-[841px] min-[440px]:min-h-[740px] min-[470px]:min-h-[685px] min-[510px]:min-h-[655px] min-[600px]:min-h-[626px]">
         <div className="flex flex-col items-center gap-8 text-center sm:gap-14">
-          <Reveal>
+          <Reveal delay={0} duration={0.4}>
             {badge && (
               <Badge
                 variant="outline"
@@ -60,19 +60,21 @@ export function HeroSection({ badge, title, description, actions }: HeroProps) {
             )}
           </Reveal>
 
-          <Reveal>
+          {/* No delay on the H1 — it's almost always the LCP element, and an
+              opacity fade delay here directly pushes back LCP. */}
+          <Reveal delay={0} duration={0.35} slide={false}>
             <h1 className="relative z-10 inline-block font-heading text-5xl font-bold leading-[1.15] text-foreground drop-shadow sm:text-6xl sm:leading-[1.15] md:text-8xl md:leading-[1.15]">
               {title}
             </h1>
           </Reveal>
 
-          <Reveal>
+          <Reveal delay={0.05} duration={0.4}>
             <p className="text-lg relative z-10 max-w-[570px] leading-relaxed text-muted-foreground sm:text-xl">
               {description}
             </p>
           </Reveal>
 
-          <Reveal>
+          <Reveal delay={0.1} duration={0.4}>
             <div className="relative z-10 flex flex-wrap justify-center gap-4 mt-4">
             {actions.map((action, index) => (
               <OutlineButton

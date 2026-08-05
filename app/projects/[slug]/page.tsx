@@ -164,7 +164,7 @@ export default async function ProjectDetailPage({ params }: PageProps) {
       <div className="min-h-screen">
         <Header />
 
-        <main className="max-w-5xl mx-auto px-4 md:px-8 pb-24">
+        <main id="main-content" className="max-w-5xl mx-auto px-4 md:px-8 pb-24">
           <article>
             <header className="pt-12 pb-10 sm:pt-20 sm:pb-12">
               <Reveal>

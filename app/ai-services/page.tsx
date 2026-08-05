@@ -282,7 +282,7 @@ export default function AIServicesPage() {
       <div className="min-h-screen">
         <Header />
 
-        <main className="max-w-5xl mx-auto px-4 md:px-8 pb-24">
+        <main id="main-content" className="max-w-5xl mx-auto px-4 md:px-8 pb-24">
           <section className="pt-16 pb-12 sm:pt-24 sm:pb-16">
             <Reveal>
               <p className="text-sm font-heading tracking-widest uppercase text-muted-foreground mb-4">

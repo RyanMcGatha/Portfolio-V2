@@ -14,6 +14,9 @@ interface RevealProps {
   className?: string;
   slide?: boolean;
   slideColor?: string;
+  /** Outer wrapper tag. Use "li" inside <ul>/<ol> so the list's direct
+   * children stay <li> elements instead of the wrapping <div>. */
+  as?: "div" | "li";
 }
 
 const directionVariants = {
@@ -34,8 +37,9 @@ export const Reveal: React.FC<RevealProps> = ({
   className = "",
   slide = true,
   slideColor = "hsl(var(--primary))",
+  as: Wrapper = "div",
 }) => {
-  const ref = useRef<HTMLDivElement>(null);
+  const ref = useRef<HTMLDivElement & HTMLLIElement>(null);
   const isInView = useInView(ref, { once, margin: "-50px" });
   const prefersReducedMotion = useReducedMotion();
 
@@ -59,17 +63,17 @@ export const Reveal: React.FC<RevealProps> = ({
 
   if (prefersReducedMotion) {
     return (
-      <div
+      <Wrapper
         ref={ref}
         className={`relative ${slide ? "overflow-hidden" : ""} ${width} ${className}`}
       >
         {children}
-      </div>
+      </Wrapper>
     );
   }
 
   return (
-    <div
+    <Wrapper
       ref={ref}
       className={`relative ${slide ? "overflow-hidden" : ""} ${width} ${className}`}
     >
@@ -91,18 +95,18 @@ export const Reveal: React.FC<RevealProps> = ({
       {slide && (
         <motion.div
           variants={{
-            hidden: { left: 0 },
-            visible: { left: "100%" },
+            hidden: { x: "0%" },
+            visible: { x: "100%" },
           }}
           initial="hidden"
           animate={slideControls}
           transition={{ duration: duration * 1.25, ease: "easeInOut" }}
-          style={{ backgroundColor: slideColor }}
+          style={{ backgroundColor: slideColor, willChange: "transform" }}
           className="absolute inset-0 z-20"
           aria-hidden="true"
         />
       )}
-    </div>
+    </Wrapper>
   );
 };
 
